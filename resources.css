@@ -24,6 +24,19 @@
   border: 1px solid var(--border-dark-2);
 }
 
+/* Homepage resource preview: 2 columns, more compact */
+#resourcesPreview .resource-grid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+#resourcesPreview .resource-card {
+  padding: 20px 16px;
+}
+
+#resourcesPreview .resource-card h3 {
+  font-size: 14px;
+}
+
 @media (max-width: 900px) {
   .resource-grid { grid-template-columns: repeat(2, 1fr); }
 }
@@ -65,18 +78,17 @@
   font-size: 13px;
   line-height: 1.55;
   color: var(--text-muted-dark);
-  max-height: 0;
+  display: none;
   opacity: 0;
   transform: translateY(-4px);
-  transition: max-height 0.4s ease, opacity 0.35s ease, transform 0.35s ease, margin-top 0.35s ease;
-  margin-top: 0;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  margin: 2px 0 0 0;
 }
 
 .resource-card:hover .resource-excerpt {
-  max-height: 100px;
+  display: block;
   opacity: 1;
   transform: translateY(0);
-  margin-top: 2px;
 }
 
 .resource-goto {
