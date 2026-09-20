@@ -78,17 +78,19 @@
   font-size: 13px;
   line-height: 1.55;
   color: var(--text-muted-dark);
-  display: none;
+  max-height: 0;
   opacity: 0;
   transform: translateY(-4px);
-  transition: opacity 0.35s ease, transform 0.35s ease;
-  margin: 2px 0 0 0;
+  overflow: hidden;
+  transition: opacity 0.35s ease, transform 0.35s ease, max-height 0.35s ease, margin 0.35s ease;
+  margin: 0;
 }
 
 .resource-card:hover .resource-excerpt {
-  display: block;
+  max-height: 120px;
   opacity: 1;
   transform: translateY(0);
+  margin: 8px 0 0 0;
 }
 
 .resource-goto {
