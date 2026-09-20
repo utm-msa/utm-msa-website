@@ -58,7 +58,7 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 24px;
+  padding: 16px 24px;
   background: rgba(16, 26, 48, 0.88);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-dark);
@@ -68,8 +68,14 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-shrink: 0;
 }
 
+.site-logo-img {
+  height: 50px;
+  width: auto;
+  display: block;
+}
 
 .brand-mark {
   width: 26px;
@@ -83,14 +89,17 @@ a { color: inherit; text-decoration: none; }
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 17px;
+  display: none;
 }
 
 .main-nav {
-  display: flex;
+  display: none;
   gap: 30px;
   font-size: 13.5px;
   font-weight: 500;
   color: #9aa3bf;
+  flex: 1;
+  justify-content: center;
 }
 
 .main-nav a:hover { color: var(--gold-light); }
@@ -103,10 +112,57 @@ a { color: inherit; text-decoration: none; }
   padding: 9px 18px;
   border-radius: var(--radius-sm);
   white-space: nowrap;
+  display: none;
 }
 .nav-cta:hover { border-color: var(--gold-light); }
 
-.nav-toggle { display: none; }
+.nav-toggle {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 24px;
+  height: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: var(--gold-light);
+}
+
+/* Tablet & desktop: show full nav */
+@media (min-width: 768px) {
+  .site-header {
+    padding: 18px 24px;
+  }
+
+  .site-logo-img {
+    height: 65px;
+  }
+
+  .main-nav {
+    display: flex;
+  }
+
+  .nav-cta {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+}
+
+/* Desktop: even more breathing room */
+@media (min-width: 1024px) {
+  .site-header {
+    padding: 20px 24px;
+  }
+
+  .site-logo-img {
+    height: 75px;
+  }
+}
 
 /* ---------- Hero ---------- */
 
