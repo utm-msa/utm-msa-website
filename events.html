@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Events — UTM MSA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Montserrat:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="pages.css">
+<link rel="stylesheet" href="resources.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; width:100%;">
+    <a class="brand" href="index.html">
+      <img src="utm-msa-logo.png" alt="UTM MSA logo" class="site-logo-img">
+      <span style="font-family:var(--font-display); font-weight:600; letter-spacing:0.04em;">UTM MSA</span>
+    </a>
+    <nav class="main-nav" style="display:flex; gap:28px; font-size:0.9rem;">
+      <a href="about.html">About</a>
+      <a href="events.html">Events</a>
+      <a href="resources.html">Resources</a>
+      <a href="jumuah.html">Jumu'ah</a>
+    </nav>
+    <a class="nav-cta" href="https://forms.gle/BKkKjAEeX6UAhfDM7" target="_blank" rel="noopener">Become a General Member →</a>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="kicker">AS-SALAMU ALAYKUM · UOFT MISSISSAUGA</span>
+      <h1>Events</h1>
+      <p>Everything on the calendar, pulled straight from our events sheet — plus a look back at what we've hosted.</p>
+    </div>
+  </section>
+
+  <section class="section-block">
+    <div class="wrap">
+      <h2 class="section-title">Upcoming</h2>
+      <div id="upcomingList">
+        <div class="empty-state">Loading events…</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-block">
+    <div class="wrap">
+      <h2 class="section-title">Instagram Highlights</h2>
+      <!--
+        HOW TO ADD A REAL INSTAGRAM POST:
+        1. Open the post on instagram.com, click the "•••" menu → "Embed"
+        2. Copy the <blockquote class="instagram-media">...</blockquote> code Instagram gives you
+        3. Paste it in place of one of the <div class="ig-slot"> placeholders below,
+           and add class="has-embed" to that div's replacement blockquote wrapper
+        4. Instagram's embed.js script (loaded at the bottom of this page) will render it automatically
+      -->
+      <div class="ig-grid">
+        <div class="ig-slot">Instagram post embed goes here.<br>See the code comment above this section for instructions.</div>
+        <div class="ig-slot">Instagram post embed goes here.</div>
+        <div class="ig-slot">Instagram post embed goes here.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-block">
+    <div class="wrap">
+      <h2 class="section-title">Past Events</h2>
+      <div id="pastList">
+        <div class="empty-state">Loading archive…</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" style="padding:40px 0;">
+  <div class="footer-logo">
+    <img src="utm-msa-logo.png" alt="UTM MSA logo" class="site-logo-img">
+    <span>UTM Muslim Students' Association</span>
+  </div>
+  <div class="wrap footer-bottom" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+    <span>© UTM Muslim Students' Association</span>
+    <div class="footer-links">
+      <a href="mailto:msa@utmsu.ca">Contact</a>
+    </div>
+    <div class="social-links">
+      <a href="https://www.instagram.com/utmmsa/?hl=en" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+      <a href="https://www.youtube.com/@utmmsa" target="_blank" rel="noopener" aria-label="YouTube">YT</a>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script src="events-team.js"></script>
+<!-- Instagram's embed script — only does anything once real <blockquote class="instagram-media"> embeds are pasted in above -->
+<script async src="//www.instagram.com/embed.js"></script>
+</body>
+</html>

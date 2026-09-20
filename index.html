@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UTM MSA — Muslim Students' Association, University of Toronto Mississauga</title>
+<meta name="description" content="Everything the UTM MSA runs — events, calendar, resources, and the people behind it — in one place.">
+
+<!-- Brand fonts: Cinzel (display), Montserrat (body/UI), JetBrains Mono (accent) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Montserrat:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="resources.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a href="index.html" class="brand">
+    <img src="utm-msa-logo.png" alt="UTM MSA logo" class="site-logo-img">
+    <span class="brand-name">UTM MSA</span>
+  </a>
+
+  <nav class="main-nav">
+    <a href="about.html">About</a>
+    <a href="events.html">Events</a>
+    <a href="resources.html">Resources</a>
+    <a href="jumuah.html">Jumu'ah</a>
+  </nav>
+
+  <a class="nav-cta" href="https://forms.gle/BKkKjAEeX6UAhfDM7" target="_blank" rel="noopener">Become a General Member →</a>
+</header>
+
+<section class="hero">
+  <div class="hero-motif" aria-hidden="true" id="heroMotif"></div>
+
+  <div class="hero-inner">
+    <span class="kicker">As-salamu Alaykum · UofT Mississauga</span>
+    <h1>One home for the whole MSA.</h1>
+    <p>Events, calendar, resources, and the people behind it — always current, always easy to find. No Instagram or group chat needed.</p>
+
+    <div class="hero-actions">
+      <a class="btn-primary" href="events.html">This week's events</a>
+      <a class="btn-text" href="about.html">Meet the cabinet →</a>
+    </div>
+
+    <div class="hero-live">
+      <span class="live-dot" aria-hidden="true"></span>
+      <span id="liveEventCount">Loading this week's events…</span>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" data-reveal id="thisWeek">
+  <div class="section-head-row">
+    <h2>This Week</h2>
+    <a href="events.html" class="section-label">See all →</a>
+  </div>
+  <div class="week-grid" id="weekGrid">
+    <div class="week-empty">Loading events…</div>
+  </div>
+</section>
+
+<section class="highlight-section" data-reveal>
+  <div class="highlight-inner">
+    <div class="highlight-text">
+      <span class="kicker">Coming Up</span>
+      <h2>Monday: Orientation</h2>
+      <p>Kicking off the year — come meet the cabinet, find out what MSA runs this semester, and grab some food. Full details on our Instagram.</p>
+      <a class="btn-text" href="https://www.instagram.com/p/DczQndhD08V/" target="_blank" rel="noopener">View post on Instagram →</a>
+    </div>
+    <div class="highlight-embed">
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DczQndhD08V/" data-instgrm-version="14" style="margin:0;"></blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="section" data-reveal id="resourcesPreview">
+  <div class="section-head-row">
+    <h2>Resources</h2>
+    <a href="resources.html" class="section-label">See all →</a>
+  </div>
+  <div class="resource-grid">
+
+    <a class="resource-card" href="resources.html#mental-health">
+      <span class="resource-icon-svg"><svg viewBox="0 0 32 32"><path d="M16 27c0 0-12-8-12-16.5C4 6 8 3.5 12 5c2 0.7 4 2.5 4 2.5s2-1.8 4-2.5c4-1.5 8 1 8 5.5C28 19 16 27 16 27Z"/></svg></span>
+      <h3>Mental Health</h3>
+      <p class="resource-excerpt">Counselling flyers, peer support contacts, and campus wellness lines — no judgment, just support.</p>
+      <span class="resource-goto">View details →</span>
+    </a>
+
+    <a class="resource-card" href="resources.html#academic-financial">
+      <span class="resource-icon-svg"><svg viewBox="0 0 32 32"><path d="M16 5 L29 12 L16 19 L3 12 Z"/><path d="M9 15 V22c0 2 3 4.5 7 4.5s7-2.5 7-4.5v-7"/><path d="M29 12 v8"/></svg></span>
+      <h3>Academic &amp; Financial Support</h3>
+      <p class="resource-excerpt">Tutoring, study groups, exam-season resources, bursaries, zakat contacts, and emergency funding pathways.</p>
+      <span class="resource-goto">View details →</span>
+    </a>
+
+    <a class="resource-card" href="resources.html#local-masjids">
+      <span class="resource-icon-svg"><svg viewBox="0 0 32 32"><path d="M12 12c0-3 1.8-6 4-8 2.2 2 4 5 4 8Z"/><rect x="10" y="12" width="12" height="10"/><line x1="6" y1="22" x2="26" y2="22"/><line x1="6" y1="15" x2="6" y2="22"/><line x1="26" y1="15" x2="26" y2="22"/><line x1="16" y1="2" x2="16" y2="4"/></svg></span>
+      <h3>Local Masjids</h3>
+      <p class="resource-excerpt">Nearby prayer spaces with hours and directions, for when you need more than the prayer room on campus.</p>
+      <span class="resource-goto">View details →</span>
+    </a>
+
+    <a class="resource-card" href="resources.html#halal-food">
+      <span class="resource-icon-svg"><svg viewBox="0 0 32 32"><path d="M9 4v9c0 1.5 -1.2 2-2 2s-2-0.5-2-2V4"/><path d="M7 4v9"/><path d="M7 15v13"/><path d="M23 4c0 4-3 5-3 9v14"/><path d="M20 13h3"/></svg></span>
+      <h3>Halal Food</h3>
+      <p class="resource-excerpt">On- and off-campus spots, verified and student-reviewed — so lunch is one less thing to think about.</p>
+      <span class="resource-goto">View details →</span>
+    </a>
+
+    <a class="resource-card" href="resources.html#boycott-list">
+      <span class="resource-icon-svg"><svg viewBox="0 0 32 32"><line x1="8" y1="4" x2="8" y2="28"/><path d="M8 6h16l-5 5.5 5 5.5H8"/></svg></span>
+      <h3>Boycott List</h3>
+      <p class="resource-excerpt">A running list to help you make informed choices as a consumer.</p>
+      <span class="resource-goto">View details →</span>
+    </a>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-logo">
+    <img src="utm-msa-logo.png" alt="UTM MSA logo" class="site-logo-img">
+    <span>UTM Muslim Students\' Association</span>
+  </div>
+  <div class="footer-dua" id="duaOfMonth">
+    <span class="section-label">Dua of the Month</span>
+    <p>"Our Lord, give us good in this world and good in the Hereafter, and save us from the punishment of the Fire." — Qur'an 2:201</p>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© UTM Muslim Students' Association</span>
+    <div class="footer-links">
+      <a href="mailto:utmmsa@example.com">Contact</a>
+    </div>
+    <div class="social-links">
+      <a href="https://www.instagram.com/utmmsa/?hl=en" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+      <a href="https://www.youtube.com/@utmmsa" target="_blank" rel="noopener" aria-label="YouTube">YT</a>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script async src="//www.instagram.com/embed.js"></script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+/* ============================================================
+   UTM MSA — Additive styles for About & Events pages
+   Loaded AFTER styles.css — reuses the same CSS variables
+   (--navy, --gold, --cream, --font-display, etc.)
+   ============================================================ */
+
+/* ---------- Shared page hero ---------- */
+
+.page-hero {
+  padding: 64px 0 40px;
+  border-bottom: 1px solid var(--border-dark);
+}
+
+.page-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  margin: 6px 0 14px;
+  color: #f4f1e8;
+}
+
+.page-hero p {
+  color: var(--text-muted-dark);
+  max-width: 640px;
+  line-height: 1.6;
+}
+
+.section-block {
+  padding: 56px 0;
+  border-bottom: 1px solid var(--border-dark);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: #f4f1e8;
+  margin-bottom: 28px;
+}
+
+/* ---------- Team grid (About page) ---------- */
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1px;
+  background: var(--border-dark-2);
+}
+
+.team-card {
+  background: var(--panel-navy);
+  padding: 28px 20px;
+  text-align: center;
+}
+
+.team-avatar {
+  width: 68px;
+  height: 68px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  background: var(--border-dark-2);
+  border: 1px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--gold-light);
+}
+
+.team-name {
+  font-family: var(--font-body);
+  font-weight: 600;
+  color: #f4f1e8;
+  margin: 0 0 4px;
+  font-size: 0.98rem;
+}
+
+.team-title {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0;
+}
+
+/* ---------- Events list (Events page) ---------- */
+
+.event-row {
+  display: grid;
+  grid-template-columns: 110px 1fr auto;
+  gap: 20px;
+  align-items: center;
+  padding: 18px 20px;
+  background: var(--panel-navy);
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius-sm);
+  margin-bottom: 10px;
+}
+
+.event-date-badge {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--gold-light);
+  text-transform: uppercase;
+}
+
+.event-row h3 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 0 0 4px;
+  color: #f4f1e8;
+}
+
+.event-meta {
+  font-size: 0.85rem;
+  color: var(--text-muted-dark);
+}
+
+.event-tag {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  padding: 4px 10px;
+  white-space: nowrap;
+}
+
+/* Past events render muted/dimmer */
+.event-row.is-past {
+  opacity: 0.55;
+}
+.event-row.is-past .event-tag {
+  color: var(--text-muted);
+  border-color: var(--border-dark-2);
+}
+
+.empty-state {
+  padding: 32px 20px;
+  text-align: center;
+  color: var(--text-muted-dark);
+  background: var(--panel-navy);
+  border: 1px dashed var(--border-dark-2);
+  border-radius: var(--radius-sm);
+}
+
+/* ---------- Instagram embed grid ---------- */
+
+.ig-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.ig-slot {
+  background: var(--panel-navy);
+  border: 1px dashed var(--border-dark-2);
+  border-radius: var(--radius-md);
+  min-height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+/* Once real embeds are pasted in, Instagram's own blockquote styling takes over */
+.ig-slot.has-embed {
+  border-style: solid;
+  padding: 0;
+  display: block;
+}
