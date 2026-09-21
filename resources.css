@@ -583,3 +583,107 @@
   line-height: 1.6;
   margin: 0;
 }
+
+/* ---------- Resources page: rail + sliding detail panel (Pattern B) ---------- */
+
+.resources-shell {
+  display: flex;
+  gap: 1px;
+  background: var(--border-dark-2);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  align-items: stretch;
+}
+
+.resources-rail {
+  width: 260px;
+  flex-shrink: 0;
+  background: var(--navy-black);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.rail-item {
+  text-align: left;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  padding: 13px 14px;
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  color: var(--text-muted-dark);
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.rail-item:hover { color: #dfe3ee; background: rgba(223, 227, 238, 0.04); }
+
+.rail-item.is-active {
+  background: linear-gradient(135deg, rgba(205, 163, 73, 0.16), rgba(232, 196, 104, 0.06));
+  border-left: 2px solid var(--gold);
+  color: #f4f1e8;
+  font-weight: 600;
+  padding-left: 12px;
+}
+
+.resources-panel {
+  flex: 1;
+  background: var(--panel-navy);
+  padding: 32px 36px;
+  position: relative;
+  min-width: 0;
+}
+
+.panel-detail { display: none; }
+.panel-detail.is-active { display: block; }
+
+.panel-detail.is-active:not(.is-entering) {
+  animation: panelSettle 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.panel-detail.is-entering {
+  opacity: 0;
+  transform: scale(0.97) translateX(-10px);
+}
+
+@keyframes panelSettle {
+  from { opacity: 0; transform: scale(0.97) translateX(-10px); }
+  to   { opacity: 1; transform: scale(1) translateX(0); }
+}
+
+@media (max-width: 860px) {
+  .resources-shell { flex-direction: column; }
+  .resources-rail { width: 100%; flex-direction: row; overflow-x: auto; gap: 8px; }
+  .rail-item { white-space: nowrap; flex-shrink: 0; }
+  .rail-item.is-active { border-left: none; border-bottom: 2px solid var(--gold); }
+  .resources-panel { padding: 26px 22px; }
+}
+
+/* ---------- Rail-to-panel zoom ghost ---------- */
+
+.rail-ghost {
+  position: fixed;
+  z-index: 250;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: var(--navy);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  border-radius: 8px;
+  pointer-events: none;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: top 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), left 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+    width 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), height 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 0.4s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rail-ghost { display: none; }
+  .panel-detail.is-active, .panel-detail.is-entering { animation: none !important; opacity: 1 !important; transform: none !important; }
+}

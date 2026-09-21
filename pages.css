@@ -597,3 +597,296 @@
 @media (prefers-reduced-motion: reduce) {
   .zoom-backdrop, .zoom-clone { transition: none !important; }
 }
+
+/* ---------- Org chart — visual tiered diagram (About page) ---------- */
+
+.org-chart-visual {
+  border: 1px solid var(--border-dark-2);
+  border-radius: var(--radius-md);
+  background: var(--panel-navy);
+  padding: 28px 24px 22px;
+}
+
+.org-tier-label {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gold-light);
+  text-align: center;
+  margin-bottom: 18px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.org-columns {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+
+.org-col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 150px;
+  flex: 1;
+}
+
+.org-exec-box {
+  background: var(--navy-black);
+  border: 1px solid var(--gold);
+  border-radius: 8px;
+  padding: 12px 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.org-exec-box span {
+  font-family: var(--font-display);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #f4f1e8;
+}
+.org-exec-box em {
+  font-style: normal;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  color: var(--gold-light);
+  margin-top: 3px;
+}
+
+.org-dir-box {
+  background: #16213e;
+  border: 1px solid var(--border-dark-2);
+  border-radius: 6px;
+  padding: 10px 8px;
+  text-align: center;
+  font-size: 11px;
+  color: #dfe3ee;
+}
+.org-dir-box em {
+  display: block;
+  font-style: normal;
+  color: var(--gold);
+  font-size: 9.5px;
+  margin-top: 3px;
+}
+.org-dir-box.org-open {
+  color: var(--text-muted);
+  font-style: italic;
+  border-style: dashed;
+}
+
+.org-footer-tiers {
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-dark);
+  display: flex;
+  justify-content: center;
+  gap: 36px;
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+.org-footer-tiers em { font-style: normal; opacity: 0.75; margin-left: 4px; }
+
+@media (max-width: 720px) {
+  .org-col { min-width: 130px; }
+}
+
+/* ---------- About page: theme reveal overlay ---------- */
+
+.theme-reveal {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background: radial-gradient(circle at 50% 40%, rgba(16, 26, 48, 0.97), rgba(9, 14, 27, 0.99));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+  cursor: pointer;
+  animation: themeFadeOut 0.6s ease forwards;
+  animation-delay: 3.2s;
+}
+
+.theme-reveal-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  max-width: 560px;
+  animation: themeContentIn 0.7s ease forwards;
+}
+
+.theme-reveal h2 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 5vw, 44px);
+  color: #f4f1e8;
+  margin: 0;
+}
+
+.theme-reveal p {
+  color: var(--text-muted-dark);
+  font-size: 15px;
+  margin: 0;
+}
+
+.theme-reveal-hint {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+@keyframes themeContentIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes themeFadeOut {
+  to { opacity: 0; visibility: hidden; pointer-events: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-reveal { animation: none; opacity: 0; visibility: hidden; }
+}
+
+/* ---------- The Musalla: prayer-time widget ---------- */
+
+.musalla-time-widget {
+  background: var(--panel-navy);
+  border: 1px solid var(--border-dark-2);
+  border-radius: var(--radius-md);
+  padding: 26px 28px;
+}
+
+.musalla-time-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.musalla-time-greg {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.musalla-time-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  background: var(--border-dark-2);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.musalla-time-cell {
+  background: var(--navy-black);
+  padding: 16px 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.musalla-time-label {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gold-light);
+}
+
+.musalla-time-value {
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: #f4f1e8;
+}
+
+.musalla-time-empty {
+  grid-column: 1 / -1;
+  padding: 20px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  background: var(--navy-black);
+}
+
+.musalla-time-note {
+  margin: 14px 0 0;
+  font-size: 11.5px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .musalla-time-row { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ---------- The Musalla: on-campus card ---------- */
+
+.musalla-campus-card {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  background: var(--panel-navy);
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.musalla-campus-media {
+  background: var(--navy-black);
+  border-right: 1px dashed var(--border-dark-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  min-height: 200px;
+}
+
+.musalla-campus-body { padding: 28px 26px; }
+.musalla-campus-body h3 { font-family: var(--font-display); font-size: 1.05rem; color: #f4f1e8; margin: 0 0 8px; }
+.musalla-campus-body p { color: var(--text-muted-dark); font-size: 0.9rem; line-height: 1.6; margin: 0; }
+
+@media (max-width: 640px) {
+  .musalla-campus-card { grid-template-columns: 1fr; }
+  .musalla-campus-media { border-right: none; border-bottom: 1px dashed var(--border-dark-2); }
+}
+
+/* ---------- The Musalla: nearby masjid snapshot grid ---------- */
+
+.musalla-masjid-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1px;
+  background: var(--border-dark-2);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.musalla-masjid-card { background: var(--panel-navy); }
+
+.musalla-masjid-media {
+  height: 110px;
+  background: var(--navy-black);
+  border-bottom: 1px dashed var(--border-dark-2);
+}
+
+.musalla-masjid-body { padding: 16px 16px 18px; display: flex; flex-direction: column; gap: 8px; }
+.musalla-masjid-body h4 { font-family: var(--font-display); font-size: 0.95rem; color: #f4f1e8; margin: 0; }

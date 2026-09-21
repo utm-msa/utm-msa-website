@@ -184,4 +184,12 @@ document.addEventListener("DOMContentLoaded", () => {
   renderTeamGrid();
   loadEventsForPages();
   initSagaTabs();
+
+  const themeReveal = document.getElementById("themeReveal");
+  if (themeReveal) {
+    themeReveal.addEventListener("click", () => {
+      themeReveal.style.animation = "themeFadeOut 0.4s ease forwards";
+      themeReveal.style.animationDelay = "0s";
+    });
+  }
 });

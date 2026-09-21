@@ -21,7 +21,7 @@
       <a href="about.html">About</a>
       <a href="events.html">Sagas</a>
       <a href="resources.html">Resources</a>
-      <a href="jumuah.html">Jumu'ah</a>
+      <a href="musalla.html">The Musalla</a>
     </nav>
     <a class="nav-cta" href="https://forms.gle/BKkKjAEeX6UAhfDM7" target="_blank" rel="noopener">Become a General Member →</a>
   </div>
@@ -38,51 +38,18 @@
 
   <section class="section-block">
     <div class="wrap">
-      <div class="resource-grid">
+      <div class="resources-shell">
+        <div class="resources-rail" id="resourcesRail" role="tablist">
+          <button class="rail-item is-active" data-panel="mental-health" type="button">Mental Health</button>
+          <button class="rail-item" data-panel="academic-financial" type="button">Academic & Financial Support</button>
+          <button class="rail-item" data-panel="local-masjids" type="button">Local Masjids</button>
+          <button class="rail-item" data-panel="halal-food" type="button">Halal Food</button>
+          <button class="rail-item" data-panel="boycott-list" type="button">Boycott List</button>
+        </div>
 
-        <a class="resource-card" href="#mental-health">
-          <span class="resource-icon-svg"><svg viewBox="0 0 32 32"><path d="M16 27c0 0-12-8-12-16.5C4 6 8 3.5 12 5c2 0.7 4 2.5 4 2.5s2-1.8 4-2.5c4-1.5 8 1 8 5.5C28 19 16 27 16 27Z"/></svg></span>
-          <h3>Mental Health</h3>
-          <p class="resource-excerpt">Counselling flyers, peer support contacts, and campus wellness lines — no judgment, just support.</p>
-          <span class="resource-goto">View details →</span>
-        </a>
-
-        <a class="resource-card" href="#academic-financial">
-          <span class="resource-icon-svg"><svg viewBox="0 0 32 32"><path d="M16 5 L29 12 L16 19 L3 12 Z"/><path d="M9 15 V22c0 2 3 4.5 7 4.5s7-2.5 7-4.5v-7"/><path d="M29 12 v8"/></svg></span>
-          <h3>Academic &amp; Financial Support</h3>
-          <p class="resource-excerpt">Tutoring, study groups, exam-season resources, bursaries, zakat contacts, and emergency funding pathways.</p>
-          <span class="resource-goto">View details →</span>
-        </a>
-
-        <a class="resource-card" href="#local-masjids">
-          <span class="resource-icon-svg"><svg viewBox="0 0 32 32"><path d="M12 12c0-3 1.8-6 4-8 2.2 2 4 5 4 8Z"/><rect x="10" y="12" width="12" height="10"/><line x1="6" y1="22" x2="26" y2="22"/><line x1="6" y1="15" x2="6" y2="22"/><line x1="26" y1="15" x2="26" y2="22"/><line x1="16" y1="2" x2="16" y2="4"/></svg></span>
-          <h3>Local Masjids</h3>
-          <p class="resource-excerpt">Nearby prayer spaces with hours and directions, for when you need more than the prayer room on campus.</p>
-          <span class="resource-goto">View details →</span>
-        </a>
-
-        <a class="resource-card" href="#halal-food">
-          <span class="resource-icon-svg"><svg viewBox="0 0 32 32"><path d="M9 4v9c0 1.5 -1.2 2-2 2s-2-0.5-2-2V4"/><path d="M7 4v9"/><path d="M7 15v13"/><path d="M23 4c0 4-3 5-3 9v14"/><path d="M20 13h3"/></svg></span>
-          <h3>Halal Food</h3>
-          <p class="resource-excerpt">On- and off-campus spots, verified and student-reviewed — so lunch is one less thing to think about.</p>
-          <span class="resource-goto">View details →</span>
-        </a>
-
-        <a class="resource-card" href="#boycott-list">
-          <span class="resource-icon-svg"><svg viewBox="0 0 32 32"><line x1="8" y1="4" x2="8" y2="28"/><path d="M8 6h16l-5 5.5 5 5.5H8"/></svg></span>
-          <h3>Boycott List</h3>
-          <p class="resource-excerpt">A running list to help you make informed choices as a consumer.</p>
-          <span class="resource-goto">View details →</span>
-        </a>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ---------- Mental Health ---------- -->
-  <section class="resource-detail" id="mental-health">
-    <div class="wrap">
-      <span class="section-label">Mental Health</span>
+        <div class="resources-panel" id="resourcesPanel">
+        <div class="panel-detail is-active" data-panel="mental-health" id="mental-health">
+<span class="section-label">Mental Health</span>
       <h2>You don't have to carry it alone</h2>
       <p class="lead">
         University is a lot, and it's okay to need support. Whether it's a rough week or something
@@ -154,13 +121,10 @@
           <p class="info-desc">A confidential, faith-informed peer support line for young Muslims. We're finalizing details for this listing — check back soon.</p>
         </div>
       </div>
-    </div>
-  </section>
+        </div>
 
-  <!-- ---------- Academic & Financial Support ---------- -->
-  <section class="resource-detail" id="academic-financial">
-    <div class="wrap">
-      <span class="section-label">Academic &amp; Financial Support</span>
+        <div class="panel-detail" data-panel="academic-financial" id="academic-financial">
+<span class="section-label">Academic &amp; Financial Support</span>
       <h2>Help with school, and help making it work financially</h2>
       <p class="lead">
         Grades and money worries have a way of piling on at the same time. Here's what's around to
@@ -230,13 +194,10 @@
           <p class="info-desc">REPLACE_ME — a confidential MSA contact for zakat-eligible students needing support. Add contact info here once set up.</p>
         </div>
       </div>
-    </div>
-  </section>
+        </div>
 
-  <!-- ---------- Local Masjids ---------- -->
-  <section class="resource-detail" id="local-masjids">
-    <div class="wrap">
-      <span class="section-label">Local Masjids</span>
+        <div class="panel-detail" data-panel="local-masjids" id="local-masjids">
+<span class="section-label">Local Masjids</span>
       <h2>Prayer spaces beyond campus</h2>
       <p class="lead">Nearby masjids, for Jumu'ah, taraweeh, or just a quieter place to pray. Sorted by distance from UTM.</p>
 
@@ -322,13 +283,10 @@
           </div>
         </div>
       </div>
-    </div>
-  </section>
+        </div>
 
-  <!-- ---------- Halal Food ---------- -->
-  <section class="resource-detail" id="halal-food">
-    <div class="wrap">
-      <span class="section-label">Halal Food</span>
+        <div class="panel-detail" data-panel="halal-food" id="halal-food">
+<span class="section-label">Halal Food</span>
       <h2>Where to eat, on campus and nearby</h2>
       <p class="lead">On-campus dining and the closest verified halal spots — everything below is within about 3 km of UTM.</p>
 
@@ -412,18 +370,18 @@
           </div>
         </div>
       </div>
-    </div>
-  </section>
+        </div>
 
-  <!-- ---------- Boycott List (coming soon) ---------- -->
-  <section class="resource-detail" id="boycott-list">
-    <div class="wrap">
-      <span class="section-label">Boycott List</span>
+        <div class="panel-detail" data-panel="boycott-list" id="boycott-list">
+<span class="section-label">Boycott List</span>
       <h2>Coming soon</h2>
       <div class="coming-soon">
         <span class="resource-icon"></span>
         <h3>We're still putting this together</h3>
         <p>We want this list to be accurate and well-sourced before it goes up — check back soon, or follow our Instagram for updates in the meantime.</p>
+      </div>
+        </div>
+        </div>
       </div>
     </div>
   </section>

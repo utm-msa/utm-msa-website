@@ -184,9 +184,54 @@ function zoomOpen(triggerEl, contentHTML) {
   });
 }
 
+// ---------- Resources page: rail item click → zoom-ghost into panel ----------
+function initResourcesRail() {
+  const rail = document.getElementById("resourcesRail");
+  const panelContainer = document.getElementById("resourcesPanel");
+  if (!rail || !panelContainer) return;
+
+  rail.querySelectorAll(".rail-item").forEach((item) => {
+    item.addEventListener("click", () => {
+      const panelId = item.dataset.panel;
+      const target = panelContainer.querySelector(`.panel-detail[data-panel="${panelId}"]`);
+      if (!target || item.classList.contains("is-active")) return;
+
+      const triggerRect = item.getBoundingClientRect();
+      const panelRect = panelContainer.getBoundingClientRect();
+
+      const ghost = document.createElement("div");
+      ghost.className = "rail-ghost";
+      ghost.textContent = item.textContent;
+      ghost.style.top = triggerRect.top + "px";
+      ghost.style.left = triggerRect.left + "px";
+      ghost.style.width = triggerRect.width + "px";
+      ghost.style.height = triggerRect.height + "px";
+      ghost.style.opacity = "1";
+      document.body.appendChild(ghost);
+
+      requestAnimationFrame(() => {
+        ghost.style.top = panelRect.top + "px";
+        ghost.style.left = panelRect.left + "px";
+        ghost.style.width = panelRect.width + "px";
+        ghost.style.height = "50px";
+        ghost.style.opacity = "0";
+      });
+      setTimeout(() => ghost.remove(), 420);
+
+      rail.querySelectorAll(".rail-item").forEach((b) => b.classList.remove("is-active"));
+      item.classList.add("is-active");
+      panelContainer.querySelectorAll(".panel-detail").forEach((p) => p.classList.remove("is-active"));
+      target.classList.add("is-entering", "is-active");
+      requestAnimationFrame(() => target.classList.remove("is-entering"));
+      panelContainer.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
+  });
+}
+
 // ---------- Boot ----------
 document.addEventListener("DOMContentLoaded", () => {
   buildHeroMotif();
   initScrollReveal();
   loadEvents();
+  initResourcesRail();
 });
