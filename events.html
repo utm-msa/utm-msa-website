@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Events — UTM MSA</title>
+<title>Sagas — UTM MSA</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Montserrat:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
@@ -12,8 +12,6 @@
 </head>
 <body>
 
-<div class="bismillah-ribbon"><span class="arabic">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</span></div>
-
 <header class="site-header">
   <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; width:100%;">
     <a class="brand" href="index.html">
@@ -21,7 +19,7 @@
     </a>
     <nav class="main-nav" style="display:flex; gap:28px; font-size:0.9rem;">
       <a href="about.html">About</a>
-      <a href="events.html">Events</a>
+      <a href="events.html">Sagas</a>
       <a href="resources.html">Resources</a>
       <a href="jumuah.html">Jumu'ah</a>
     </nav>
@@ -30,19 +28,56 @@
 </header>
 
 <main>
-  <section class="page-hero">
+  <section class="page-hero" style="border-bottom:none; padding-bottom:0;">
     <div class="wrap">
       <span class="kicker"><span class="kicker-script">As-salāmu ʿalaykum</span><span class="kicker-sep">·</span><span class="kicker-loc">UofT Mississauga</span></span>
-      <h1>Events</h1>
-      <p>Everything on the calendar, pulled straight from our events sheet — plus a look back at what we've hosted.</p>
+      <h1>Sagas</h1>
+      <p>Every khutbah, every gathering, every story this cabinet has told — what's past, what's happening now, and what's coming.</p>
     </div>
   </section>
 
-  <section class="section-block">
+  <section class="sagas-flight" id="sagasFlight">
+    <div class="wrap sagas-flight-inner">
+      <svg class="sagas-arrow" viewBox="0 0 60 20" aria-hidden="true">
+        <line x1="2" y1="10" x2="46" y2="10" stroke="currentColor" stroke-width="2"/>
+        <path d="M40 3 L54 10 L40 17 Z" fill="currentColor"/>
+      </svg>
+      <div class="saga-card" style="--pos:6%">Nell Crain<span>The Haunting of Hill House</span></div>
+      <div class="saga-card" style="--pos:22%">Miles Morales<span>Spider-Verse</span></div>
+      <div class="saga-card" style="--pos:38%">Goku<span>Dragon Ball</span></div>
+      <div class="saga-card" style="--pos:54%">Itachi Uchiha<span>Naruto</span></div>
+      <div class="saga-card" style="--pos:70%">Odysseus<span>The Odyssey</span></div>
+      <div class="saga-card" style="--pos:86%">Paul Atreides<span>Dune</span></div>
+    </div>
+    <p class="sagas-flight-note wrap">Placeholder snapshots — swap for real event recaps once Marketing sends the compilation.</p>
+  </section>
+
+  <section class="section-block sagas-tabs-wrap" id="sagasTabsWrap">
     <div class="wrap">
-      <h2 class="section-title">Upcoming</h2>
-      <div id="upcomingList">
-        <div class="empty-state">Loading events…</div>
+      <div class="saga-tabs" role="tablist">
+        <button class="saga-tab is-active" data-tab="present" type="button">Present</button>
+        <button class="saga-tab" data-tab="upcoming" type="button">Upcoming</button>
+        <button class="saga-tab" data-tab="past" type="button">Past</button>
+        <button class="saga-tab" data-tab="lectures" type="button">Lectures</button>
+      </div>
+
+      <div class="saga-panel is-active" data-panel="present">
+        <div id="presentList"><div class="empty-state">Loading today's calendar…</div></div>
+      </div>
+
+      <div class="saga-panel" data-panel="upcoming">
+        <div id="upcomingList"><div class="empty-state">Loading events…</div></div>
+      </div>
+
+      <div class="saga-panel" data-panel="past">
+        <div id="pastList"><div class="empty-state">Loading archive…</div></div>
+      </div>
+
+      <div class="saga-panel" data-panel="lectures">
+        <div class="lecture-frame-wrap">
+          <iframe src="https://www.youtube.com/embed/videoseries?list=UUtdhGe8wT1lZTsVpYxa8pXg" title="UTM MSA — Lectures" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <p class="lecture-note">More on our <a href="https://www.youtube.com/@utmmsa" target="_blank" rel="noopener">YouTube channel →</a></p>
       </div>
     </div>
   </section>
@@ -65,15 +100,6 @@
       </div>
     </div>
   </section>
-
-  <section class="section-block">
-    <div class="wrap">
-      <h2 class="section-title">Past Events</h2>
-      <div id="pastList">
-        <div class="empty-state">Loading archive…</div>
-      </div>
-    </div>
-  </section>
 </main>
 
 <footer class="site-footer" style="padding:40px 0;">
@@ -87,8 +113,12 @@
       <a href="mailto:msa@utmsu.ca">Contact</a>
     </div>
     <div class="social-links">
-      <a href="https://www.instagram.com/utmmsa/?hl=en" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
-      <a href="https://www.youtube.com/@utmmsa" target="_blank" rel="noopener" aria-label="YouTube">YT</a>
+      <a href="https://www.instagram.com/utmmsa/?hl=en" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a href="https://www.youtube.com/@utmmsa" target="_blank" rel="noopener" aria-label="YouTube">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10.5 9.2 15 12l-4.5 2.8Z" fill="currentColor" stroke="none"/></svg>
+      </a>
     </div>
   </div>
 </footer>

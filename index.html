@@ -16,15 +16,13 @@
 </head>
 <body>
 
-<div class="bismillah-ribbon"><span class="arabic">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</span></div>
-
 <header class="site-header">
   <a href="index.html" class="brand">
     <img src="utm-msa-logo.png" alt="UTM MSA logo" class="site-logo-img">
   </a>
   <nav class="main-nav">
     <a href="about.html">About</a>
-    <a href="events.html">Events</a>
+    <a href="events.html">Sagas</a>
     <a href="resources.html">Resources</a>
     <a href="jumuah.html">Jumu'ah</a>
   </nav>
@@ -50,16 +48,14 @@
       <a class="btn-primary" href="events.html">This week's events</a>
       <a class="btn-text" href="about.html">Meet the cabinet →</a>
     </div>
-
-    <div class="hero-live">
-      <span class="live-dot" aria-hidden="true"></span>
-      <span id="liveEventCount">Loading this week's events…</span>
-    </div>
   </div>
 
-  <a href="#thisWeek" class="scroll-cue" aria-label="Scroll to this week's events">
-    <span class="scroll-cue-chevron"></span>
-  </a>
+  <div class="scroll-cue-group">
+    <span class="scroll-cue-arabic" lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</span>
+    <a href="#thisWeek" class="scroll-cue" aria-label="Scroll to this week's events">
+      <span class="scroll-cue-chevron"></span>
+    </a>
+  </div>
 </section>
 
 
@@ -133,23 +129,32 @@
 </section>
 
 <footer class="site-footer">
-  <div class="footer-logo">
-    <img src="utm-msa-logo.png" alt="UTM MSA logo" class="site-logo-img">
-    <span>UTM Muslim Students' Association</span>
-  </div>
-  <div class="footer-dua" id="duaOfMonth">
-    <span class="section-label">Dua of the Month</span>
-    <p>"Our Lord, give us good in this world and good in the Hereafter, and save us from the punishment of the Fire." — Qur'an 2:201</p>
+
+  <div class="footer-dua-block">
+    <span class="section-label">Verse of the Month</span>
+    <p class="footer-dua-arabic" lang="ar" dir="rtl">وَلْتَكُن مِّنكُمْ أُمَّةٌ يَدْعُونَ إِلَى الْخَيْرِ وَيَأْمُرُونَ بِالْمَعْرُوفِ وَيَنْهَوْنَ عَنِ الْمُنكَرِ وَأُولَٰئِكَ هُمُ الْمُفْلِحُونَ</p>
+    <p class="footer-dua-translation">"Let there arise out of you a band of people inviting to all that is good, enjoining what is right, and forbidding what is wrong — they are the ones to attain success." <span class="footer-dua-ref">— Qur'an 3:104</span></p>
   </div>
 
-  <div class="footer-bottom">
-    <span>© UTM Muslim Students' Association</span>
-    <div class="footer-links">
-      <a href="mailto:msa@utmsu.ca">Contact</a>
+  <div class="footer-main">
+    <div class="footer-brand">
+      <img src="utm-msa-logo.png" alt="UTM MSA logo" class="site-logo-img">
+      <span>UTM Muslim Students' Association</span>
     </div>
-    <div class="social-links">
-      <a href="https://www.instagram.com/utmmsa/?hl=en" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
-      <a href="https://www.youtube.com/@utmmsa" target="_blank" rel="noopener" aria-label="YouTube">YT</a>
+
+    <div class="footer-meta">
+      <div class="footer-links">
+        <span class="footer-copyright">© UTM Muslim Students' Association</span>
+        <a href="mailto:msa@utmsu.ca">Contact</a>
+      </div>
+      <div class="social-links">
+        <a href="https://www.instagram.com/utmmsa/?hl=en" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@utmmsa" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10.5 9.2 15 12l-4.5 2.8Z" fill="currentColor" stroke="none"/></svg>
+        </a>
+      </div>
     </div>
   </div>
 

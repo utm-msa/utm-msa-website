@@ -124,6 +124,66 @@ function initScrollReveal() {
   targets.forEach((t) => observer.observe(t));
 }
 
+// ---------- Zoom-open card transition ----------
+// Reusable "shared element" zoom: clicking a trigger scales/slides it from
+// its own position on the page into a full detail overlay, instead of a
+// plain modal popping in. Used on the Sagas page; intended for reuse on
+// Resources cards too once that page's redesign lands.
+function zoomOpen(triggerEl, contentHTML) {
+  if (!triggerEl) return;
+  const rect = triggerEl.getBoundingClientRect();
+
+  const backdrop = document.createElement("div");
+  backdrop.className = "zoom-backdrop";
+
+  const clone = document.createElement("div");
+  clone.className = "zoom-clone";
+  clone.style.top = rect.top + "px";
+  clone.style.left = rect.left + "px";
+  clone.style.width = rect.width + "px";
+  clone.style.height = rect.height + "px";
+  clone.innerHTML = contentHTML;
+
+  document.body.appendChild(backdrop);
+  document.body.appendChild(clone);
+  document.body.style.overflow = "hidden";
+
+  // Force layout, then animate to the centred, full-size target.
+  requestAnimationFrame(() => {
+    backdrop.classList.add("is-visible");
+    const targetW = Math.min(window.innerWidth - 48, 720);
+    const targetH = Math.min(window.innerHeight - 96, 640);
+    clone.style.top = (window.innerHeight - targetH) / 2 + "px";
+    clone.style.left = (window.innerWidth - targetW) / 2 + "px";
+    clone.style.width = targetW + "px";
+    clone.style.height = targetH + "px";
+    clone.classList.add("is-open");
+  });
+
+  function close() {
+    backdrop.classList.remove("is-visible");
+    clone.classList.remove("is-open");
+    clone.style.top = rect.top + "px";
+    clone.style.left = rect.left + "px";
+    clone.style.width = rect.width + "px";
+    clone.style.height = rect.height + "px";
+    document.body.style.overflow = "";
+    setTimeout(() => {
+      backdrop.remove();
+      clone.remove();
+    }, 420);
+  }
+
+  backdrop.addEventListener("click", close);
+  clone.querySelector(".zoom-close")?.addEventListener("click", close);
+  document.addEventListener("keydown", function esc(e) {
+    if (e.key === "Escape") {
+      close();
+      document.removeEventListener("keydown", esc);
+    }
+  });
+}
+
 // ---------- Boot ----------
 document.addEventListener("DOMContentLoaded", () => {
   buildHeroMotif();

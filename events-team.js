@@ -69,7 +69,7 @@ function eventRowHTML(event, isPast) {
     : dateObj.toLocaleDateString(undefined, { month: "short", day: "numeric" });
 
   return `
-    <div class="event-row${isPast ? " is-past" : ""}">
+    <div class="event-row${isPast ? " is-past" : ""}" data-zoomable tabindex="0">
       <div class="event-date-badge">${dateLabel}</div>
       <div>
         <h3>${event.title}</h3>
@@ -80,21 +80,56 @@ function eventRowHTML(event, isPast) {
   `;
 }
 
-// ---------- Split into upcoming vs past, render both lists ----------
+// ---------- Zoom-open wiring for event rows ----------
+function wireZoomOpen() {
+  document.querySelectorAll(".event-row[data-zoomable]").forEach((row) => {
+    const open = () => {
+      const title = row.querySelector("h3")?.textContent || "";
+      const meta = row.querySelector(".event-meta")?.textContent || "";
+      const tag = row.querySelector(".event-tag")?.textContent || "";
+      const date = row.querySelector(".event-date-badge")?.textContent || "";
+      zoomOpen(
+        row,
+        `<button class="zoom-close" aria-label="Close">✕</button>
+         <div class="zoom-detail">
+           <span class="event-date-badge">${date}</span>
+           <h3>${title}</h3>
+           <div class="event-meta">${meta}</div>
+           ${tag ? `<span class="event-tag">${tag}</span>` : ""}
+         </div>`
+      );
+    };
+    row.addEventListener("click", open);
+    row.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
+    });
+  });
+}
+
+// ---------- Split into present / upcoming / past, render all three ----------
 function renderEventsLists(events) {
+  const presentEl = document.getElementById("presentList");
   const upcomingEl = document.getElementById("upcomingList");
   const pastEl = document.getElementById("pastList");
-  if (!upcomingEl && !pastEl) return;
+  if (!presentEl && !upcomingEl && !pastEl) return;
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
+  const todayTime = today.getTime();
 
   const withDates = events
     .map((e) => ({ ...e, _d: new Date(e.date) }))
     .filter((e) => !isNaN(e._d));
 
-  const upcoming = withDates.filter((e) => e._d >= today).sort((a, b) => a._d - b._d);
-  const past = withDates.filter((e) => e._d < today).sort((a, b) => b._d - a._d);
+  const present = withDates.filter((e) => e._d.getTime() === todayTime);
+  const upcoming = withDates.filter((e) => e._d.getTime() > todayTime).sort((a, b) => a._d - b._d);
+  const past = withDates.filter((e) => e._d.getTime() < todayTime).sort((a, b) => b._d - a._d);
+
+  if (presentEl) {
+    presentEl.innerHTML = present.length
+      ? present.map((e) => eventRowHTML(e, false)).join("")
+      : `<div class="empty-state">Nothing on today's calendar — check Upcoming for what's next.</div>`;
+  }
 
   if (upcomingEl) {
     upcomingEl.innerHTML = upcoming.length
@@ -107,12 +142,15 @@ function renderEventsLists(events) {
       ? past.map((e) => eventRowHTML(e, true)).join("")
       : `<div class="empty-state">No past events on record yet.</div>`;
   }
+
+  wireZoomOpen();
 }
 
 async function loadEventsForPages() {
+  const presentEl = document.getElementById("presentList");
   const upcomingEl = document.getElementById("upcomingList");
   const pastEl = document.getElementById("pastList");
-  if (!upcomingEl && !pastEl) return; // not on the Events page, skip fetch entirely
+  if (!presentEl && !upcomingEl && !pastEl) return; // not on the Sagas page, skip fetch entirely
 
   try {
     const res = await fetch(PAGES_EVENTS_CSV_URL);
@@ -120,13 +158,30 @@ async function loadEventsForPages() {
     const events = parsePagesCSV(csvText);
     renderEventsLists(events);
   } catch (err) {
+    if (presentEl) presentEl.innerHTML = `<div class="empty-state">Couldn't load today's calendar right now.</div>`;
     if (upcomingEl) upcomingEl.innerHTML = `<div class="empty-state">Couldn't load events right now.</div>`;
     if (pastEl) pastEl.innerHTML = `<div class="empty-state">Couldn't load the archive right now.</div>`;
     console.error("Events fetch failed:", err);
   }
 }
 
+// ---------- Sagas tab switching (Present / Upcoming / Past / Lectures) ----------
+function initSagaTabs() {
+  const tabs = document.querySelectorAll(".saga-tab");
+  if (!tabs.length) return;
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      document.querySelectorAll(".saga-tab").forEach((t) => t.classList.remove("is-active"));
+      document.querySelectorAll(".saga-panel").forEach((p) => p.classList.remove("is-active"));
+      tab.classList.add("is-active");
+      document.querySelector(`.saga-panel[data-panel="${tab.dataset.tab}"]`)?.classList.add("is-active");
+    });
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   renderTeamGrid();
   loadEventsForPages();
+  initSagaTabs();
 });
