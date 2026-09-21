@@ -321,15 +321,6 @@ a { color: inherit; text-decoration: none; }
   z-index: 3;
 }
 
-.scroll-cue-arabic {
-  font-family: var(--font-arabic);
-  font-size: 30px;
-  line-height: 1;
-  color: #ffffff;
-  white-space: nowrap;
-  margin-top: 12px;
-}
-
 .scroll-cue {
   width: 34px;
   height: 34px;
@@ -363,6 +354,161 @@ a { color: inherit; text-decoration: none; }
 
 @media (max-width: 560px) {
   .scroll-cue-group { display: none; }
+}
+
+/* ---------- Bismillah (its own moment, below the hero) ---------- */
+
+.bismillah-section {
+  padding: 64px 24px 58px;
+  text-align: center;
+  border-bottom: 1px solid var(--border-dark);
+}
+
+.bismillah-arabic {
+  font-family: var(--font-arabic);
+  font-size: clamp(30px, 5vw, 50px);
+  line-height: 1.7;
+  color: var(--gold-light);
+  margin: 0 0 12px;
+}
+
+.bismillah-translation {
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  letter-spacing: 0.04em;
+  color: var(--text-muted-dark);
+  margin: 0;
+}
+
+/* ---------- Homepage: Musalla gateway (next-prayer clock) ---------- */
+
+.musalla-gateway {
+  display: block;
+  max-width: 640px;
+  margin: 0 auto;
+  background: var(--panel-navy);
+  border: 1px solid var(--border-dark-2);
+  border-radius: var(--radius-md);
+  padding: 26px 28px;
+  transition: border-color 0.3s ease;
+}
+.musalla-gateway:hover,
+.musalla-gateway:focus-visible {
+  border-color: var(--gold-light);
+}
+
+.musalla-gateway-clock {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.musalla-gateway-readout {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.musalla-gateway-name {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--gold-light);
+}
+
+.musalla-gateway-time {
+  font-family: var(--font-mono);
+  font-size: 15.5px;
+  color: #f4f1e8;
+}
+
+.musalla-gateway-expand {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  margin-top: 0;
+  transition: max-height 0.45s cubic-bezier(0.16, 0.84, 0.44, 1), opacity 0.35s ease, margin-top 0.45s ease;
+}
+
+.musalla-gateway:hover .musalla-gateway-expand,
+.musalla-gateway:focus .musalla-gateway-expand,
+.musalla-gateway:focus-within .musalla-gateway-expand {
+  max-height: 220px;
+  opacity: 1;
+  margin-top: 22px;
+}
+
+.musalla-gateway-hijri {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  color: var(--text-muted-dark);
+  margin-bottom: 12px;
+}
+
+.musalla-gateway-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  background: var(--border-dark-2);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.musalla-gateway-cell {
+  background: var(--navy-black);
+  padding: 12px 6px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.musalla-gateway-cell-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--gold-light);
+}
+
+.musalla-gateway-cell-time {
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  color: #f4f1e8;
+}
+
+.musalla-gateway-cta {
+  display: inline-block;
+  margin-top: 18px;
+  font-weight: 700;
+  font-size: 13.5px;
+  color: var(--navy);
+  background: var(--gold-light);
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
+  transition: background 0.25s ease;
+}
+
+.musalla-gateway:hover .musalla-gateway-cta,
+.musalla-gateway:focus .musalla-gateway-cta,
+.musalla-gateway:focus-within .musalla-gateway-cta {
+  background: var(--gold);
+}
+
+/* Touch devices can't hover — show the full readout so the info still lands before a tap */
+@media (hover: none) {
+  .musalla-gateway-expand {
+    max-height: none;
+    opacity: 1;
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 560px) {
+  .musalla-gateway-row { grid-template-columns: repeat(3, 1fr); }
 }
 
 /* ---------- Reveal-on-scroll ---------- */
@@ -512,18 +658,18 @@ a.section-label:hover { color: var(--gold-light); }
 }
 
 .footer-mark {
-  width: 34px;
-  height: 34px;
-  overflow: hidden;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-shrink: 0;
 }
 
 .footer-mark img {
-  height: 34px;
-  width: auto;
-  max-width: none;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .footer-copyright {

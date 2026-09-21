@@ -228,10 +228,86 @@ function initResourcesRail() {
   });
 }
 
+// ---------- Homepage: Musalla gateway (next prayer + hover expand) ----------
+// Same AlAdhan API + UTM coordinates as musalla.js, but only cares about
+// "what's next" for the compact clock, plus the full row for the hover state.
+const GATEWAY_LAT = 43.5461;
+const GATEWAY_LNG = -79.6633;
+const GATEWAY_PRAYER_ORDER = ["Fajr", "Dhuhr", "Asr", "Maghrib", "Isha"];
+
+function gatewayTo12Hour(hhmm) {
+  const [h, m] = hhmm.split(":").map(Number);
+  const period = h >= 12 ? "PM" : "AM";
+  const hour12 = ((h + 11) % 12) + 1;
+  return `${hour12}:${String(m).padStart(2, "0")} ${period}`;
+}
+
+async function loadPrayerGateway() {
+  const nameEl = document.getElementById("nextPrayerName");
+  const timeEl = document.getElementById("nextPrayerTime");
+  const hijriEl = document.getElementById("gatewayHijri");
+  const rowEl = document.getElementById("gatewayTimesRow");
+  if (!nameEl || !timeEl) return; // not on a page with the widget
+
+  try {
+    const ts = Math.floor(Date.now() / 1000);
+    const res = await fetch(
+      `https://api.aladhan.com/v1/timings/${ts}?latitude=${GATEWAY_LAT}&longitude=${GATEWAY_LNG}&method=2`
+    );
+    if (!res.ok) throw new Error(`AlAdhan fetch failed: ${res.status}`);
+    const json = await res.json();
+    const timings = json.data.timings;
+    const hijri = json.data.date.hijri;
+
+    if (hijriEl) {
+      hijriEl.textContent = `${hijri.day} ${hijri.month.en} ${hijri.year} AH`;
+    }
+
+    // Find the next prayer that hasn't happened yet today; if all five have
+    // passed, fall back to today's Fajr time labelled "Tomorrow" (close
+    // enough day-to-day — exact time updates once it's actually tomorrow).
+    const now = new Date();
+    let next = null;
+    for (const name of GATEWAY_PRAYER_ORDER) {
+      const raw = (timings[name] || "").split(" ")[0];
+      const [h, m] = raw.split(":").map(Number);
+      const candidate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), h, m, 0);
+      if (candidate > now) {
+        next = { name, raw };
+        break;
+      }
+    }
+    if (!next) {
+      const raw = (timings.Fajr || "").split(" ")[0];
+      next = { name: "Fajr", raw, tomorrow: true };
+    }
+
+    nameEl.textContent = next.tomorrow ? `${next.name} · Tomorrow` : next.name;
+    timeEl.textContent = gatewayTo12Hour(next.raw);
+
+    if (rowEl) {
+      rowEl.innerHTML = GATEWAY_PRAYER_ORDER.map((name) => {
+        const raw = (timings[name] || "").split(" ")[0];
+        return `
+          <div class="musalla-gateway-cell">
+            <span class="musalla-gateway-cell-label">${name}</span>
+            <span class="musalla-gateway-cell-time">${gatewayTo12Hour(raw)}</span>
+          </div>`;
+      }).join("");
+    }
+  } catch (err) {
+    nameEl.textContent = "The Musalla";
+    timeEl.textContent = "See today's times →";
+    if (hijriEl) hijriEl.textContent = "";
+    console.error("[musalla gateway] could not load prayer times:", err);
+  }
+}
+
 // ---------- Boot ----------
 document.addEventListener("DOMContentLoaded", () => {
   buildHeroMotif();
   initScrollReveal();
   loadEvents();
   initResourcesRail();
+  loadPrayerGateway();
 });

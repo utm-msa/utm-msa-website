@@ -51,13 +51,34 @@
   </div>
 
   <div class="scroll-cue-group">
-    <span class="scroll-cue-arabic" lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</span>
-    <a href="#thisWeek" class="scroll-cue" aria-label="Scroll to this week's events">
+    <a href="#bismillah" class="scroll-cue" aria-label="Scroll down">
       <span class="scroll-cue-chevron"></span>
     </a>
   </div>
 </section>
 
+<section class="bismillah-section" data-reveal id="bismillah">
+  <p class="bismillah-arabic" lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+  <p class="bismillah-translation">In the name of Allah, the Most Gracious, the Most Merciful</p>
+</section>
+
+<section class="section" data-reveal id="musallaGatewaySection">
+  <a class="musalla-gateway" href="musalla.html">
+    <div class="musalla-gateway-clock">
+      <span class="section-label">Next Prayer</span>
+      <div class="musalla-gateway-readout">
+        <span class="musalla-gateway-name" id="nextPrayerName">Loading…</span>
+        <span class="musalla-gateway-time" id="nextPrayerTime"></span>
+      </div>
+    </div>
+
+    <div class="musalla-gateway-expand">
+      <span class="musalla-gateway-hijri" id="gatewayHijri">Loading Hijri date…</span>
+      <div class="musalla-gateway-row" id="gatewayTimesRow"></div>
+      <span class="musalla-gateway-cta">Visit The Musalla →</span>
+    </div>
+  </a>
+</section>
 
 <section class="section" data-reveal id="thisWeek">
   <div class="section-head-row">
@@ -104,13 +125,6 @@
       <span class="resource-goto">View details →</span>
     </a>
 
-    <a class="resource-card" href="resources.html#local-masjids">
-      <span class="resource-badge"><svg viewBox="0 0 32 32"><path d="M12 12c0-3 1.8-6 4-8 2.2 2 4 5 4 8Z"/><rect x="10" y="12" width="12" height="10"/><line x1="6" y1="22" x2="26" y2="22"/><line x1="6" y1="15" x2="6" y2="22"/><line x1="26" y1="15" x2="26" y2="22"/><line x1="16" y1="2" x2="16" y2="4"/></svg></span>
-      <h3>Local Masjids</h3>
-      <p class="resource-excerpt">Nearby prayer spaces with hours and directions, for when you need more than the prayer room on campus.</p>
-      <span class="resource-goto">View details →</span>
-    </a>
-
     <a class="resource-card" href="resources.html#halal-food">
       <span class="resource-badge"><svg viewBox="0 0 32 32"><path d="M9 4v9c0 1.5 -1.2 2-2 2s-2-0.5-2-2V4"/><path d="M7 4v9"/><path d="M7 15v13"/><path d="M23 4c0 4-3 5-3 9v14"/><path d="M20 13h3"/></svg></span>
       <h3>Halal Food</h3>
@@ -138,7 +152,7 @@
 
   <div class="footer-main">
     <div class="footer-brand">
-      <span class="footer-mark"><img src="utm-msa-logo.png" alt="UTM MSA"></span>
+      <span class="footer-mark"><img src="utm-msa-footer-mark.png" alt="UTM MSA"></span>
       <span class="footer-copyright">© UTM Muslim Students' Association</span>
     </div>
 

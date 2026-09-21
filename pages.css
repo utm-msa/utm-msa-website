@@ -869,24 +869,4 @@
   .musalla-campus-media { border-right: none; border-bottom: 1px dashed var(--border-dark-2); }
 }
 
-/* ---------- The Musalla: nearby masjid snapshot grid ---------- */
 
-.musalla-masjid-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1px;
-  background: var(--border-dark-2);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-}
-
-.musalla-masjid-card { background: var(--panel-navy); }
-
-.musalla-masjid-media {
-  height: 110px;
-  background: var(--navy-black);
-  border-bottom: 1px dashed var(--border-dark-2);
-}
-
-.musalla-masjid-body { padding: 16px 16px 18px; display: flex; flex-direction: column; gap: 8px; }
-.musalla-masjid-body h4 { font-family: var(--font-display); font-size: 0.95rem; color: #f4f1e8; margin: 0; }

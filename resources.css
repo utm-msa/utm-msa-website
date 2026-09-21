@@ -34,7 +34,7 @@
 }
 
 @media (min-width: 900px) {
-  #resourcesPreview .resource-grid { grid-template-columns: repeat(5, 1fr); }
+  #resourcesPreview .resource-grid { grid-template-columns: repeat(4, 1fr); }
 }
 
 #resourcesPreview .resource-card {
@@ -433,33 +433,6 @@
 
 /* ---------- Site logo (header + footer) ---------- */
 
-.site-logo-img {
-  height: 30px;
-  width: auto;
-  display: block;
-}
-
-.footer-logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 28px;
-  justify-content: center;
-}
-
-.footer-logo img {
-  height: 34px;
-  width: auto;
-}
-
-.footer-logo span {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 15px;
-  letter-spacing: 0.03em;
-  color: #dfe3ee;
-}
-
 /* ---------- Custom resource-card icons (replace plain diamond) ---------- */
 
 .resource-icon-svg {
@@ -510,6 +483,15 @@
   max-width: 620px;
 }
 .lecture-note a { color: var(--gold-light); }
+
+.lecture-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+.lecture-grid .lecture-frame-wrap {
+  max-width: none;
+}
 
 /* ---------- Homepage weekly highlight (Instagram embed) ---------- */
 
