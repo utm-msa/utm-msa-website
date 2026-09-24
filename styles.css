@@ -1,49 +1,103 @@
 /* ============================================================
-   UTM MSA — Design tokens (from Brand & Typography guide + 1C concept)
+   UTM MSA — Global styles
+   Accessibility pass (Sept 24, 2026): see ACCESSIBILITY.md for the
+   full list of changes and the reasoning behind each one.
+
+   Ground rules this file now follows:
+   - All font sizes are in rem, so the visitor's browser text-size
+     setting (and our Display settings panel) scales every page.
+   - Nothing is smaller than 14px (0.875rem). Body copy is 17px.
+   - No ALL-CAPS text. Headings use Literata (true upper/lower case);
+     everything else uses Montserrat at weight 500 or heavier.
+   - Every text colour passes WCAG AA contrast (4.5:1); most pass AAA (7:1).
    ============================================================ */
 
 :root {
-  /* Brand colours */
-  --navy: #101a30;         /* dark base / nav / footer */
-  --navy-black: #0d1526;   /* section contrast */
-  --gold: #cda349;         /* primary accent / CTA */
-  --gold-light: #e8c468;   /* accent on dark backgrounds */
-  --cream: #faf8f3;        /* light backgrounds */
+  /* Brand colours (unchanged) */
+  --navy: #101a30;
+  --navy-black: #0d1526;
+  --gold: #cda349;          /* 7.4:1 on navy */
+  --gold-light: #e8c468;    /* 10.3:1 on navy */
+  --cream: #faf8f3;
 
-  /* Neutrals */
-  --text-body: #16203a;    /* body text on light bg */
-  --text-muted: #8792ac;   /* muted text, works on both */
-  --text-muted-dark: #7783a3; /* muted text on navy */
-  --border-dark: #1c2745;  /* hairline borders on navy */
-  --border-dark-2: #212e4d;
-  --panel-navy: #101a30;
+  /* Text colours — contrast measured against --navy */
+  --text-strong: #f4f1e8;       /* 16.6:1 */
+  --text-body: #e2e6f0;         /* 14.2:1 */
+  --text-soft: #c3c9dd;         /* 10.5:1 */
+  --text-muted-dark: #b3bbd1;   /* 9.0:1  (was #7783a3 at 4.6:1) */
+  --text-muted: #a9b1c8;        /* 8.1:1  (was #8792ac at 5.6:1) */
 
-  /* Fonts */
-  --font-display: 'Cinzel', serif;
-  --font-body: 'Montserrat', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-  --font-script: 'Cormorant Garamond', serif;
-  --font-arabic: 'Amiri', serif;
+  /* Lines */
+  --border-dark: #1c2745;       /* decorative dividers only */
+  --border-dark-2: #212e4d;     /* decorative dividers only */
+  --border-control: #6b789e;    /* outlines that identify a button/control: 3:1+ everywhere */
+  --panel-navy: #151f38;
+
+  /* Focus ring — gold with a navy halo so it shows on dark AND light (Instagram embed) surfaces */
+  --focus-ring: #e8c468;
+  --focus-halo: #0d1526;
+
+  /* Fonts — three families total (WCAG-friendly limit the reviewer asked for) */
+  --font-display: 'Literata', Georgia, 'Times New Roman', serif;
+  --font-body: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+  --font-arabic: 'Amiri', 'Traditional Arabic', serif;
+  --font-mono: var(--font-body);   /* retired: kept as an alias so nothing old falls back to a monospace face */
+  --font-script: var(--font-display);
+
+  /* Type scale (rem = respects the visitor's browser setting) */
+  --fs-xs: 0.875rem;    /* 14px — floor, used sparingly */
+  --fs-sm: 0.9375rem;   /* 15px — meta lines, chips, labels */
+  --fs-body: 1.0625rem; /* 17px — body copy */
+  --fs-lead: 1.1875rem; /* 19px — intros */
+  --fs-h3: 1.25rem;     /* 20px */
+  --fs-h2: 2rem;        /* 32px */
 
   /* Layout */
   --max-width: 1240px;
   --radius-sm: 6px;
   --radius-md: 10px;
+  --header-h: 96px;
 }
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  /* Keeps anchored headings and focused elements from hiding under the sticky header (WCAG 2.4.11) */
+  scroll-padding-top: calc(var(--header-h) + 24px);
+}
 
 body {
   margin: 0;
   background: var(--navy);
-  color: #eef0f6;
+  color: var(--text-body);
   font-family: var(--font-body);
+  font-weight: 500;
+  font-size: var(--fs-body);
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
 }
 
 a { color: inherit; text-decoration: none; }
+
+/* Links inside running text are underlined, so they never rely on colour alone (WCAG 1.4.1) */
+p a:not([class]), .prose a:not([class]), .lecture-note a {
+  color: var(--gold-light);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+p a:not([class]):hover, .prose a:not([class]):hover, .lecture-note a:hover { text-decoration-thickness: 2px; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.005em;
+  line-height: 1.25;
+  color: var(--text-strong);
+}
+
+img, svg { max-width: 100%; }
 
 .wrap {
   max-width: var(--max-width);
@@ -57,113 +111,193 @@ a { color: inherit; text-decoration: none; }
   position: sticky;
   top: 0;
   z-index: 100;
+  background: rgba(16, 26, 48, 0.96);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-dark);
+}
+
+.header-inner {
+  position: relative;
+  flex-wrap: wrap;
+  max-width: 1400px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 24px;
-  background: rgba(16, 26, 48, 0.88);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border-dark);
+  gap: 20px;
+  padding: 14px 24px;
+  min-height: var(--header-h);
 }
 
 .brand {
   display: flex;
   align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
+  flex-shrink: 1;
+  min-width: 0;
+  border-radius: var(--radius-sm);
 }
 
 .site-logo-img {
-  height: 50px;
+  height: 48px;
   width: auto;
+  max-width: 100%;
   display: block;
 }
 
-.brand-mark {
-  width: 26px;
-  height: 26px;
-  border: 1.5px solid var(--gold-light);
-  transform: rotate(45deg);
-  flex: none;
+@media (min-width: 1024px) {
+  .site-logo-img { height: 64px; }
 }
 
-.brand-name {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 17px;
+/* Menu (nav + actions). Mobile: collapsed behind the toggle. Desktop: inline. */
+.site-menu {
   display: none;
 }
 
-.main-nav {
-  display: none;
-  gap: 30px;
-  font-size: 13.5px;
-  font-weight: 500;
-  color: #9aa3bf;
-  flex: 1;
+.site-menu.is-open {
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--navy);
+  border-bottom: 1px solid var(--border-control);
+  padding: 12px 24px 24px;
+  max-height: calc(100vh - var(--header-h));
+  overflow-y: auto;
+}
+
+.main-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.main-nav a {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  color: var(--text-strong);
+  min-height: 44px;
   justify-content: center;
 }
 
-.main-nav a:hover { color: var(--gold-light); }
+.nav-title {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
 
-.nav-cta {
-  font-size: 13px;
+/* A short plain-language description under each nav label, so names like
+   "Sagas" and "The Musalla" explain themselves (reviewer: labels must be specific) */
+.nav-desc {
+  white-space: nowrap;
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  color: var(--text-muted-dark);
+  line-height: 1.3;
+}
+
+.main-nav a:hover .nav-title { color: var(--gold-light); }
+
+/* Current page: shown by an underline bar AND weight, not colour alone */
+.main-nav a[aria-current="page"] .nav-title {
+  color: var(--gold-light);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+
+.header-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.nav-cta,
+.prefs-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
   font-weight: 600;
   color: var(--gold-light);
-  border: 1px solid var(--border-dark-2);
-  padding: 9px 18px;
+  background: transparent;
+  border: 1.5px solid var(--border-control);
+  padding: 8px 16px;
   border-radius: var(--radius-sm);
   white-space: nowrap;
-  display: none;
+  cursor: pointer;
 }
-.nav-cta:hover { border-color: var(--gold-light); }
+.nav-cta:hover,
+.prefs-toggle:hover,
+.prefs-toggle[aria-expanded="true"] { border-color: var(--gold-light); }
+
+.prefs-toggle svg, .nav-toggle svg { width: 20px; height: 20px; flex: none; }
 
 .nav-toggle {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  width: 24px;
-  height: 24px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 8px 14px;
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: 600;
   color: var(--gold-light);
+  background: none;
+  border: 1.5px solid var(--border-control);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
 }
 
-/* Tablet & desktop: show full nav */
-@media (min-width: 768px) {
-  .site-header {
-    padding: 18px 24px;
+/* Desktop header: only when there is truly room for it at the current text size.
+   Breakpoints are in em, so they also move if someone enlarges text in their browser
+   settings, and the Display settings "Large"/"Largest" options push them out further.
+   Below these widths the menu button is used, so nothing ever runs off screen (WCAG 1.4.4). */
+@media (min-width: 87.5em) {
+  html:not(.pref-text-lg):not(.pref-text-xl) .nav-toggle { display: none; }
+  html:not(.pref-text-lg):not(.pref-text-xl) .site-menu,html:not(.pref-text-lg):not(.pref-text-xl) .site-menu.is-open {
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;
+    flex: 1; min-width: 0; gap: 12px 20px; position: static; background: none;
+    border: none; padding: 0; max-height: none; overflow: visible;
   }
-
-  .site-logo-img {
-    height: 65px;
-  }
-
-  .main-nav {
-    display: flex;
-  }
-
-  .nav-cta {
-    display: inline-flex;
-    align-items: center;
-  }
-
-  .nav-toggle {
-    display: none;
-  }
+  html:not(.pref-text-lg):not(.pref-text-xl) .main-nav { flex: 1; display: flex; justify-content: center; }
+  html:not(.pref-text-lg):not(.pref-text-xl) .main-nav ul { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 2px; }
+  html:not(.pref-text-lg):not(.pref-text-xl) .main-nav a { padding: 8px 10px; text-align: center; }
+  html:not(.pref-text-lg):not(.pref-text-xl) .header-actions { margin-top: 0; flex-wrap: wrap; }
 }
-
-/* Desktop: even more breathing room */
-@media (min-width: 1024px) {
-  .site-header {
-    padding: 20px 24px;
+@media (min-width: 98.5em) {
+  html.pref-text-lg .nav-toggle { display: none; }
+  html.pref-text-lg .site-menu,html.pref-text-lg .site-menu.is-open {
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;
+    flex: 1; min-width: 0; gap: 12px 20px; position: static; background: none;
+    border: none; padding: 0; max-height: none; overflow: visible;
   }
-
-  .site-logo-img {
-    height: 75px;
+  html.pref-text-lg .main-nav { flex: 1; display: flex; justify-content: center; }
+  html.pref-text-lg .main-nav ul { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 2px; }
+  html.pref-text-lg .main-nav a { padding: 8px 10px; text-align: center; }
+  html.pref-text-lg .header-actions { margin-top: 0; flex-wrap: wrap; }
+}
+@media (min-width: 109.5em) {
+  html.pref-text-xl .nav-toggle { display: none; }
+  html.pref-text-xl .site-menu,html.pref-text-xl .site-menu.is-open {
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;
+    flex: 1; min-width: 0; gap: 12px 20px; position: static; background: none;
+    border: none; padding: 0; max-height: none; overflow: visible;
   }
+  html.pref-text-xl .main-nav { flex: 1; display: flex; justify-content: center; }
+  html.pref-text-xl .main-nav ul { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 2px; }
+  html.pref-text-xl .main-nav a { padding: 8px 10px; text-align: center; }
+  html.pref-text-xl .header-actions { margin-top: 0; flex-wrap: wrap; }
 }
 
 /* ---------- Hero ---------- */
@@ -171,36 +305,42 @@ a { color: inherit; text-decoration: none; }
 .hero {
   padding: 120px 0;
   position: relative;
+  /* Reviewer: "lengthen the horizontal gradient". The dark band now holds
+     at 90%+ across the whole text column and only fades well past it.
+     Measured worst-case contrast behind the paragraph: 12:1+ at every width. */
   background:
-    linear-gradient(100deg, rgba(9, 14, 27, 0.92) 0%, rgba(9, 14, 27, 0.78) 30%, rgba(9, 14, 27, 0.4) 56%, rgba(9, 14, 27, 0.1) 76%),
+    linear-gradient(100deg,
+      rgba(9, 14, 27, 0.95) 0%,
+      rgba(9, 14, 27, 0.92) 38%,
+      rgba(9, 14, 27, 0.84) 52%,
+      rgba(9, 14, 27, 0.55) 70%,
+      rgba(9, 14, 27, 0.25) 88%,
+      rgba(9, 14, 27, 0.15) 100%),
     url("utm-hero.jpg");
   background-size: cover;
   background-position: center 60%;
   background-repeat: no-repeat;
 }
 
-.hero .wrap {
-  position: relative;
-  z-index: 2;
+/* On narrow screens the text spans the full width, so the whole photo
+   gets a strong, even scrim instead of a left-to-right fade */
+@media (max-width: 900px) {
+  .hero {
+    background:
+      linear-gradient(180deg, rgba(9, 14, 27, 0.9) 0%, rgba(9, 14, 27, 0.88) 100%),
+      url("utm-hero.jpg");
+    background-size: cover;
+    background-position: center 60%;
+  }
 }
 
-.hero-motif {
-  display: none;
-}
-
-.hero-motif span {
-  position: absolute;
-  width: 46px;
-  height: 46px;
-  border: 1px solid var(--gold-light);
-  transform: rotate(45deg);
-  animation: pulseSoft 6s ease-in-out infinite;
-}
+.hero-motif { display: none; }
 
 .hero-inner {
   position: relative;
-  max-width: 640px;
-  padding-left: 40px;
+  max-width: 660px;
+  margin-left: max(24px, calc((100vw - var(--max-width)) / 2 + 24px));
+  padding-right: 24px;
 }
 
 .kicker {
@@ -210,31 +350,30 @@ a { color: inherit; text-decoration: none; }
   gap: 10px;
 }
 
+/* Greeting line: Literata italic at a solid weight (was a hairline Cormorant italic) */
 .kicker-script {
-  font-family: var(--font-script);
+  font-family: var(--font-display);
   font-style: italic;
-  font-weight: 600;
-  font-size: 23px;
-  letter-spacing: 0.01em;
+  font-weight: 500;
+  font-size: 1.375rem;
   color: var(--gold-light);
 }
 
 .hero h1 {
-  font-family: var(--font-display);
-  font-size: clamp(34px, 5vw, 52px);
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
   line-height: 1.15;
   color: #ffffff;
-  font-weight: 600;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
-  margin: 18px 0 20px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  margin: 16px 0 22px;
 }
 
 .hero p {
-  font-size: 17px;
-  line-height: 1.65;
-  color: #e7eaf5;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
-  max-width: 500px;
+  font-size: var(--fs-lead);
+  font-weight: 500;
+  line-height: 1.7;
+  color: #f1f3f9;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.7);
+  max-width: 34em;
   margin: 0 0 32px;
 }
 
@@ -242,60 +381,48 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   gap: 14px;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .btn-primary {
   background: var(--gold-light);
   color: var(--navy);
   font-weight: 700;
-  font-size: 14.5px;
-  padding: 13px 24px;
+  font-size: 1rem;
+  padding: 12px 24px;
+  min-height: 48px;
   border-radius: var(--radius-sm);
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  border: 2px solid var(--gold-light);
 }
-.btn-primary:hover { background: var(--gold); }
+.btn-primary:hover { background: var(--gold); border-color: var(--gold); }
 
+/* Secondary text link: underlined so it reads as a link without relying on colour */
 .btn-text {
   color: var(--gold-light);
   font-weight: 600;
-  font-size: 14.5px;
-  padding: 13px 6px;
-  display: inline-block;
-}
-
-.hero-live {
-  display: flex;
+  font-size: 1rem;
+  padding: 12px 6px;
+  min-height: 48px;
+  display: inline-flex;
   align-items: center;
-  gap: 9px;
-  margin-top: 28px;
-  font-family: var(--font-mono);
-  font-size: 12.5px;
-  color: #9aa3bf;
+  gap: 6px;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
 }
+.btn-text:hover { text-decoration-thickness: 2px; }
 
-.live-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 100%;
-  background: #8fd17a;
-  animation: pulseSoft 2s ease-in-out infinite;
-}
-
-@keyframes pulseSoft {
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 0.9; }
-}
-
-/* ---------- Hero entrance animation ---------- */
+/* ---------- Hero entrance (plays once; skipped under reduced motion) ---------- */
 
 .hero-inner > * {
   opacity: 0;
   animation: heroFadeUp 0.85s cubic-bezier(0.16, 0.84, 0.44, 1) forwards;
 }
-
-.hero-inner .kicker      { animation-delay: 0.05s; }
-.hero-inner h1           { animation-delay: 0.2s; }
-.hero-inner p            { animation-delay: 0.35s; }
+.hero-inner .kicker       { animation-delay: 0.05s; }
+.hero-inner h1            { animation-delay: 0.2s; }
+.hero-inner p             { animation-delay: 0.35s; }
 .hero-inner .hero-actions { animation-delay: 0.5s; }
 
 @keyframes heroFadeUp {
@@ -303,44 +430,38 @@ a { color: inherit; text-decoration: none; }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .hero-inner > * { animation: none; opacity: 1; }
-}
-
 /* ---------- Scroll cue ---------- */
 
 .scroll-cue-group {
   position: absolute;
   left: 50%;
-  bottom: 26px;
+  bottom: 22px;
   transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
   z-index: 3;
 }
 
-.scroll-cue {
-  width: 34px;
-  height: 34px;
-  border: 1px solid var(--border-dark-2);
+.scroll-cue,
+.bismillah-next {
+  width: 44px;
+  height: 44px;
+  border: 1.5px solid var(--border-control);
   border-radius: 50%;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  animation: scrollCueBounce 2.4s ease-in-out infinite;
+  /* Bounces twice then rests — motion stops on its own well under 5 seconds (WCAG 2.2.2) */
+  animation: scrollCueBounce 2.2s ease-in-out 2;
   transition: border-color 0.3s ease;
 }
+.scroll-cue:hover, .bismillah-next:hover { border-color: var(--gold-light); }
 
-.scroll-cue:hover { border-color: var(--gold-light); }
-
-.scroll-cue-chevron {
-  width: 7px;
-  height: 7px;
-  border-right: 1.5px solid var(--gold-light);
-  border-bottom: 1.5px solid var(--gold-light);
-  transform: rotate(45deg) translate(-1px, -1px);
+.scroll-cue-chevron,
+.bismillah-next-chevron {
+  width: 9px;
+  height: 9px;
+  border-right: 2px solid var(--gold-light);
+  border-bottom: 2px solid var(--gold-light);
+  transform: rotate(45deg) translate(-2px, -2px);
 }
 
 @keyframes scrollCueBounce {
@@ -348,15 +469,11 @@ a { color: inherit; text-decoration: none; }
   50% { transform: translateY(7px); }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .scroll-cue { animation: none; }
-}
-
 @media (max-width: 560px) {
   .scroll-cue-group { display: none; }
 }
 
-/* ---------- Bismillah (its own moment, below the hero) ---------- */
+/* ---------- Bismillah ---------- */
 
 .bismillah-section {
   padding: 64px 24px 58px;
@@ -366,196 +483,124 @@ a { color: inherit; text-decoration: none; }
 
 .bismillah-arabic {
   font-family: var(--font-arabic);
-  font-size: clamp(30px, 5vw, 50px);
+  font-size: clamp(2.25rem, 6vw, 3.75rem);
   line-height: 1.7;
   color: var(--gold-light);
   margin: 0 0 12px;
+  /* Static glow: the old pulse looped forever with no way to stop it (WCAG 2.2.2) */
   text-shadow:
-    0 0 18px rgba(232, 196, 104, 0.55),
-    0 0 42px rgba(205, 163, 73, 0.3),
-    0 0 70px rgba(205, 163, 73, 0.15);
-  animation: bismillahGlow 4s ease-in-out infinite;
+    0 0 18px rgba(232, 196, 104, 0.5),
+    0 0 42px rgba(205, 163, 73, 0.28);
 }
 
-@keyframes bismillahGlow {
-  0%, 100% {
-    text-shadow:
-      0 0 18px rgba(232, 196, 104, 0.55),
-      0 0 42px rgba(205, 163, 73, 0.3),
-      0 0 70px rgba(205, 163, 73, 0.15);
-  }
-  50% {
-    text-shadow:
-      0 0 26px rgba(232, 196, 104, 0.75),
-      0 0 55px rgba(205, 163, 73, 0.4),
-      0 0 90px rgba(205, 163, 73, 0.22);
-  }
-}
-
+/* Translation is body text, so it uses the body font (reviewer: keep header and body fonts consistent) */
 .bismillah-translation {
-  font-family: var(--font-display);
-  font-size: 13.5px;
-  letter-spacing: 0.04em;
-  color: #c3c9dd;
-  margin: 0 0 24px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--text-body);
+  margin: 0 auto 24px;
+  max-width: 36em;
 }
 
-.bismillah-next {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 34px;
-  height: 34px;
-  border: 1px solid var(--border-dark-2);
-  border-radius: 50%;
-  animation: scrollCueBounce 2.4s ease-in-out infinite;
-  transition: border-color 0.3s ease;
-}
-
-.bismillah-next:hover { border-color: var(--gold-light); }
-
-.bismillah-next-chevron {
-  width: 7px;
-  height: 7px;
-  border-right: 1.5px solid var(--gold-light);
-  border-bottom: 1.5px solid var(--gold-light);
-  transform: rotate(45deg) translate(-1px, -1px);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .bismillah-arabic { animation: none; }
-  .bismillah-next { animation: none; }
-}
-
-/* ---------- Homepage: Musalla gateway (next-prayer clock) ---------- */
+/* ---------- Homepage: prayer times gateway ---------- */
 
 .musalla-gateway {
-  display: block;
-  max-width: 640px;
+  max-width: 720px;
   margin: 0 auto;
   background: var(--panel-navy);
-  border: 1px solid var(--border-dark-2);
+  border: 1.5px solid var(--border-control);
   border-radius: var(--radius-md);
-  padding: 26px 28px;
-  transition: border-color 0.3s ease;
-}
-.musalla-gateway:hover,
-.musalla-gateway:focus-visible {
-  border-color: var(--gold-light);
+  padding: 28px 30px;
 }
 
-.musalla-gateway-clock {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.musalla-gateway .gateway-heading {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-soft);
+  margin: 0 0 6px;
 }
 
 .musalla-gateway-readout {
   display: flex;
   align-items: baseline;
-  gap: 12px;
+  gap: 14px;
   flex-wrap: wrap;
+  margin: 0 0 4px;
 }
 
 .musalla-gateway-name {
   font-family: var(--font-display);
-  font-size: 22px;
+  font-size: 1.75rem;
   font-weight: 600;
   color: var(--gold-light);
 }
 
 .musalla-gateway-time {
-  font-family: var(--font-mono);
-  font-size: 15.5px;
-  color: #f4f1e8;
-}
-
-.musalla-gateway-expand {
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
-  margin-top: 0;
-  transition: max-height 0.45s cubic-bezier(0.16, 0.84, 0.44, 1), opacity 0.35s ease, margin-top 0.45s ease;
-}
-
-.musalla-gateway:hover .musalla-gateway-expand,
-.musalla-gateway:focus .musalla-gateway-expand,
-.musalla-gateway:focus-within .musalla-gateway-expand {
-  max-height: 220px;
-  opacity: 1;
-  margin-top: 22px;
+  font-size: 1.375rem;
+  font-weight: 600;
+  color: var(--text-strong);
+  font-variant-numeric: tabular-nums;
 }
 
 .musalla-gateway-hijri {
-  display: block;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.03em;
+  font-size: var(--fs-sm);
   color: var(--text-muted-dark);
-  margin-bottom: 12px;
+  margin: 0 0 16px;
 }
 
-.musalla-gateway-row {
+/* All five times are always visible now — they used to appear only on mouse hover,
+   which hid them from keyboard and touch users (WCAG 1.4.13 / 2.1.1) */
+.prayer-list {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 1px;
   background: var(--border-dark-2);
   border-radius: var(--radius-sm);
   overflow: hidden;
+  margin: 0 0 22px;
 }
 
-.musalla-gateway-cell {
+.prayer-item {
   background: var(--navy-black);
-  padding: 12px 6px;
+  padding: 14px 8px;
   text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 4px;
+  margin: 0;
 }
 
-.musalla-gateway-cell-label {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+.prayer-item dt {
+  font-size: var(--fs-sm);
+  font-weight: 700;
   color: var(--gold-light);
 }
-
-.musalla-gateway-cell-time {
-  font-family: var(--font-display);
-  font-size: 13.5px;
-  color: #f4f1e8;
+.prayer-item dd {
+  margin: 0;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--text-strong);
+  font-variant-numeric: tabular-nums;
 }
+.prayer-item.is-next { background: #1e2a48; box-shadow: inset 0 -3px 0 var(--gold-light); }
+.prayer-item.is-next dt::after { content: " (next)"; font-weight: 600; color: var(--text-soft); }
 
-.musalla-gateway-cta {
-  display: inline-block;
-  margin-top: 18px;
-  font-weight: 700;
-  font-size: 13.5px;
-  color: var(--navy);
-  background: var(--gold-light);
-  padding: 10px 20px;
+.prayer-empty {
+  margin: 0 0 22px;
   border-radius: var(--radius-sm);
-  transition: background 0.25s ease;
-}
-
-.musalla-gateway:hover .musalla-gateway-cta,
-.musalla-gateway:focus .musalla-gateway-cta,
-.musalla-gateway:focus-within .musalla-gateway-cta {
-  background: var(--gold);
-}
-
-/* Touch devices can't hover — show the full readout so the info still lands before a tap */
-@media (hover: none) {
-  .musalla-gateway-expand {
-    max-height: none;
-    opacity: 1;
-    margin-top: 20px;
-  }
+  grid-column: 1 / -1;
+  background: var(--navy-black);
+  padding: 16px;
+  text-align: center;
+  color: var(--text-muted-dark);
+  font-size: var(--fs-sm);
 }
 
 @media (max-width: 560px) {
-  .musalla-gateway-row { grid-template-columns: repeat(3, 1fr); }
+  .prayer-list { grid-template-columns: repeat(3, 1fr); }
 }
 
 /* ---------- Reveal-on-scroll ---------- */
@@ -577,21 +622,18 @@ a { color: inherit; text-decoration: none; }
   border-top: 1px solid var(--border-dark);
 }
 
+.section > * { max-width: var(--max-width); margin-left: auto; margin-right: auto; }
+
+/* Small label above content. Sentence case, bold, full-size (was 12px ALL CAPS) */
 .section-label {
   font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  color: #c3c9dd;
-  text-transform: uppercase;
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  color: var(--text-soft);
 }
 
-a.section-label:hover { color: var(--gold-light); }
-
 .section h2 {
-  font-family: var(--font-display);
-  font-size: 28px;
-  font-weight: 600;
+  font-size: var(--fs-h2);
   margin: 14px 0 28px;
 }
 
@@ -599,9 +641,23 @@ a.section-label:hover { color: var(--gold-light); }
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  flex-wrap: wrap;
+  gap: 10px 24px;
   margin-bottom: 26px;
 }
 .section-head-row h2 { margin: 0; }
+
+/* "See all events" style links: specific wording, underlined */
+.see-all {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--gold-light);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  padding: 10px 0;
+}
+.see-all:hover { text-decoration-thickness: 2px; }
 
 /* ---------- This Week grid ---------- */
 
@@ -611,186 +667,189 @@ a.section-label:hover { color: var(--gold-light); }
   gap: 1px;
   background: var(--border-dark-2);
   border: 1px solid var(--border-dark-2);
+  list-style: none;
+  padding: 0;
 }
 
 .week-card {
   background: var(--navy);
-  padding: 22px 20px;
+  padding: 24px 22px;
 }
 
 .week-card .ev-date {
-  font-family: var(--font-mono);
-  font-size: 11.5px;
+  font-size: var(--fs-sm);
+  font-weight: 700;
   color: var(--gold-light);
-  margin-bottom: 12px;
+  margin: 0 0 10px;
 }
 
 .week-card .ev-title {
-  font-size: 15px;
+  font-family: var(--font-body);
+  font-size: 1.125rem;
   font-weight: 700;
-  margin-bottom: 6px;
+  line-height: 1.35;
+  margin: 0 0 8px;
 }
 
 .week-card .ev-meta {
-  font-size: 12.5px;
+  font-size: var(--fs-sm);
   color: var(--text-muted-dark);
+  margin: 0;
 }
 
 .week-empty {
   grid-column: 1 / -1;
   padding: 40px 20px;
   text-align: center;
-  color: var(--text-muted-dark);
-  font-size: 14px;
+  color: var(--text-soft);
+  background: var(--navy);
+  font-size: 1rem;
 }
 
 /* ---------- Footer ---------- */
 
 .site-footer {
   border-top: 1px solid var(--border-dark);
-  padding: 48px 24px 32px;
+  padding: 56px 24px 32px;
 }
 
 .footer-dua-block {
-  max-width: 680px;
-  margin: 0 auto 44px;
+  max-width: 720px;
+  margin: 0 auto 52px;
   text-align: center;
 }
 
-.footer-dua-block .section-label { display: block; margin-bottom: 18px; }
+.footer-dua-block .section-label { display: block; margin: 0 0 18px; }
+.footer-dua-block h2.section-label { font-size: 1rem; }
 
 .footer-dua-arabic {
   font-family: var(--font-arabic);
-  font-size: clamp(24px, 3.2vw, 34px);
+  font-size: clamp(1.75rem, 3.4vw, 2.25rem);
   line-height: 1.9;
   color: var(--gold-light);
   margin: 0 0 18px;
 }
 
+/* Qur'an translation: body font, 18px, near-white (was a small, thin display serif) */
 .footer-dua-translation {
-  font-family: var(--font-display);
-  font-size: 15px;
-  line-height: 1.7;
-  color: #b7bdd3;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 1.75;
+  color: var(--text-body);
   margin: 0;
 }
 
+/* Surah reference: same body font, bold gold (was a tiny, dim monospace) */
 .footer-dua-ref {
-  color: #5f6b8c;
-  font-family: var(--font-mono);
-  font-size: 12px;
+  display: block;
+  font-style: normal;
+  margin-top: 10px;
+  color: var(--gold-light);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1rem;
 }
 
-.footer-main {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
+.footer-grid {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.4fr repeat(3, 1fr);
+  gap: 36px 32px;
   border-top: 1px solid var(--border-dark);
-  padding-top: 28px;
-}
-
-.footer-meta {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  flex-wrap: wrap;
+  padding-top: 36px;
 }
 
 .footer-brand {
   display: flex;
-  align-items: center;
-  gap: 12px;
+  gap: 14px;
+  align-items: flex-start;
 }
 
 .footer-mark {
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 48px;
+  height: 48px;
   flex-shrink: 0;
 }
+.footer-mark img { width: 100%; height: 100%; object-fit: contain; }
 
-.footer-mark img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+.footer-org {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text-strong);
 }
+.footer-org span { display: block; font-weight: 500; color: var(--text-muted-dark); font-size: var(--fs-sm); }
 
-.footer-copyright {
+.footer-heading {
   font-family: var(--font-body);
-  font-weight: 500;
-  font-size: 13px;
-  letter-spacing: 0.01em;
-  color: #dfe3ee;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-strong);
+  margin: 0 0 12px;
 }
 
-@media (max-width: 640px) {
-  .footer-main { justify-content: center; text-align: center; }
-  .footer-meta { justify-content: center; }
+.footer-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 2px;
 }
 
-/* Simpler footer-bottom row used on about/events/resources pages */
-.footer-bottom {
-  font-size: 12.5px;
-  color: var(--text-muted-dark);
-  border-top: 1px solid var(--border-dark);
-  padding-top: 24px;
-}
-
-.footer-links {
-  display: flex;
+.footer-list a {
+  display: inline-flex;
   align-items: center;
-  gap: 18px;
-  flex-wrap: wrap;
-  font-size: 13px;
-  font-weight: 500;
-  color: #c3c9dd;
-}
-
-.footer-links a { color: #c3c9dd; }
-.footer-links a:hover { color: var(--gold-light); }
-
-.social-links {
-  display: flex;
   gap: 10px;
+  min-height: 40px;
+  font-size: 1rem;
+  color: var(--text-soft);
+  text-decoration: underline;
+  text-decoration-color: rgba(195, 201, 221, 0.45);
+  text-underline-offset: 4px;
 }
+.footer-list a:hover { color: var(--gold-light); text-decoration-color: currentColor; }
+.footer-list svg { width: 20px; height: 20px; flex: none; }
 
-.social-links a {
-  width: 30px;
-  height: 30px;
-  border: 1.5px solid #2c3860;
-  border-radius: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #9aa3bf;
-}
-.social-links a svg { width: 15px; height: 15px; }
-.social-links a:hover { border-color: var(--gold-light); color: var(--gold-light); }
-
-.footer-credit {
-  text-align: center;
-  margin-top: 22px;
-  padding-top: 18px;
+.footer-bottom {
+  max-width: var(--max-width);
+  margin: 30px auto 0;
+  padding-top: 20px;
   border-top: 1px solid var(--border-dark);
-  font-family: var(--font-mono);
-  font-size: 11.5px;
-  letter-spacing: 0.03em;
-  color: #4c567a;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+}
+
+/* Copyright + credit: readable size and colour (credit was 11.5px at 2.4:1) */
+.footer-bottom p {
+  margin: 0;
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--text-soft);
+}
+
+@media (max-width: 900px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .footer-brand { grid-column: 1 / -1; }
+}
+@media (max-width: 480px) {
+  .footer-grid { grid-template-columns: 1fr; }
 }
 
 /* ---------- Responsive ---------- */
 
-@media (max-width: 900px) {
-  .main-nav { display: none; }
+@media (max-width: 1000px) {
   .week-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 560px) {
   .week-grid { grid-template-columns: 1fr; }
-  .hero { padding: 72px 20px 64px; }
-  .footer-bottom { flex-direction: column; align-items: flex-start; }
+  .hero { padding: 64px 0 60px; }
+  .hero-inner { margin-left: 20px; padding-right: 20px; }
+  .section { padding: 60px 20px; }
+  .musalla-gateway { padding: 22px 18px; }
 }

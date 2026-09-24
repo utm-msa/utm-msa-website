@@ -1,48 +1,67 @@
 /* ============================================================
-   UTM MSA — Additive styles for About & Events pages
-   Loaded AFTER styles.css — reuses the same CSS variables
-   (--navy, --gold, --cream, --font-display, etc.)
+   UTM MSA — About, Sagas (events), and The Musalla page styles
+   Loaded after styles.css; reuses its variables.
    ============================================================ */
 
 /* ---------- Shared page hero ---------- */
 
 .page-hero {
-  padding: 64px 0 40px;
+  padding: 64px 0 44px;
   border-bottom: 1px solid var(--border-dark);
 }
 
 .page-hero h1 {
-  font-family: var(--font-display);
-  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  overflow-wrap: anywhere;
   margin: 6px 0 14px;
-  color: #f4f1e8;
+}
+
+/* Plain-language subtitle under names like "Sagas" */
+.page-subtitle {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--gold-light);
+  margin: -4px 0 14px;
 }
 
 .page-hero p {
-  color: var(--text-muted-dark);
-  max-width: 640px;
-  line-height: 1.6;
+  color: var(--text-body);
+  font-size: var(--fs-lead);
+  max-width: 38em;
+  line-height: 1.7;
+  margin: 0;
 }
 
 .section-block {
-  padding: 56px 0;
+  padding: 60px 0;
   border-bottom: 1px solid var(--border-dark);
 }
 
 .section-title {
-  font-family: var(--font-display);
-  font-size: 1.6rem;
-  color: #f4f1e8;
-  margin-bottom: 28px;
+  font-size: 1.875rem;
+  margin: 0 0 28px;
 }
 
-/* ---------- Team grid (About page) ---------- */
+.section-intro {
+  color: var(--text-muted-dark);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  max-width: 40em;
+  margin: -12px 0 28px;
+}
+
+/* ---------- Team grid (About) ---------- */
 
 .team-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 1px;
   background: var(--border-dark-2);
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .team-card {
@@ -52,241 +71,150 @@
 }
 
 .team-avatar {
-  width: 68px;
-  height: 68px;
+  width: 72px;
+  height: 72px;
   margin: 0 auto 16px;
   border-radius: 50%;
   background: var(--border-dark-2);
-  border: 1px solid var(--gold);
+  border: 1.5px solid var(--gold);
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-display);
-  font-size: 1.1rem;
+  font-size: 1.25rem;
+  font-weight: 600;
   color: var(--gold-light);
 }
 
 .team-name {
   font-family: var(--font-body);
-  font-weight: 600;
-  color: #f4f1e8;
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: var(--text-strong);
   margin: 0 0 4px;
-  font-size: 0.98rem;
 }
 
 .team-title {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--gold);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--gold-light);
   margin: 0;
 }
 
-/* ---------- Events list (Events page) ---------- */
+/* ---------- Org chart (About) ---------- */
+/* Now a nested list: each executive's directors are a sub-list,
+   so screen readers hear who reports to whom (WCAG 1.3.1). */
 
-.event-row {
-  display: grid;
-  grid-template-columns: 110px 1fr auto;
-  gap: 20px;
-  align-items: center;
-  padding: 18px 20px;
-  background: var(--panel-navy);
-  border: 1px solid var(--border-dark);
-  border-radius: var(--radius-sm);
-  margin-bottom: 10px;
-}
-
-.event-date-badge {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  color: var(--gold-light);
-  text-transform: uppercase;
-}
-
-.event-row h3 {
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 1rem;
-  margin: 0 0 4px;
-  color: #f4f1e8;
-}
-
-.event-meta {
-  font-size: 0.85rem;
-  color: var(--text-muted-dark);
-}
-
-.event-tag {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--gold);
-  border: 1px solid var(--gold);
-  border-radius: 999px;
-  padding: 4px 10px;
-  white-space: nowrap;
-}
-
-/* Past events render muted/dimmer */
-.event-row.is-past {
-  opacity: 0.55;
-}
-.event-row.is-past .event-tag {
-  color: var(--text-muted);
-  border-color: var(--border-dark-2);
-}
-
-.empty-state {
-  padding: 32px 20px;
-  text-align: center;
-  color: var(--text-muted-dark);
-  background: var(--panel-navy);
-  border: 1px dashed var(--border-dark-2);
-  border-radius: var(--radius-sm);
-}
-
-/* ---------- Instagram embed grid ---------- */
-
-.ig-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-}
-
-.ig-slot {
-  background: var(--panel-navy);
-  border: 1px dashed var(--border-dark-2);
+.org-chart-visual {
+  border: 1.5px solid var(--border-control);
   border-radius: var(--radius-md);
-  min-height: 340px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: var(--panel-navy);
+  padding: 28px 24px 22px;
+}
+
+.org-tier-label {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--gold-light);
   text-align: center;
-  padding: 24px;
-  color: var(--text-muted);
-  font-size: 0.85rem;
-  line-height: 1.6;
+  margin: 0 0 18px;
 }
 
-/* Once real embeds are pasted in, Instagram's own blockquote styling takes over */
-.ig-slot.has-embed {
-  border-style: solid;
+.org-columns {
+  list-style: none;
+  margin: 0;
   padding: 0;
-  display: block;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 14px;
 }
 
-/* ---------- Section intro (shared) ---------- */
-
-.section-intro {
-  color: var(--text-muted-dark);
-  font-size: 0.9rem;
-  line-height: 1.6;
-  max-width: 620px;
-  margin: -14px 0 26px;
-}
-
-/* ---------- Org chart / Departments (About page) ---------- */
-
-.org-chart {
+.org-col {
   display: flex;
   flex-direction: column;
-  gap: 1px;
-  background: var(--border-dark-2);
-}
-
-.org-group {
-  background: var(--panel-navy);
-}
-
-.org-group summary {
-  list-style: none;
-  cursor: pointer;
-  padding: 18px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-}
-
-.org-group summary::-webkit-details-marker { display: none; }
-
-.org-group summary::after {
-  content: '+';
-  font-family: var(--font-mono);
-  color: var(--gold);
-  font-size: 16px;
-  transition: transform 0.25s ease;
-  flex-shrink: 0;
-}
-
-.org-group[open] summary::after { transform: rotate(45deg); }
-
-.org-exec {
-  font-family: var(--font-display);
-  font-size: 0.98rem;
-  color: #f4f1e8;
-}
-
-.org-exec em {
-  font-style: normal;
-  color: var(--text-muted-dark);
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  margin-left: 8px;
-}
-
-.org-count {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: var(--text-muted-dark);
-  white-space: nowrap;
-}
-
-.org-directors {
-  list-style: none;
-  margin: 0;
-  padding: 0 20px 20px;
-  display: grid;
   gap: 8px;
 }
 
-.org-directors li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 6px;
-  padding: 12px 16px;
+.org-exec-box {
   background: var(--navy-black);
-  border-radius: var(--radius-sm);
-  font-size: 0.86rem;
+  border: 1.5px solid var(--gold);
+  border-radius: 8px;
+  padding: 12px 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+}
+.org-exec-box .org-role {
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--text-strong);
+  line-height: 1.3;
+}
+.org-exec-box .org-person {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--gold-light);
+  margin-top: 4px;
 }
 
-.org-dept { color: var(--text-muted-dark); }
-
-.org-name {
-  color: #f4f1e8;
-  font-weight: 500;
+.org-dirs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.org-name em {
-  font-style: normal;
-  color: var(--gold);
-  font-size: 0.72rem;
-  margin-left: 6px;
+.org-dir-box {
+  background: #16213e;
+  border: 1.5px solid var(--border-control);
+  border-radius: 6px;
+  padding: 10px 8px;
+  text-align: center;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--text-body);
+  line-height: 1.35;
+}
+.org-dir-box .org-person {
+  display: block;
+  font-weight: 600;
+  color: var(--gold-light);
+  margin-top: 3px;
 }
 
-.org-open {
-  color: var(--text-muted);
+/* Open positions: dashed border AND the words "Position open" — never style alone (WCAG 1.4.1) */
+.org-dir-box.org-open { border-style: dashed; }
+.org-open-tag {
+  display: block;
+  margin-top: 3px;
+  font-size: var(--fs-xs);
+  font-weight: 600;
   font-style: italic;
-  font-weight: 400;
+  color: var(--text-muted-dark);
 }
 
-/* ---------- Constitution excerpts (About page) ---------- */
+.org-footer-tiers {
+  list-style: none;
+  margin: 22px 0 0;
+  padding: 16px 0 0;
+  border-top: 1px solid var(--border-dark);
+  display: flex;
+  justify-content: center;
+  gap: 12px 36px;
+  flex-wrap: wrap;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-soft);
+}
+.org-footer-tiers em { font-style: normal; font-weight: 500; color: var(--text-muted-dark); margin-left: 4px; }
+
+/* ---------- Constitution excerpts (About) ---------- */
 
 .constitution-grid {
   display: grid;
@@ -296,73 +224,71 @@
 
 .constitution-card {
   background: var(--panel-navy);
-  border-left: 2px solid var(--gold);
+  border-left: 3px solid var(--gold);
   padding: 22px 24px;
   margin: 0;
 }
 
 .constitution-card p {
-  font-family: var(--font-script);
+  font-family: var(--font-display);
   font-style: italic;
-  font-size: 1.05rem;
-  line-height: 1.6;
-  color: #eef0f6;
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--text-strong);
   margin: 0 0 14px;
 }
 
 .constitution-card cite {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--gold);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--gold-light);
   font-style: normal;
 }
 
-/* ---------- Impact / charity card (About page) ---------- */
+/* ---------- Impact / charity (About) ---------- */
 
 .charity-card {
   display: grid;
   grid-template-columns: 220px 1fr;
   background: var(--panel-navy);
-  border: 1px solid var(--border-dark);
+  border: 1px solid var(--border-dark-2);
   border-radius: var(--radius-md);
   overflow: hidden;
 }
 
 .charity-card-media {
   background: var(--navy-black);
-  border-right: 1px dashed var(--border-dark-2);
+  border-right: 1px dashed var(--border-control);
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   padding: 20px;
   min-height: 180px;
-  color: var(--text-muted);
-  font-size: 0.78rem;
+  color: var(--text-muted-dark);
+  font-size: var(--fs-sm);
 }
 
 .charity-card-body { padding: 28px 26px; }
 
 .charity-card-body h3 {
-  font-family: var(--font-display);
-  font-size: 1.2rem;
-  color: #f4f1e8;
+  font-size: 1.375rem;
   margin: 6px 0 12px;
 }
 
 .charity-card-body p {
-  color: var(--text-muted-dark);
-  font-size: 0.92rem;
-  line-height: 1.6;
+  color: var(--text-body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
   margin: 0 0 20px;
 }
 
 .charity-progress {
-  height: 8px;
+  height: 10px;
   border-radius: 999px;
   background: var(--border-dark-2);
+  border: 1px solid var(--border-control);
   overflow: hidden;
   margin-bottom: 10px;
 }
@@ -376,46 +302,39 @@
 .charity-progress-stats {
   display: flex;
   justify-content: space-between;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-muted-dark);
-  margin-bottom: 22px;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--text-soft);
+  margin: 0 0 22px;
 }
 
-.charity-actions {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-}
+.charity-actions { display: flex; gap: 14px; flex-wrap: wrap; }
 
 .charity-placeholder-note {
   margin-top: 20px;
   padding: 18px 20px;
-  border: 1px dashed var(--border-dark-2);
+  border: 1px dashed var(--border-control);
   border-radius: var(--radius-sm);
-  color: var(--text-muted);
-  font-size: 0.85rem;
+  color: var(--text-muted-dark);
+  font-size: 1rem;
   text-align: center;
 }
 
 @media (max-width: 640px) {
   .charity-card { grid-template-columns: 1fr; }
-  .charity-card-media { border-right: none; border-bottom: 1px dashed var(--border-dark-2); }
+  .charity-card-media { border-right: none; border-bottom: 1px dashed var(--border-control); }
 }
 
-/* ---------- Sagas: arrow flight intro ---------- */
+/* ---------- Sagas: arrow-flight intro (decorative; hidden from screen readers) ---------- */
 
 .sagas-flight {
   position: relative;
-  padding: 56px 0 26px;
+  padding: 44px 0 20px;
   border-bottom: 1px solid var(--border-dark);
   overflow: hidden;
 }
 
-.sagas-flight-inner {
-  position: relative;
-  height: 210px;
-}
+.sagas-flight-inner { position: relative; height: 200px; }
 
 .sagas-arrow {
   position: absolute;
@@ -440,26 +359,26 @@
   top: 50%;
   transform: translate(-50%, -50%) scale(0.6);
   opacity: 0;
-  width: 128px;
+  width: 140px;
   padding: 14px 12px;
   background: var(--panel-navy);
-  border: 1px solid var(--border-dark-2);
+  border: 1px solid var(--border-control);
   border-radius: var(--radius-sm);
   text-align: center;
   font-family: var(--font-display);
-  font-size: 12.5px;
-  color: #f4f1e8;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text-strong);
   animation: sagaCardPop 0.5s ease forwards;
 }
 
 .saga-card span {
   display: block;
   margin-top: 5px;
-  font-family: var(--font-mono);
-  font-size: 9px;
+  font-family: var(--font-body);
+  font-size: var(--fs-xs);
+  font-weight: 500;
   color: var(--text-muted-dark);
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
 }
 
 .saga-card:nth-of-type(2) { animation-delay: 0.2s; }
@@ -476,80 +395,146 @@
 .sagas-flight-note {
   margin: 8px auto 0;
   text-align: center;
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  color: var(--text-muted);
-  letter-spacing: 0.02em;
+  font-size: var(--fs-sm);
+  color: var(--text-muted-dark);
 }
 
-.sagas-tabs-wrap {
-  opacity: 0;
-  animation: fadeUpIn 0.6s ease forwards;
-  animation-delay: 3.6s;
-}
+/* Tabs are usable straight away now (they used to stay invisible for 3.6s while the intro played) */
+.sagas-tabs-wrap { animation: fadeUpIn 0.5s ease both; }
 
 @keyframes fadeUpIn {
-  from { opacity: 0; transform: translateY(14px); }
+  from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .sagas-arrow, .saga-card, .sagas-tabs-wrap { animation: none !important; opacity: 1 !important; transform: none !important; }
-}
-
 @media (max-width: 720px) {
-  .sagas-flight { display: none; } /* the flight intro needs width to breathe; mobile jumps straight to tabs */
-  .sagas-tabs-wrap { opacity: 1; animation: none; }
+  .sagas-flight { display: none; }
 }
 
-/* ---------- Sagas: tabs ---------- */
+/* ---------- Tabs (Sagas) ---------- */
 
 .saga-tabs {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   margin-bottom: 28px;
   flex-wrap: wrap;
 }
 
 .saga-tab {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--text-muted-dark);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-body);
   background: none;
-  border: 1px solid var(--border-dark-2);
-  padding: 10px 18px;
+  border: 1.5px solid var(--border-control);
+  min-height: 44px;
+  padding: 8px 20px;
   border-radius: 999px;
   cursor: pointer;
   transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease;
 }
 
-.saga-tab:hover { border-color: var(--gold); color: var(--gold-light); }
+.saga-tab:hover { border-color: var(--gold-light); color: var(--gold-light); }
 
-.saga-tab.is-active {
-  background: var(--gold);
-  border-color: var(--gold);
+/* Selected tab: filled gold AND bold — not colour alone */
+.saga-tab[aria-selected="true"] {
+  background: var(--gold-light);
+  border-color: var(--gold-light);
   color: var(--navy);
-  font-weight: 600;
+  font-weight: 700;
 }
 
-.saga-panel { display: none; }
-.saga-panel.is-active { display: block; animation: fadeUpSmall 0.4s ease; }
+.saga-panel[hidden] { display: none; }
+.saga-panel { animation: fadeUpSmall 0.35s ease; }
 
 @keyframes fadeUpSmall {
   from { opacity: 0; transform: translateY(8px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-.event-row[data-zoomable] {
-  cursor: pointer;
-  transition: border-color 0.25s ease, transform 0.25s ease;
+.panel-heading {
+  font-size: 1.5rem;
+  margin: 0 0 18px;
 }
-.event-row[data-zoomable]:hover { border-color: var(--gold); }
-.event-row[data-zoomable]:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 2px; }
 
-/* ---------- Zoom-open shared-element transition ---------- */
+/* ---------- Event rows (Sagas) ---------- */
+
+.event-list { list-style: none; margin: 0; padding: 0; }
+
+.event-row {
+  display: grid;
+  grid-template-columns: 120px 1fr auto;
+  gap: 20px;
+  align-items: center;
+  padding: 18px 20px;
+  background: var(--panel-navy);
+  border: 1.5px solid var(--border-dark-2);
+  border-radius: var(--radius-sm);
+  margin-bottom: 10px;
+  position: relative;
+  transition: border-color 0.25s ease;
+}
+.event-row:hover { border-color: var(--gold); }
+
+.event-date-badge {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--gold-light);
+}
+
+.event-row h3 {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1.125rem;
+  margin: 0 0 4px;
+}
+
+/* The title is a real <button> that opens the details; its hit area covers the whole row */
+.event-open {
+  all: unset;
+  cursor: pointer;
+  color: var(--text-strong);
+}
+.event-open::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+.event-open:focus-visible { outline: none; box-shadow: none; }
+.event-row:focus-within { outline: 3px solid var(--focus-ring); outline-offset: 3px; }
+
+.event-meta {
+  font-size: 1rem;
+  color: var(--text-muted-dark);
+}
+
+.event-tag {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--gold-light);
+  border: 1.5px solid var(--gold);
+  border-radius: 999px;
+  padding: 4px 12px;
+  white-space: nowrap;
+}
+
+/* Past events: a text label + muted (but still passing) colours. No opacity fade,
+   which used to drag the text below readable contrast. */
+.event-row.is-past { background: var(--navy-black); }
+.event-row.is-past .event-date-badge { color: var(--text-soft); }
+.event-row.is-past .event-tag { color: var(--text-soft); border-color: var(--border-control); }
+
+@media (max-width: 640px) {
+  .event-row { grid-template-columns: 1fr; gap: 6px; }
+}
+
+.empty-state {
+  padding: 32px 20px;
+  text-align: center;
+  color: var(--text-soft);
+  font-size: 1rem;
+  background: var(--panel-navy);
+  border: 1.5px dashed var(--border-control);
+  border-radius: var(--radius-sm);
+}
+
+/* ---------- Event detail dialog (zoom-open) ---------- */
 
 .zoom-backdrop {
   position: fixed;
@@ -558,16 +543,15 @@
   z-index: 200;
   transition: background 0.4s ease;
 }
-.zoom-backdrop.is-visible { background: rgba(5, 9, 18, 0.82); }
+.zoom-backdrop.is-visible { background: rgba(5, 9, 18, 0.85); }
 
 .zoom-clone {
   position: fixed;
   z-index: 201;
   background: var(--panel-navy);
-  border: 1px solid var(--border-dark-2);
+  border: 1.5px solid var(--border-control);
   border-radius: var(--radius-md);
   overflow: auto;
-  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
   transition: top 0.42s cubic-bezier(0.2, 0.8, 0.2, 1), left 0.42s cubic-bezier(0.2, 0.8, 0.2, 1),
     width 0.42s cubic-bezier(0.2, 0.8, 0.2, 1), height 0.42s cubic-bezier(0.2, 0.8, 0.2, 1),
     box-shadow 0.42s ease;
@@ -575,196 +559,125 @@
 .zoom-clone.is-open { box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55); }
 
 .zoom-clone .zoom-detail { padding: 30px 28px; }
-.zoom-clone .zoom-detail h3 { font-family: var(--font-display); font-size: 1.4rem; color: #f4f1e8; margin: 14px 0 10px; }
-.zoom-clone .zoom-detail .event-meta { font-size: 0.95rem; margin-bottom: 14px; }
+.zoom-clone .zoom-detail h2 { font-size: 1.625rem; margin: 14px 0 10px; }
+.zoom-clone .zoom-detail .event-meta { font-size: 1.0625rem; margin-bottom: 14px; }
 
 .zoom-close {
   position: absolute;
-  top: 14px;
-  right: 16px;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  border: 1px solid var(--border-dark-2);
+  top: 12px;
+  right: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1.5px solid var(--border-control);
   background: var(--navy-black);
-  color: var(--text-muted-dark);
-  font-size: 13px;
+  color: var(--text-strong);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
   z-index: 2;
 }
 .zoom-close:hover { border-color: var(--gold-light); color: var(--gold-light); }
 
-@media (prefers-reduced-motion: reduce) {
-  .zoom-backdrop, .zoom-clone { transition: none !important; }
+/* ---------- Instagram highlight slots (Sagas) ---------- */
+
+.ig-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
 }
 
-/* ---------- Org chart — visual tiered diagram (About page) ---------- */
-
-.org-chart-visual {
-  border: 1px solid var(--border-dark-2);
-  border-radius: var(--radius-md);
+.ig-slot {
   background: var(--panel-navy);
-  padding: 28px 24px 22px;
-}
-
-.org-tier-label {
-  font-family: var(--font-display);
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--gold-light);
-  text-align: center;
-  margin-bottom: 18px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
-.org-columns {
+  border: 1.5px dashed var(--border-control);
+  border-radius: var(--radius-md);
+  min-height: 300px;
   display: flex;
-  gap: 14px;
-  overflow-x: auto;
-  padding-bottom: 6px;
-}
-
-.org-col {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  min-width: 150px;
-  flex: 1;
-}
-
-.org-exec-box {
-  background: var(--navy-black);
-  border: 1px solid var(--gold);
-  border-radius: 8px;
-  padding: 12px 10px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-.org-exec-box span {
-  font-family: var(--font-display);
-  font-size: 12.5px;
-  font-weight: 600;
-  color: #f4f1e8;
-}
-.org-exec-box em {
-  font-style: normal;
-  font-family: var(--font-mono);
-  font-size: 9.5px;
-  color: var(--gold-light);
-  margin-top: 3px;
-}
-
-.org-dir-box {
-  background: #16213e;
-  border: 1px solid var(--border-dark-2);
-  border-radius: 6px;
-  padding: 10px 8px;
-  text-align: center;
-  font-size: 11px;
-  color: #dfe3ee;
-}
-.org-dir-box em {
-  display: block;
-  font-style: normal;
-  color: var(--gold);
-  font-size: 9.5px;
-  margin-top: 3px;
-}
-.org-dir-box.org-open {
-  color: var(--text-muted);
-  font-style: italic;
-  border-style: dashed;
-}
-
-.org-footer-tiers {
-  margin-top: 22px;
-  padding-top: 16px;
-  border-top: 1px solid var(--border-dark);
-  display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 36px;
-  flex-wrap: wrap;
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--text-muted);
-}
-.org-footer-tiers em { font-style: normal; opacity: 0.75; margin-left: 4px; }
-
-@media (max-width: 720px) {
-  .org-col { min-width: 130px; }
+  text-align: center;
+  padding: 24px;
+  color: var(--text-muted-dark);
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
-/* ---------- About page: theme reveal overlay ---------- */
+.ig-slot.has-embed { border-style: solid; padding: 0; display: block; }
+
+/* ---------- Theme reveal (About) — now a real dialog ---------- */
 
 .theme-reveal {
   position: fixed;
   inset: 0;
   z-index: 300;
-  background: radial-gradient(circle at 50% 40%, rgba(16, 26, 48, 0.97), rgba(9, 14, 27, 0.99));
+  background: radial-gradient(circle at 50% 40%, rgba(16, 26, 48, 0.98), rgba(9, 14, 27, 0.995));
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   padding: 40px;
-  cursor: pointer;
-  animation: themeFadeOut 0.6s ease forwards;
-  animation-delay: 3.2s;
 }
+.theme-reveal[hidden] { display: none; }
+.theme-reveal.is-leaving { animation: themeFadeOut 0.4s ease forwards; }
 
 .theme-reveal-inner {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
-  max-width: 560px;
+  gap: 16px;
+  max-width: 580px;
   animation: themeContentIn 0.7s ease forwards;
 }
 
 .theme-reveal h2 {
-  font-family: var(--font-display);
-  font-size: clamp(28px, 5vw, 44px);
-  color: #f4f1e8;
+  font-size: clamp(2rem, 5vw, 3rem);
   margin: 0;
 }
 
 .theme-reveal p {
-  color: var(--text-muted-dark);
-  font-size: 15px;
+  color: var(--text-body);
+  font-size: var(--fs-lead);
   margin: 0;
 }
 
-.theme-reveal-hint {
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-top: 8px;
+.theme-eyebrow {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--gold-light);
 }
+
+.theme-reveal .btn-primary { margin-top: 10px; cursor: pointer; font-family: var(--font-body); }
+.theme-reveal-hint { font-size: var(--fs-sm); color: var(--text-muted-dark); }
 
 @keyframes themeContentIn {
   from { opacity: 0; transform: translateY(14px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-
 @keyframes themeFadeOut {
-  to { opacity: 0; visibility: hidden; pointer-events: none; }
+  to { opacity: 0; visibility: hidden; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .theme-reveal { animation: none; opacity: 0; visibility: hidden; }
+/* The theme also stays on the page after the intro closes, so nothing is lost */
+.theme-inline {
+  margin: 22px 0 0;
+  padding: 14px 18px;
+  border-left: 3px solid var(--gold);
+  background: var(--panel-navy);
+  max-width: 40em;
 }
+.theme-inline p { margin: 0; font-size: 1.0625rem; }
+.theme-inline strong { color: var(--gold-light); font-family: var(--font-display); font-size: 1.1875rem; }
 
 /* ---------- The Musalla: prayer-time widget ---------- */
 
 .musalla-time-widget {
   background: var(--panel-navy);
-  border: 1px solid var(--border-dark-2);
+  border: 1.5px solid var(--border-control);
   border-radius: var(--radius-md);
   padding: 26px 28px;
 }
@@ -774,66 +687,22 @@
   justify-content: space-between;
   align-items: baseline;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 8px 20px;
   margin-bottom: 18px;
 }
+.musalla-time-head h2 { font-size: 1.5rem; margin: 0; }
 
-.musalla-time-greg {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--text-muted);
-}
+.musalla-dates { margin: 0; font-size: 1rem; font-weight: 600; color: var(--text-soft); }
 
-.musalla-time-row {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1px;
-  background: var(--border-dark-2);
-  border-radius: var(--radius-sm);
-  overflow: hidden;
-}
-
-.musalla-time-cell {
-  background: var(--navy-black);
-  padding: 16px 10px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.musalla-time-label {
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--gold-light);
-}
-
-.musalla-time-value {
-  font-family: var(--font-display);
-  font-size: 18px;
-  color: #f4f1e8;
-}
-
-.musalla-time-empty {
-  grid-column: 1 / -1;
-  padding: 20px;
-  text-align: center;
-  color: var(--text-muted);
-  font-size: 0.85rem;
-  background: var(--navy-black);
-}
+.musalla-time-widget .prayer-list { margin-bottom: 0; }
+.musalla-time-widget .prayer-item { padding: 18px 10px; }
+.musalla-time-widget .prayer-item dd { font-size: 1.25rem; }
 
 .musalla-time-note {
   margin: 14px 0 0;
-  font-size: 11.5px;
-  color: var(--text-muted);
+  font-size: var(--fs-sm);
+  color: var(--text-muted-dark);
   text-align: center;
-}
-
-@media (max-width: 640px) {
-  .musalla-time-row { grid-template-columns: repeat(3, 1fr); }
 }
 
 /* ---------- The Musalla: on-campus card ---------- */
@@ -842,31 +711,38 @@
   display: grid;
   grid-template-columns: 260px 1fr;
   background: var(--panel-navy);
-  border: 1px solid var(--border-dark);
+  border: 1px solid var(--border-dark-2);
   border-radius: var(--radius-md);
   overflow: hidden;
 }
 
 .musalla-campus-media {
   background: var(--navy-black);
-  border-right: 1px dashed var(--border-dark-2);
+  border-right: 1px dashed var(--border-control);
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   padding: 20px;
-  color: var(--text-muted);
-  font-size: 0.78rem;
+  color: var(--text-muted-dark);
+  font-size: var(--fs-sm);
   min-height: 200px;
 }
 
 .musalla-campus-body { padding: 28px 26px; }
-.musalla-campus-body h3 { font-family: var(--font-display); font-size: 1.05rem; color: #f4f1e8; margin: 0 0 8px; }
-.musalla-campus-body p { color: var(--text-muted-dark); font-size: 0.9rem; line-height: 1.6; margin: 0; }
+.musalla-campus-body h3 { font-size: 1.25rem; margin: 0 0 8px; }
+.musalla-campus-body h3 + p { margin-bottom: 22px; }
+.musalla-campus-body p { color: var(--text-body); font-size: 1.0625rem; line-height: 1.65; margin: 0; }
 
 @media (max-width: 640px) {
   .musalla-campus-card { grid-template-columns: 1fr; }
-  .musalla-campus-media { border-right: none; border-bottom: 1px dashed var(--border-dark-2); }
+  .musalla-campus-media { border-right: none; border-bottom: 1px dashed var(--border-control); }
 }
 
+/* ---------- Accessibility statement page ---------- */
 
+.prose { max-width: 44em; }
+.prose h2 { font-size: 1.625rem; margin: 40px 0 12px; }
+.prose p, .prose li { font-size: 1.0625rem; line-height: 1.75; color: var(--text-body); }
+.prose ul { padding-left: 1.2em; }
+.prose li { margin-bottom: 8px; }

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UTM MSA: Muslim Students' Association, University of Toronto Mississauga</title>
-<meta name="description" content="Everything the UTM MSA runs, including events, prayer times, resources, and the people behind it, in one place.">
+<title>Accessibility | UTM MSA</title>
+<meta name="description" content="How the UTM MSA website supports accessibility, how to adjust it for you, and how to report a problem.">
 <script>
 /* Apply saved Display settings before the page paints (avoids a flash). Full logic lives in script.js. */
 (function(){try{var p=JSON.parse(localStorage.getItem('msaDisplayPrefs')||'{}'),c=document.documentElement.classList;
@@ -18,7 +18,7 @@ l.href='https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;
 <!-- Three families: Literata (headings), Montserrat (everything else), Amiri (Arabic only) -->
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Literata:ital,opsz,wght@0,7..72,500..700;1,7..72,500&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="resources.css">
+<link rel="stylesheet" href="pages.css">
 <link rel="stylesheet" href="a11y.css">
 </head>
 <body>
@@ -95,113 +95,55 @@ l.href='https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;
   </section>
 </header>
 <main id="main" tabindex="-1">
-<section class="hero" aria-labelledby="heroTitle">
-  <div class="hero-inner">
-    <p class="kicker"><span class="kicker-script">As-salāmu ʿalaykum</span></p>
-    <h1 id="heroTitle">One home, open to all of UTM.</h1>
-    <p>A gathering place for every Muslim on campus, and an open door for anyone curious to know us. Prayer times, events, and the real people behind them, always current, always one click away.</p>
-    <div class="hero-actions">
-      <a class="btn-primary" href="events.html">See this week's events</a>
-      <a class="btn-text" href="about.html">Meet the cabinet</a>
+  <section class="page-hero">
+    <div class="wrap">
+      <h1 class="with-icon"><svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="4.8" r="1.8"/><path d="M5 8.5l7 1.5 7-1.5"/><path d="M12 10v4.5"/><path d="M12 14.5 9 20.5"/><path d="M12 14.5l3 6"/></svg>Accessibility</h1>
+      <p>We want every student to be able to use this site, including people who use screen readers, keyboards, magnifiers, or other assistive tools.</p>
     </div>
-  </div>
-  <div class="scroll-cue-group">
-    <a href="#bismillah" class="scroll-cue"><span class="scroll-cue-chevron" aria-hidden="true"></span><span class="sr-only">Scroll down to the Bismillah</span></a>
-  </div>
-</section>
+  </section>
 
-<section class="bismillah-section" data-reveal id="bismillah" aria-label="Bismillah">
-  <p class="bismillah-arabic" lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
-  <p class="bismillah-translation">In the name of Allah, the Most Gracious, the Most Merciful</p>
-  <a href="#prayer" class="bismillah-next"><span class="bismillah-next-chevron" aria-hidden="true"></span><span class="sr-only">Continue to today's prayer times</span></a>
-</section>
+  <section class="section-block">
+    <div class="wrap prose">
+      <h2>Our goal</h2>
+      <p>We aim to meet the Web Content Accessibility Guidelines (WCAG) 2.2 at level AA across the whole site, and to go beyond it where we can. We check pages with automated tools, keyboard-only testing, and feedback from real users.</p>
 
-<section class="section" data-reveal id="prayer" aria-labelledby="prayerHeading">
-  <div class="musalla-gateway">
-    <h2 class="gateway-heading with-icon" id="prayerHeading"><svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>Next prayer at UTM</h2>
-    <p class="musalla-gateway-readout" aria-live="polite">
-      <span class="musalla-gateway-name" id="nextPrayerName">Loading…</span>
-      <span class="musalla-gateway-time" id="nextPrayerTime"></span>
-    </p>
-    <p class="musalla-gateway-hijri" id="gatewayHijri"></p>
-    <div id="gatewayTimesRow"><p class="prayer-empty">Loading today's prayer times…</p></div>
-    <a class="btn-primary" href="musalla.html">Visit The Musalla: prayer rooms and nearby masjids</a>
-  </div>
-</section>
+      <h2>Adjust the site for you</h2>
+      <p>Select <strong>Display settings</strong> at the top of any page to change:</p>
+      <ul>
+        <li><strong>Text size:</strong> Default, Large, or Largest. Your browser's own zoom and text size settings also work on every page.</li>
+        <li><strong>Contrast:</strong> High contrast makes all text near-white and every outline brighter.</li>
+        <li><strong>Font:</strong> The easy-read option uses Atkinson Hyperlegible, a typeface designed for people with low vision.</li>
+        <li><strong>Text spacing:</strong> Wide spacing adds room between letters, words, and lines.</li>
+        <li><strong>Motion:</strong> Reduce motion turns off animations. The site also follows your device's reduced motion setting automatically.</li>
+      </ul>
+      <p>Your choices are saved in your browser on this device. Nothing is sent to us.</p>
 
-<section class="section" data-reveal id="thisWeek" aria-labelledby="weekHeading">
-  <div class="section-head-row">
-    <h2 id="weekHeading" class="with-icon"><svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>This week</h2>
-    <a href="events.html" class="see-all">See all events</a>
-  </div>
-  <ul class="week-grid" id="weekGrid" aria-live="polite" aria-busy="true">
-    <li class="week-empty">Loading events…</li>
-  </ul>
-</section>
+      <h2>What we've built in</h2>
+      <ul>
+        <li>A "Skip to main content" link at the top of every page.</li>
+        <li>A clear gold focus outline wherever your keyboard is, on every link, button, and embedded post.</li>
+        <li>Text contrast of at least 4.5 to 1 everywhere, and 7 to 1 for almost all body text.</li>
+        <li>No text smaller than 14 pixels, and body text at 17 pixels.</li>
+        <li>Headings in a logical order, labelled page regions, and descriptive link text.</li>
+        <li>Tabs and pop-up details that work with a keyboard and announce themselves to screen readers.</li>
+        <li>Phone numbers you can tap to call, including our crisis lines.</li>
+        <li>Two ways to reach every page: the main menu and the site map in the footer.</li>
+      </ul>
 
-<section class="highlight-section" data-reveal aria-labelledby="highlightHeading">
-  <div class="highlight-inner">
-    <div class="highlight-text">
-      <p class="section-label">Coming up</p>
-      <h2 id="highlightHeading">Monday: Orientation</h2>
-      <p>Kicking off the year. Come meet the cabinet, find out what MSA runs this semester, and grab some food. Full details are in our Instagram post.</p>
-      <a class="btn-text" href="https://www.instagram.com/p/DczQndhD08V/" target="_blank" rel="noopener">View the orientation post on Instagram<span class="sr-only"> (opens in a new tab)</span></a>
+      <h2>Known limitations</h2>
+      <ul>
+        <li><strong>Instagram and YouTube embeds</strong> are provided by those companies, and we can't fully control how they work with assistive technology. Every embed has a plain link to the original, and you can skip past the Instagram post.</li>
+        <li><strong>Lecture captions</strong> come from YouTube. We turn captions on by default, but some older videos only have automatic captions.</li>
+        <li><strong>Prayer times and events</strong> load from outside services. If they can't load, the page tells you and points you to another source.</li>
+      </ul>
+
+      <h2>Tell us what isn't working</h2>
+      <p>If anything on this site is hard to use, or you need information in a different format, email us at <a href="mailto:msa@utmsu.ca?subject=Website%20accessibility">msa@utmsu.ca</a> with the subject "Website accessibility". Tell us which page you were on and what happened. We especially welcome feedback from students who use screen readers or other assistive technology.</p>
+      <p><em>Last reviewed: September 2026.</em></p>
     </div>
-    <div class="highlight-embed">
-      <a class="embed-skip" href="#resourcesPreview">Skip past the Instagram post</a>
-      <div class="embed-frame" role="region" aria-label="Instagram post: Monday Orientation">
-        <div class="embed-inner">
-          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DczQndhD08V/" data-instgrm-version="14" style="margin:0;">
-            <a class="embed-fallback" href="https://www.instagram.com/p/DczQndhD08V/" target="_blank" rel="noopener">View the Monday Orientation post on Instagram<span class="sr-only"> (opens in a new tab)</span></a>
-          </blockquote>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section" data-reveal id="resourcesPreview" aria-labelledby="resHeading">
-  <div class="section-head-row">
-    <h2 id="resHeading">Resources</h2>
-    <a href="resources.html" class="see-all">See all resources</a>
-  </div>
-  <ul class="resource-grid">
-      <li class="resource-card">
-        <span class="resource-badge"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20s-7.5-4.6-7.5-10.1C4.5 6.9 6.6 5 9 5c1.4 0 2.4.7 3 1.6C12.6 5.7 13.6 5 15 5c2.4 0 4.5 1.9 4.5 4.9C19.5 15.4 12 20 12 20Z"/></svg></span>
-        <h3><a href="resources.html#mental-health">Mental Health</a></h3>
-        <p class="resource-excerpt">Counselling, peer support contacts, and crisis lines. No judgment, just support.</p>
-        <span class="resource-goto" aria-hidden="true">View details</span>
-      </li>
-      <li class="resource-card">
-        <span class="resource-badge"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 4 22 9l-10 5L2 9l10-5Z"/><path d="M6 11v4.5c0 1.4 2.7 3 6 3s6-1.6 6-3V11"/><path d="M22 9v5"/></svg></span>
-        <h3><a href="resources.html#academic-financial">Academic &amp; Financial Support</a></h3>
-        <p class="resource-excerpt">Tutoring, study groups, bursaries, zakat contacts, and emergency funding pathways.</p>
-        <span class="resource-goto" aria-hidden="true">View details</span>
-      </li>
-      <li class="resource-card">
-        <span class="resource-badge"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 3v6a2.5 2.5 0 0 0 5 0V3"/><path d="M7.5 3v18"/><path d="M17 3c-1.8 1.2-2.5 3.8-2.5 7.5H17V21"/></svg></span>
-        <h3><a href="resources.html#halal-food">Halal Food</a></h3>
-        <p class="resource-excerpt">On- and off-campus spots, so lunch is one less thing to think about.</p>
-        <span class="resource-goto" aria-hidden="true">View details</span>
-      </li>
-      <li class="resource-card">
-        <span class="resource-badge"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 21V4"/><path d="M5 5h12l-3 4 3 4H5"/></svg></span>
-        <h3><a href="resources.html#boycott-list">Boycott List</a></h3>
-        <p class="resource-excerpt">A running list to help you make informed choices as a consumer.</p>
-        <span class="resource-goto" aria-hidden="true">View details</span>
-      </li>
-  </ul>
-</section>
+  </section>
 </main>
 <footer class="site-footer">
-  <div class="footer-dua-block">
-    <h2 class="section-label" id="verseHeading">Verse of the month</h2>
-    <p class="footer-dua-arabic" lang="ar" dir="rtl">وَلْتَكُن مِّنكُمْ أُمَّةٌ يَدْعُونَ إِلَى الْخَيْرِ وَيَأْمُرُونَ بِالْمَعْرُوفِ وَيَنْهَوْنَ عَنِ الْمُنكَرِ وَأُولَٰئِكَ هُمُ الْمُفْلِحُونَ</p>
-    <blockquote class="footer-dua-translation">
-      <p style="margin:0">"Let there arise out of you a band of people inviting to all that is good, enjoining what is right, and forbidding what is wrong — they are the ones to attain success."</p>
-      <cite class="footer-dua-ref">Qur'an, Surah Al 'Imran 3:104</cite>
-    </blockquote>
-  </div>
 
   <div class="footer-grid">
     <div class="footer-brand">
@@ -246,6 +188,5 @@ l.href='https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;
 </footer>
 
 <script src="script.js"></script>
-<script async src="https://www.instagram.com/embed.js"></script>
 </body>
 </html>

@@ -3,325 +3,315 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Resources — UTM MSA</title>
+<title>Resources: mental health, academic, financial and halal food | UTM MSA</title>
+<meta name="description" content="Crisis lines, counselling, academic and financial support, and halal food near UTM.">
+<script>
+/* Apply saved Display settings before the page paints (avoids a flash). Full logic lives in script.js. */
+(function(){try{var p=JSON.parse(localStorage.getItem('msaDisplayPrefs')||'{}'),c=document.documentElement.classList;
+if(p.text==='lg'||p.text==='xl')c.add('pref-text-'+p.text);if(p.contrast==='high')c.add('pref-contrast-high');
+if(p.spacing==='wide')c.add('pref-spacing-wide');if(p.motion==='reduced')c.add('pref-motion-reduced');
+if(p.font==='readable'){c.add('pref-font-readable');var l=document.createElement('link');l.rel='stylesheet';l.id='readableFont';
+l.href='https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap';document.head.appendChild(l);}}catch(e){}})();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Montserrat:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Three families: Literata (headings), Montserrat (everything else), Amiri (Arabic only) -->
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Literata:ital,opsz,wght@0,7..72,500..700;1,7..72,500&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="pages.css">
 <link rel="stylesheet" href="resources.css">
+<link rel="stylesheet" href="a11y.css">
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to main content</a>
 
 <header class="site-header">
-  <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; width:100%;">
-    <a class="brand" href="index.html">
-      <img src="utm-msa-logo.png" alt="UTM MSA logo" class="site-logo-img">
+  <div class="header-inner">
+    <a href="index.html" class="brand">
+      <img src="utm-msa-logo.png" alt="UTM Muslim Students' Association, home page" class="site-logo-img" width="1667" height="438">
     </a>
-    <nav class="main-nav" style="display:flex; gap:28px; font-size:0.9rem;">
-      <a href="about.html">About</a>
-      <a href="events.html">Sagas</a>
-      <a href="resources.html">Resources</a>
-      <a href="musalla.html">The Musalla</a>
-    </nav>
-    <a class="nav-cta" href="https://forms.gle/BKkKjAEeX6UAhfDM7" target="_blank" rel="noopener">Become a General Member →</a>
-  </div>
-</header>
 
-<main>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="siteMenu">
+      <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg><span>Menu</span>
+    </button>
+
+    <div class="site-menu" id="siteMenu">
+      <nav class="main-nav" aria-label="Main">
+        <ul>
+          <li><a href="about.html"><span class="nav-title">About</span><span class="nav-desc">Who we are</span></a></li>
+          <li><a href="events.html"><span class="nav-title">Sagas</span><span class="nav-desc">Events &amp; lectures</span></a></li>
+          <li><a href="resources.html" aria-current="page"><span class="nav-title">Resources</span><span class="nav-desc">Support &amp; services</span></a></li>
+          <li><a href="musalla.html"><span class="nav-title">The Musalla</span><span class="nav-desc">Prayer times &amp; masjids</span></a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <button class="prefs-toggle" type="button" aria-expanded="false" aria-controls="prefsPanel">
+          <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></svg><span>Display settings</span>
+        </button>
+        <a class="nav-cta" href="https://forms.gle/BKkKjAEeX6UAhfDM7" target="_blank" rel="noopener"><svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="10" cy="8" r="3.5"/><path d="M3.5 20v-1.2A3.8 3.8 0 0 1 7.3 15h5.4a3.8 3.8 0 0 1 3.8 3.8V20"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M20.5 20v-1.2a3.8 3.8 0 0 0-2.6-3.6"/></svg><span>Become a General Member</span><span class="sr-only"> (opens in a new tab)</span></a>
+      </div>
+    </div>
+  </div>
+
+  <section class="prefs-panel" id="prefsPanel" aria-labelledby="prefsTitle" hidden>
+    <div class="prefs-inner">
+      <div class="prefs-head">
+        <h2 id="prefsTitle">Display settings</h2>
+        <p>Adjust how this site looks for you. Your choices are saved on this device only.</p>
+      </div>
+      <form class="prefs-grid" id="prefsForm">
+        <fieldset>
+          <legend>Text size</legend>
+          <label class="pref-option"><input type="radio" name="text" value="default" checked><span>Default</span></label>
+          <label class="pref-option"><input type="radio" name="text" value="lg"><span>Large<span class="pref-hint">112%</span></span></label>
+          <label class="pref-option"><input type="radio" name="text" value="xl"><span>Largest<span class="pref-hint">125%</span></span></label>
+        </fieldset>
+        <fieldset>
+          <legend>Contrast</legend>
+          <label class="pref-option"><input type="radio" name="contrast" value="default" checked><span>Default</span></label>
+          <label class="pref-option"><input type="radio" name="contrast" value="high"><span>High contrast<span class="pref-hint">Brighter text and outlines</span></span></label>
+        </fieldset>
+        <fieldset>
+          <legend>Font</legend>
+          <label class="pref-option"><input type="radio" name="font" value="default" checked><span>Default</span></label>
+          <label class="pref-option"><input type="radio" name="font" value="readable"><span>Easy-read font<span class="pref-hint">Atkinson Hyperlegible, made for low vision</span></span></label>
+        </fieldset>
+        <fieldset>
+          <legend>Text spacing</legend>
+          <label class="pref-option"><input type="radio" name="spacing" value="default" checked><span>Default</span></label>
+          <label class="pref-option"><input type="radio" name="spacing" value="wide"><span>Wide<span class="pref-hint">More space between letters and lines</span></span></label>
+        </fieldset>
+        <fieldset>
+          <legend>Motion</legend>
+          <label class="pref-option"><input type="radio" name="motion" value="default" checked><span>Default</span></label>
+          <label class="pref-option"><input type="radio" name="motion" value="reduced"><span>Reduce motion<span class="pref-hint">Turns off animations</span></span></label>
+        </fieldset>
+      </form>
+      <div class="prefs-actions">
+        <button type="button" class="prefs-btn" id="prefsReset">Reset to default</button>
+        <button type="button" class="prefs-btn is-primary" id="prefsClose">Close display settings</button>
+        <p class="prefs-status" id="prefsStatus" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+</header>
+<main id="main" tabindex="-1">
   <section class="page-hero">
     <div class="wrap">
-      <span class="page-eyebrow">Page — Resources</span>
+      <p class="page-eyebrow">Support and services</p>
       <h1>Resources</h1>
-      <p>Whatever you need this semester — someone to talk to, a place to pray, a halal meal, or a bit of financial breathing room — you shouldn't have to go looking for it alone. Start here.</p>
+      <p>Whatever you need this semester, whether it's someone to talk to, a halal meal, or a bit of financial breathing room, you shouldn't have to go looking for it alone. Start here. Looking for places to pray? See <a href="musalla.html">The Musalla</a>.</p>
     </div>
   </section>
 
-  <section class="section-block">
+  <section class="section-block" aria-label="Resource categories">
     <div class="wrap">
       <div class="resources-shell">
-        <div class="resources-rail" id="resourcesRail" role="tablist">
-          <button class="rail-item is-active" data-panel="mental-health" type="button">Mental Health</button>
-          <button class="rail-item" data-panel="academic-financial" type="button">Academic & Financial Support</button>
-          <button class="rail-item" data-panel="halal-food" type="button">Halal Food</button>
-          <button class="rail-item" data-panel="boycott-list" type="button">Boycott List</button>
+        <div class="resources-rail" id="resourcesRail" role="tablist" aria-label="Resource categories" aria-orientation="vertical" data-tabs>
+          <button class="rail-item" type="button" role="tab" id="tab-mental-health" aria-controls="mental-health" aria-selected="true"><svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20s-7.5-4.6-7.5-10.1C4.5 6.9 6.6 5 9 5c1.4 0 2.4.7 3 1.6C12.6 5.7 13.6 5 15 5c2.4 0 4.5 1.9 4.5 4.9C19.5 15.4 12 20 12 20Z"/></svg><span>Mental Health</span></button>
+          <button class="rail-item" type="button" role="tab" id="tab-academic-financial" aria-controls="academic-financial" aria-selected="false" tabindex="-1"><svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 4 22 9l-10 5L2 9l10-5Z"/><path d="M6 11v4.5c0 1.4 2.7 3 6 3s6-1.6 6-3V11"/><path d="M22 9v5"/></svg><span>Academic &amp; Financial Support</span></button>
+          <button class="rail-item" type="button" role="tab" id="tab-halal-food" aria-controls="halal-food" aria-selected="false" tabindex="-1"><svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 3v6a2.5 2.5 0 0 0 5 0V3"/><path d="M7.5 3v18"/><path d="M17 3c-1.8 1.2-2.5 3.8-2.5 7.5H17V21"/></svg><span>Halal Food</span></button>
+          <button class="rail-item" type="button" role="tab" id="tab-boycott-list" aria-controls="boycott-list" aria-selected="false" tabindex="-1"><svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 21V4"/><path d="M5 5h12l-3 4 3 4H5"/></svg><span>Boycott List</span></button>
         </div>
 
         <div class="resources-panel" id="resourcesPanel">
-        <div class="panel-detail is-active" data-panel="mental-health" id="mental-health">
-<span class="section-label">Mental Health</span>
-      <h2>You don't have to carry it alone</h2>
-      <p class="lead">
-        University is a lot, and it's okay to need support. Whether it's a rough week or something
-        heavier, here's where to turn — on campus and within the community.
-      </p>
 
-      <div class="crisis-callout">
-        <h3>Need help right now?</h3>
-        <p>If you're in crisis or worried about your safety, please reach out immediately — any of these are free and confidential.</p>
-        <div class="crisis-row">
-          <div class="crisis-item">
-            <span class="crisis-label">On Campus, Right Now</span>
-            <span class="crisis-number">UTM Campus Safety — 905-569-4333</span>
-            <span class="crisis-note">24/7. Call if you or someone nearby needs urgent, in-person help.</span>
-          </div>
-          <div class="crisis-item">
-            <span class="crisis-label">Canada-Wide Crisis Line</span>
-            <span class="crisis-number">988 — Call or Text</span>
-            <span class="crisis-note">Free, 24/7 Suicide Crisis Helpline, anywhere in Canada.</span>
-          </div>
-          <div class="crisis-item">
-            <span class="crisis-label">Student Helpline</span>
-            <span class="crisis-number">Good2Talk — 1-866-925-5454</span>
-            <span class="crisis-note">24/7 confidential support for Ontario post-secondary students.</span>
-          </div>
-        </div>
-      </div>
+        <div class="panel-detail" role="tabpanel" id="mental-health" aria-labelledby="tab-mental-health" tabindex="0">
+          <p class="section-label">Mental Health</p>
+          <h2>You don't have to carry it alone</h2>
+          <p class="lead">University is a lot, and it's okay to need support. Whether it's a rough week or something heavier, here's where to turn, on campus and within the community.</p>
 
-      <p class="subsection-heading">Ongoing Support — On Campus</p>
-      <div class="info-grid">
-        <div class="info-card">
-          <div class="info-card-head">
-            <div>
-              <h4>UTM Health &amp; Counselling Centre</h4>
-              <p class="info-sub">905-828-5255</p>
-            </div>
+          <div class="crisis-callout" role="region" aria-labelledby="crisisHeading">
+            <h3 id="crisisHeading">Need help right now?</h3>
+            <p>If you're in crisis or worried about your safety, reach out now. All of these are free and confidential, and they're open 24/7.</p>
+            <ul class="crisis-row">
+              <li class="crisis-item">
+                <span class="crisis-label">On campus, right now</span>
+                <span class="crisis-name">UTM Campus Safety</span>
+                <span class="crisis-actions"><a class="crisis-call" href="tel:+19055694333">Call 905-569-4333<span class="sr-only"> for UTM Campus Safety</span></a></span>
+                <span class="crisis-note">Call if you or someone nearby needs urgent, in-person help.</span>
+              </li>
+              <li class="crisis-item">
+                <span class="crisis-label">Canada-wide crisis line</span>
+                <span class="crisis-name">9-8-8 Suicide Crisis Helpline</span>
+                <span class="crisis-actions"><a class="crisis-call" href="tel:988">Call 988</a><a class="crisis-call is-secondary" href="sms:988">Text 988</a></span>
+                <span class="crisis-note">Free, anywhere in Canada.</span>
+              </li>
+              <li class="crisis-item">
+                <span class="crisis-label">Student helpline</span>
+                <span class="crisis-name">Good2Talk</span>
+                <span class="crisis-actions"><a class="crisis-call" href="tel:+18669255454">Call 1-866-925-5454<span class="sr-only"> for Good2Talk</span></a></span>
+                <span class="crisis-note">Confidential support for Ontario post-secondary students.</span>
+              </li>
+            </ul>
           </div>
-          <p class="info-desc">Personal counselling, group counselling, and psychiatric care — same-day and pre-booked appointments available to all students.</p>
-          <div class="info-meta-row">
-            <span><strong>Where:</strong> Room DV 1152, William G. Davis Building</span>
-            <span><strong>Email:</strong> health.utm@utoronto.ca</span>
-          </div>
-          <div class="info-links">
-            <a class="link-btn" href="https://www.utm.utoronto.ca/health/health-counselling-centre/" target="_blank" rel="noopener">Visit Website</a>
-          </div>
-        </div>
-      </div>
 
-      <p class="subsection-heading">Ongoing Support — Muslim Community</p>
-      <div class="info-grid">
-        <div class="info-card">
-          <div class="info-card-head">
-            <div>
-              <h4>ISNA Cares</h4>
-              <p class="info-sub">Free faith-informed counselling</p>
-            </div>
-            <span class="coming-soon-badge">Coming Soon</span>
-          </div>
-          <p class="info-desc">ISNA Canada's wellness arm offers free mental health therapy and support services, led by a registered psychotherapist. We're setting up a direct point of contact for UTM students — check back soon.</p>
-        </div>
-        <div class="info-card">
-          <div class="info-card-head">
-            <div>
-              <h4>Naseeha Health</h4>
-              <p class="info-sub">Muslim youth helpline</p>
-            </div>
-            <span class="coming-soon-badge">Coming Soon</span>
-          </div>
-          <p class="info-desc">A confidential, faith-informed peer support line for young Muslims. We're finalizing details for this listing — check back soon.</p>
-        </div>
-      </div>
+          <h3 class="subsection-heading with-icon"><svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 20h16"/><path d="M6 20V6l6-3 6 3v14"/><path d="M10 20v-4h4v4"/><path d="M9 9h.01M15 9h.01M9 13h.01M15 13h.01"/></svg>Ongoing support on campus</h3>
+          <ul class="info-grid">
+            <li class="info-card">
+              <div class="info-card-head"><div><h4>UTM Health &amp; Counselling Centre</h4><p class="info-sub">905-828-5255</p></div></div>
+              <p class="info-desc">Personal counselling, group counselling, and psychiatric care, with same-day and pre-booked appointments for all students.</p>
+              <p class="info-meta-row"><span><strong>Where:</strong> Room DV 1152, William G. Davis Building</span><span><strong>Email:</strong> <a href="mailto:health.utm@utoronto.ca">health.utm@utoronto.ca</a></span></p>
+              <div class="info-links"><a class="link-btn" href="tel:+19058285255"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 4h3.5l1.5 4-2 1.2a11 11 0 0 0 6.8 6.8L16 14l4 1.5V19a1.5 1.5 0 0 1-1.6 1.5C10.6 20 4 13.4 3.5 5.6A1.5 1.5 0 0 1 5 4Z"/></svg>Call<span class="sr-only"> the Health &amp; Counselling Centre</span></a><a class="link-btn" href="https://www.utm.utoronto.ca/health/health-counselling-centre/" target="_blank" rel="noopener"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5c2.3 2.4 3.5 5.2 3.5 8.5s-1.2 6.1-3.5 8.5c-2.3-2.4-3.5-5.2-3.5-8.5s1.2-6.1 3.5-8.5Z"/></svg>Visit website<span class="sr-only"> for the Health &amp; Counselling Centre</span><span class="sr-only"> (opens in a new tab)</span></a></div>
+            </li>
+          </ul>
+
+          <h3 class="subsection-heading with-icon"><svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="10" cy="8" r="3.5"/><path d="M3.5 20v-1.2A3.8 3.8 0 0 1 7.3 15h5.4a3.8 3.8 0 0 1 3.8 3.8V20"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M20.5 20v-1.2a3.8 3.8 0 0 0-2.6-3.6"/></svg>Ongoing support in the Muslim community</h3>
+          <ul class="info-grid">
+            <li class="info-card">
+              <div class="info-card-head"><div><h4>ISNA Cares</h4><p class="info-sub">Free faith-informed counselling</p></div><span class="coming-soon-badge">Coming soon</span></div>
+              <p class="info-desc">ISNA Canada's wellness arm offers free mental health therapy and support services, led by a registered psychotherapist. We're setting up a direct point of contact for UTM students, so check back soon.</p>
+            </li>
+            <li class="info-card">
+              <div class="info-card-head"><div><h4>Naseeha Health</h4><p class="info-sub">Muslim youth helpline</p></div><span class="coming-soon-badge">Coming soon</span></div>
+              <p class="info-desc">A confidential, faith-informed peer support line for young Muslims. We're finalizing details for this listing, so check back soon.</p>
+            </li>
+          </ul>
         </div>
 
-        <div class="panel-detail" data-panel="academic-financial" id="academic-financial">
-<span class="section-label">Academic &amp; Financial Support</span>
-      <h2>Help with school, and help making it work financially</h2>
-      <p class="lead">
-        Grades and money worries have a way of piling on at the same time. Here's what's around to
-        make both a little lighter.
-      </p>
+        <div class="panel-detail" role="tabpanel" id="academic-financial" aria-labelledby="tab-academic-financial" tabindex="0" hidden>
+          <p class="section-label">Academic &amp; Financial Support</p>
+          <h2>Help with school, and help making it work financially</h2>
+          <p class="lead">Grades and money worries have a way of piling on at the same time. Here's what's around to make both a little lighter.</p>
 
-      <p class="subsection-heading">Academic Support</p>
-      <div class="info-grid">
-        <div class="info-card">
-          <div class="info-card-head">
-            <div>
-              <h4>Robert Gillespie Academic Skills Centre</h4>
-              <p class="info-sub">905-828-3858</p>
-            </div>
-          </div>
-          <p class="info-desc">One-on-one appointments for writing, math, and study strategy, plus Facilitated Study Groups for first-year courses.</p>
-          <div class="info-meta-row">
-            <span><strong>Where:</strong> Room 3251, Maanjiwe nendamowinan</span>
-            <span><strong>Email:</strong> academicskills.utm@utoronto.ca</span>
-          </div>
-          <div class="info-links">
-            <a class="link-btn" href="https://www.utm.utoronto.ca/asc/" target="_blank" rel="noopener">Visit Website</a>
-          </div>
-        </div>
-        <div class="info-card">
-          <div class="info-card-head">
-            <div>
-              <h4>UTM Library — Research Help</h4>
-              <p class="info-sub">905-828-5236</p>
-            </div>
-          </div>
-          <p class="info-desc">One-on-one reference consultations and workshops on research tools, hosted in the Hazel McCallion Academic Learning Centre.</p>
-          <div class="info-links">
-            <a class="link-btn" href="https://library.utm.utoronto.ca/" target="_blank" rel="noopener">Visit Website</a>
-          </div>
-        </div>
-        <div class="info-card">
-          <div class="info-card-head">
-            <div><h4>MSA Study Groups</h4></div>
-            <span class="coming-soon-badge">Details TBD</span>
-          </div>
-          <p class="info-desc">REPLACE_ME — casual, community-run study sessions during exam season. Add signup details here once scheduled.</p>
-        </div>
-      </div>
+          <h3 class="subsection-heading with-icon"><svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 4 22 9l-10 5L2 9l10-5Z"/><path d="M6 11v4.5c0 1.4 2.7 3 6 3s6-1.6 6-3V11"/><path d="M22 9v5"/></svg>Academic support</h3>
+          <ul class="info-grid">
+            <li class="info-card">
+              <div class="info-card-head"><div><h4>Robert Gillespie Academic Skills Centre</h4><p class="info-sub">905-828-3858</p></div></div>
+              <p class="info-desc">One-on-one appointments for writing, math, and study strategy, plus Facilitated Study Groups for first-year courses.</p>
+              <p class="info-meta-row"><span><strong>Where:</strong> Room 3251, Maanjiwe nendamowinan</span><span><strong>Email:</strong> <a href="mailto:academicskills.utm@utoronto.ca">academicskills.utm@utoronto.ca</a></span></p>
+              <div class="info-links"><a class="link-btn" href="https://www.utm.utoronto.ca/asc/" target="_blank" rel="noopener"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5c2.3 2.4 3.5 5.2 3.5 8.5s-1.2 6.1-3.5 8.5c-2.3-2.4-3.5-5.2-3.5-8.5s1.2-6.1 3.5-8.5Z"/></svg>Visit website<span class="sr-only"> for the Academic Skills Centre</span><span class="sr-only"> (opens in a new tab)</span></a></div>
+            </li>
+            <li class="info-card">
+              <div class="info-card-head"><div><h4>UTM Library: Research Help</h4><p class="info-sub">905-828-5236</p></div></div>
+              <p class="info-desc">One-on-one reference consultations and workshops on research tools, in the Hazel McCallion Academic Learning Centre.</p>
+              <div class="info-links"><a class="link-btn" href="https://library.utm.utoronto.ca/" target="_blank" rel="noopener"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5c2.3 2.4 3.5 5.2 3.5 8.5s-1.2 6.1-3.5 8.5c-2.3-2.4-3.5-5.2-3.5-8.5s1.2-6.1 3.5-8.5Z"/></svg>Visit website<span class="sr-only"> for the UTM Library</span><span class="sr-only"> (opens in a new tab)</span></a></div>
+            </li>
+            <li class="info-card">
+              <div class="info-card-head"><div><h4>MSA Study Groups</h4></div><span class="coming-soon-badge">Details coming</span></div>
+              <p class="info-desc"><!-- REPLACE_ME: signup details once scheduled -->Casual, community-run study sessions during exam season. Signup details will be posted here once they're scheduled.</p>
+            </li>
+          </ul>
 
-      <p class="subsection-heading">Financial Support</p>
-      <div class="info-grid">
-        <div class="info-card">
-          <div class="info-card-head"><div><h4>UTAPS</h4></div></div>
-          <p class="info-desc">U of T's largest need-based grant program — covers the gap between your actual costs and what government aid provides. Non-repayable.</p>
-          <div class="info-links">
-            <a class="link-btn" href="https://future.utoronto.ca/utaps/" target="_blank" rel="noopener">Learn More</a>
-          </div>
-        </div>
-        <div class="info-card">
-          <div class="info-card-head"><div><h4>OSAP</h4></div></div>
-          <p class="info-desc">Ontario Student Assistance Program — loans, grants, and bursaries for eligible Ontario residents to help with tuition and living costs.</p>
-          <div class="info-links">
-            <a class="link-btn" href="https://www.ontario.ca/page/osap-ontario-student-assistance-program" target="_blank" rel="noopener">Learn More</a>
-          </div>
-        </div>
-        <div class="info-card">
-          <div class="info-card-head">
-            <div><h4>Zakat Contact</h4></div>
-            <span class="coming-soon-badge">Details TBD</span>
-          </div>
-          <p class="info-desc">REPLACE_ME — a confidential MSA contact for zakat-eligible students needing support. Add contact info here once set up.</p>
-        </div>
-      </div>
+          <h3 class="subsection-heading with-icon"><svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20s-7.5-4.6-7.5-10.1C4.5 6.9 6.6 5 9 5c1.4 0 2.4.7 3 1.6C12.6 5.7 13.6 5 15 5c2.4 0 4.5 1.9 4.5 4.9C19.5 15.4 12 20 12 20Z"/></svg>Financial support</h3>
+          <ul class="info-grid">
+            <li class="info-card">
+              <div class="info-card-head"><div><h4>UTAPS</h4><p class="info-sub">University of Toronto Advance Planning for Students</p></div></div>
+              <p class="info-desc">U of T's largest need-based grant program. It covers the gap between your actual costs and what government aid provides, and it doesn't need to be repaid.</p>
+              <div class="info-links"><a class="link-btn" href="https://future.utoronto.ca/utaps/" target="_blank" rel="noopener"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5c2.3 2.4 3.5 5.2 3.5 8.5s-1.2 6.1-3.5 8.5c-2.3-2.4-3.5-5.2-3.5-8.5s1.2-6.1 3.5-8.5Z"/></svg>Learn more<span class="sr-only"> about UTAPS</span><span class="sr-only"> (opens in a new tab)</span></a></div>
+            </li>
+            <li class="info-card">
+              <div class="info-card-head"><div><h4>OSAP</h4><p class="info-sub">Ontario Student Assistance Program</p></div></div>
+              <p class="info-desc">Loans, grants, and bursaries for eligible Ontario residents to help with tuition and living costs.</p>
+              <div class="info-links"><a class="link-btn" href="https://www.ontario.ca/page/osap-ontario-student-assistance-program" target="_blank" rel="noopener"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5c2.3 2.4 3.5 5.2 3.5 8.5s-1.2 6.1-3.5 8.5c-2.3-2.4-3.5-5.2-3.5-8.5s1.2-6.1 3.5-8.5Z"/></svg>Learn more<span class="sr-only"> about OSAP</span><span class="sr-only"> (opens in a new tab)</span></a></div>
+            </li>
+            <li class="info-card">
+              <div class="info-card-head"><div><h4>Zakat contact</h4></div><span class="coming-soon-badge">Details coming</span></div>
+              <p class="info-desc"><!-- REPLACE_ME: confidential zakat contact -->A confidential MSA contact for zakat-eligible students who need support. Contact details will be posted here once set up.</p>
+            </li>
+          </ul>
         </div>
 
-        <div class="panel-detail" data-panel="halal-food" id="halal-food">
-<span class="section-label">Halal Food</span>
-      <h2>Where to eat, on campus and nearby</h2>
-      <p class="lead">On-campus dining and the closest verified halal spots — everything below is within about 3 km of UTM.</p>
+        <div class="panel-detail" role="tabpanel" id="halal-food" aria-labelledby="tab-halal-food" tabindex="0" hidden>
+          <p class="section-label">Halal Food</p>
+          <h2>Where to eat, on campus and nearby</h2>
+          <p class="lead">On-campus dining and the closest halal spots, all within about 3 km of UTM.</p>
 
-      <p class="subsection-heading">On Campus</p>
-      <div class="info-grid">
-        <div class="info-card" style="grid-column: 1 / -1;">
-          <div class="info-card-head"><div><h4>UTM Dining (Dana Hospitality)</h4></div></div>
-          <p class="info-desc">All chicken served at non-branded stations across campus is Halal-certified. UTM Dining publishes its supplier halal certificates and Dana Hospitality's team can help you pick suitable options — just ask, or email ahead if you have specific dietary needs.</p>
-          <div class="info-links">
-            <a class="link-btn" href="https://www.utm.utoronto.ca/hospitality/halal-certificates" target="_blank" rel="noopener">View Halal Certificates</a>
-            <a class="link-btn" href="mailto:hospitality.utm@utoronto.ca">Email Dana Hospitality</a>
-          </div>
-        </div>
-      </div>
+          <h3 class="subsection-heading with-icon"><svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 20h16"/><path d="M6 20V6l6-3 6 3v14"/><path d="M10 20v-4h4v4"/><path d="M9 9h.01M15 9h.01M9 13h.01M15 13h.01"/></svg>On campus</h3>
+          <ul class="info-grid">
+            <li class="info-card is-wide">
+              <div class="info-card-head"><div><h4>UTM Dining (Dana Hospitality)</h4></div></div>
+              <p class="info-desc">All chicken served at non-branded stations across campus is halal-certified. UTM Dining publishes its supplier halal certificates, and Dana Hospitality's team can help you pick suitable options. Just ask, or email ahead if you have specific dietary needs.</p>
+              <div class="info-links"><a class="link-btn" href="https://www.utm.utoronto.ca/hospitality/halal-certificates" target="_blank" rel="noopener"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5c2.3 2.4 3.5 5.2 3.5 8.5s-1.2 6.1-3.5 8.5c-2.3-2.4-3.5-5.2-3.5-8.5s1.2-6.1 3.5-8.5Z"/></svg>View halal certificates<span class="sr-only"> for UTM Dining</span><span class="sr-only"> (opens in a new tab)</span></a><a class="link-btn" href="mailto:hospitality.utm@utoronto.ca"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg>Email Dana Hospitality<span class="sr-only"> </span></a></div>
+            </li>
+          </ul>
 
-      <p class="subsection-heading">Off Campus — Within ~3 km</p>
-      <div class="info-grid">
-        <div class="info-card">
-          <div class="info-card-head">
-            <div>
-              <h4>Monasaba</h4>
-              <p class="info-sub">Yemeni · Mediterranean</p>
-            </div>
-            <span class="distance-chip">~2.0 km</span>
-          </div>
-          <p class="info-desc">Mandi and mixed grill platters — a longtime student favourite in the Dundas/Erin Mills plaza.</p>
-          <div class="info-links">
-            <a class="link-btn" href="https://www.google.com/maps/search/?api=1&query=Monasaba+2273+Dundas+St+W+Mississauga" target="_blank" rel="noopener">Get Directions</a>
-          </div>
-        </div>
-        <div class="info-card">
-          <div class="info-card-head">
-            <div>
-              <h4>Eat Meat BBQ</h4>
-              <p class="info-sub">Turkish · Middle Eastern BBQ</p>
-            </div>
-            <span class="distance-chip">~2.0 km</span>
-          </div>
-          <p class="info-desc">Smoked meats and mixed grill platters, same plaza as Monasaba.</p>
-          <div class="info-links">
-            <a class="link-btn" href="https://www.google.com/maps/search/?api=1&query=Eat+Meat+BBQ+2273+Dundas+St+W+Mississauga" target="_blank" rel="noopener">Get Directions</a>
-          </div>
-        </div>
-        <div class="info-card">
-          <div class="info-card-head">
-            <div>
-              <h4>Original Shawarma</h4>
-              <p class="info-sub">Middle Eastern</p>
-            </div>
-            <span class="distance-chip">~3.1 km</span>
-          </div>
+          <h3 class="subsection-heading with-icon"><svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.3"/></svg>Off campus, within about 3 km</h3>
+          <ul class="info-grid">
+        <li class="info-card">
+          <div class="info-card-head"><div><h4>Monasaba</h4><p class="info-sub">Yemeni and Mediterranean</p></div><span class="distance-chip">About 2.0 km away</span></div>
+          <p class="info-desc">Mandi and mixed grill platters. A longtime student favourite in the Dundas and Erin Mills plaza.</p>
+          <div class="info-links"><a class="link-btn" href="https://www.google.com/maps/search/?api=1&amp;query=Monasaba+2273+Dundas+St+W+Mississauga" target="_blank" rel="noopener"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.3"/></svg>Get directions<span class="sr-only"> to Monasaba</span><span class="sr-only"> (opens in a new tab)</span></a></div>
+        </li>
+        <li class="info-card">
+          <div class="info-card-head"><div><h4>Eat Meat BBQ</h4><p class="info-sub">Turkish and Middle Eastern BBQ</p></div><span class="distance-chip">About 2.0 km away</span></div>
+          <p class="info-desc">Smoked meats and mixed grill platters, in the same plaza as Monasaba.</p>
+          <div class="info-links"><a class="link-btn" href="https://www.google.com/maps/search/?api=1&amp;query=Eat+Meat+BBQ+2273+Dundas+St+W+Mississauga" target="_blank" rel="noopener"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.3"/></svg>Get directions<span class="sr-only"> to Eat Meat BBQ</span><span class="sr-only"> (opens in a new tab)</span></a></div>
+        </li>
+        <li class="info-card">
+          <div class="info-card-head"><div><h4>Original Shawarma</h4><p class="info-sub">Middle Eastern</p></div><span class="distance-chip">About 3.1 km away</span></div>
           <p class="info-desc">Fast, reliable shawarma and mandi plates on Burnhamthorpe.</p>
-          <div class="info-links">
-            <a class="link-btn" href="https://www.google.com/maps/search/?api=1&query=Original+Shawarma+848+Burnhamthorpe+Rd+W+Mississauga" target="_blank" rel="noopener">Get Directions</a>
-          </div>
-        </div>
-        <div class="info-card">
-          <div class="info-card-head">
-            <div>
-              <h4>Habibz Corner</h4>
-              <p class="info-sub">Halal Burgers</p>
-            </div>
-            <span class="distance-chip">~3.2 km</span>
-          </div>
-          <p class="info-desc">Smash burgers and loaded fries in the Winston Churchill/Ridgeway plaza.</p>
-          <div class="info-links">
-            <a class="link-btn" href="https://www.google.com/maps/search/?api=1&query=Habibz+Corner+3100+Winston+Churchill+Blvd+Mississauga" target="_blank" rel="noopener">Get Directions</a>
-          </div>
-        </div>
-        <div class="info-card">
-          <div class="info-card-head">
-            <div>
-              <h4>Butt Karahi</h4>
-              <p class="info-sub">Pakistani</p>
-            </div>
-            <span class="distance-chip">~3.2 km</span>
-          </div>
-          <p class="info-desc">Karahi and BBQ platters, same plaza as Habibz Corner — go with a group.</p>
-          <div class="info-links">
-            <a class="link-btn" href="https://www.google.com/maps/search/?api=1&query=Butt+Karahi+3015+Winston+Churchill+Blvd+Mississauga" target="_blank" rel="noopener">Get Directions</a>
-          </div>
-        </div>
-      </div>
+          <div class="info-links"><a class="link-btn" href="https://www.google.com/maps/search/?api=1&amp;query=Original+Shawarma+848+Burnhamthorpe+Rd+W+Mississauga" target="_blank" rel="noopener"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.3"/></svg>Get directions<span class="sr-only"> to Original Shawarma</span><span class="sr-only"> (opens in a new tab)</span></a></div>
+        </li>
+        <li class="info-card">
+          <div class="info-card-head"><div><h4>Habibz Corner</h4><p class="info-sub">Halal burgers</p></div><span class="distance-chip">About 3.2 km away</span></div>
+          <p class="info-desc">Smash burgers and loaded fries in the Winston Churchill and Ridgeway plaza.</p>
+          <div class="info-links"><a class="link-btn" href="https://www.google.com/maps/search/?api=1&amp;query=Habibz+Corner+3100+Winston+Churchill+Blvd+Mississauga" target="_blank" rel="noopener"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.3"/></svg>Get directions<span class="sr-only"> to Habibz Corner</span><span class="sr-only"> (opens in a new tab)</span></a></div>
+        </li>
+        <li class="info-card">
+          <div class="info-card-head"><div><h4>Butt Karahi</h4><p class="info-sub">Pakistani</p></div><span class="distance-chip">About 3.2 km away</span></div>
+          <p class="info-desc">Karahi and BBQ platters, in the same plaza as Habibz Corner. Go with a group.</p>
+          <div class="info-links"><a class="link-btn" href="https://www.google.com/maps/search/?api=1&amp;query=Butt+Karahi+3015+Winston+Churchill+Blvd+Mississauga" target="_blank" rel="noopener"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.3"/></svg>Get directions<span class="sr-only"> to Butt Karahi</span><span class="sr-only"> (opens in a new tab)</span></a></div>
+        </li>
+          </ul>
         </div>
 
-        <div class="panel-detail" data-panel="boycott-list" id="boycott-list">
-<span class="section-label">Boycott List</span>
-      <h2>Coming soon</h2>
-      <div class="coming-soon">
-        <span class="resource-icon"></span>
-        <h3>We're still putting this together</h3>
-        <p>We want this list to be accurate and well-sourced before it goes up — check back soon, or follow our Instagram for updates in the meantime.</p>
-      </div>
+        <div class="panel-detail" role="tabpanel" id="boycott-list" aria-labelledby="tab-boycott-list" tabindex="0" hidden>
+          <p class="section-label">Boycott List</p>
+          <h2>Coming soon</h2>
+          <div class="coming-soon">
+            <h3>We're still putting this together</h3>
+            <p>We want this list to be accurate and well-sourced before it goes up. Check back soon, or follow our <a href="https://www.instagram.com/utmmsa/" target="_blank" rel="noopener">Instagram<span class="sr-only"> (opens in a new tab)</span></a> for updates in the meantime.</p>
+          </div>
         </div>
+
         </div>
       </div>
     </div>
   </section>
-
 </main>
-
 <footer class="site-footer">
 
-  <div class="footer-main">
+  <div class="footer-grid">
     <div class="footer-brand">
-      <span class="footer-mark"><img src="utm-msa-footer-mark.png" alt="UTM MSA"></span>
-      <span class="footer-copyright">© UTM Muslim Students' Association</span>
+      <span class="footer-mark"><img src="utm-msa-footer-mark.png" alt="" width="300" height="300"></span>
+      <p class="footer-org">UTM Muslim Students' Association<span>University of Toronto Mississauga</span></p>
     </div>
 
-    <div class="footer-meta">
-      <div class="footer-links">
-        <a href="mailto:msa@utmsu.ca">Contact</a>
-      </div>
-      <div class="social-links">
-        <a href="https://www.instagram.com/utmmsa/?hl=en" target="_blank" rel="noopener" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
-        </a>
-        <a href="https://www.youtube.com/@utmmsa" target="_blank" rel="noopener" aria-label="YouTube">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10.5 9.2 15 12l-4.5 2.8Z" fill="currentColor" stroke="none"/></svg>
-        </a>
-      </div>
+    <nav aria-labelledby="sitemapHeading">
+      <h2 class="footer-heading" id="sitemapHeading">Site map</h2>
+      <ul class="footer-list">
+          <li><a href="index.html">Home<span class="sr-only">: Start here</span></a></li>
+          <li><a href="about.html">About<span class="sr-only">: Who we are</span></a></li>
+          <li><a href="events.html">Sagas<span class="sr-only">: Events &amp; lectures</span></a></li>
+          <li><a href="resources.html">Resources<span class="sr-only">: Support &amp; services</span></a></li>
+          <li><a href="musalla.html">The Musalla<span class="sr-only">: Prayer times &amp; masjids</span></a></li>
+          <li><a href="accessibility.html">Accessibility</a></li>
+      </ul>
+    </nav>
+
+    <div>
+      <h2 class="footer-heading">Get involved</h2>
+      <ul class="footer-list">
+        <li><a href="https://forms.gle/BKkKjAEeX6UAhfDM7" target="_blank" rel="noopener">Become a General Member<span class="sr-only"> (opens in a new tab)</span></a></li>
+        <li><a href="https://www.zeffy.com/en-CA/donation-form/utm-msa-donation" target="_blank" rel="noopener">Donate to our current campaign<span class="sr-only"> (opens in a new tab)</span></a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="footer-heading">Contact us</h2>
+      <ul class="footer-list">
+        <li><a href="mailto:msa@utmsu.ca"><svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg><span>Email us at msa@utmsu.ca</span></a></li>
+        <li><a href="https://www.instagram.com/utmmsa/" target="_blank" rel="noopener"><svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg><span>Instagram: @utmmsa</span><span class="sr-only"> (opens in a new tab)</span></a></li>
+        <li><a href="https://www.youtube.com/@utmmsa" target="_blank" rel="noopener"><svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10.5 9.2 15 12l-4.5 2.8Z" fill="currentColor" stroke="none"/></svg><span>YouTube: @utmmsa</span><span class="sr-only"> (opens in a new tab)</span></a></li>
+      </ul>
     </div>
   </div>
 
-  <div class="footer-credit">Designed &amp; maintained by UTMMSA Marketing</div>
+  <div class="footer-bottom">
+    <p>© UTM Muslim Students' Association</p>
+    <p>Designed &amp; maintained by UTMMSA Marketing</p>
+  </div>
 </footer>
 
 <script src="script.js"></script>

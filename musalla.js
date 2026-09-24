@@ -1,50 +1,26 @@
 /* ============================================================
-   UTM MSA — The Musalla: live prayer times + Hijri date
-   Uses the free AlAdhan API (no key required), calculated for
-   UTM's coordinates using the ISNA method (method=2), which is
-   what most Mississauga-area masjids print their timetables by.
+   UTM MSA — The Musalla: live prayer times + dates
+   Uses fetchPrayerTimes / findNextPrayer / prayerListHTML / to12Hour
+   from script.js (loaded first), so both pages show identical,
+   12-hour times. AlAdhan API, ISNA method, UTM's coordinates.
    ============================================================ */
-
-const UTM_LAT = 43.5461;
-const UTM_LNG = -79.6633;
-
-const PRAYER_ORDER = ["Fajr", "Dhuhr", "Asr", "Maghrib", "Isha"];
 
 async function loadPrayerTimes() {
   const row = document.getElementById("prayerTimesRow");
+  if (!row) return;
   const hijriEl = document.getElementById("hijriDate");
   const gregEl = document.getElementById("gregDate");
-  if (!row) return; // not on a page with the widget
-
   try {
-    const ts = Math.floor(Date.now() / 1000);
-    const res = await fetch(
-      `https://api.aladhan.com/v1/timings/${ts}?latitude=${UTM_LAT}&longitude=${UTM_LNG}&method=2`
-    );
-    const json = await res.json();
-    const timings = json.data.timings;
-    const hijri = json.data.date.hijri;
-    const greg = json.data.date.readable;
-
-    if (hijriEl) {
-      hijriEl.textContent = `${hijri.day} ${hijri.month.en} ${hijri.year} AH`;
-    }
-    if (gregEl) {
-      gregEl.textContent = greg;
-    }
-
-    row.innerHTML = PRAYER_ORDER.map((name) => {
-      const raw = (timings[name] || "").split(" ")[0]; // strip timezone suffix
-      return `
-        <div class="musalla-time-cell">
-          <span class="musalla-time-label">${name}</span>
-          <span class="musalla-time-value">${raw}</span>
-        </div>
-      `;
-    }).join("");
+    const data = await fetchPrayerTimes();
+    const h = data.date.hijri;
+    if (hijriEl) hijriEl.textContent = `${h.day} ${h.month.en} ${h.year} AH`;
+    if (gregEl) gregEl.textContent = `(${data.date.readable})`;
+    const next = findNextPrayer(data.timings);
+    row.innerHTML = prayerListHTML(data.timings, next.tomorrow ? null : next.name, "Today's prayer times at UTM");
   } catch (err) {
-    row.innerHTML = `<div class="musalla-time-empty">Couldn't load today's prayer times — try refreshing.</div>`;
     console.error("Prayer times fetch failed:", err);
+    if (hijriEl) hijriEl.textContent = "";
+    row.innerHTML = `<p class="prayer-empty">Today's prayer times couldn't load. Try refreshing, or check <a href="https://www.isnacanada.com/" target="_blank" rel="noopener">ISNA Canada's timetable<span class="sr-only"> (opens in a new tab)</span></a>.</p>`;
   }
 }
 

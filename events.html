@@ -3,45 +3,112 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sagas — UTM MSA</title>
+<title>Sagas: events and lectures | UTM MSA</title>
+<meta name="description" content="Upcoming, current and past UTM MSA events, plus recorded khutbahs and lectures.">
+<script>
+/* Apply saved Display settings before the page paints (avoids a flash). Full logic lives in script.js. */
+(function(){try{var p=JSON.parse(localStorage.getItem('msaDisplayPrefs')||'{}'),c=document.documentElement.classList;
+if(p.text==='lg'||p.text==='xl')c.add('pref-text-'+p.text);if(p.contrast==='high')c.add('pref-contrast-high');
+if(p.spacing==='wide')c.add('pref-spacing-wide');if(p.motion==='reduced')c.add('pref-motion-reduced');
+if(p.font==='readable'){c.add('pref-font-readable');var l=document.createElement('link');l.rel='stylesheet';l.id='readableFont';
+l.href='https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap';document.head.appendChild(l);}}catch(e){}})();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Montserrat:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Three families: Literata (headings), Montserrat (everything else), Amiri (Arabic only) -->
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Literata:ital,opsz,wght@0,7..72,500..700;1,7..72,500&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="pages.css">
 <link rel="stylesheet" href="resources.css">
+<link rel="stylesheet" href="a11y.css">
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to main content</a>
 
 <header class="site-header">
-  <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; width:100%;">
-    <a class="brand" href="index.html">
-      <img src="utm-msa-logo.png" alt="UTM MSA logo" class="site-logo-img">
+  <div class="header-inner">
+    <a href="index.html" class="brand">
+      <img src="utm-msa-logo.png" alt="UTM Muslim Students' Association, home page" class="site-logo-img" width="1667" height="438">
     </a>
-    <nav class="main-nav" style="display:flex; gap:28px; font-size:0.9rem;">
-      <a href="about.html">About</a>
-      <a href="events.html">Sagas</a>
-      <a href="resources.html">Resources</a>
-      <a href="musalla.html">The Musalla</a>
-    </nav>
-    <a class="nav-cta" href="https://forms.gle/BKkKjAEeX6UAhfDM7" target="_blank" rel="noopener">Become a General Member →</a>
-  </div>
-</header>
 
-<main>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="siteMenu">
+      <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg><span>Menu</span>
+    </button>
+
+    <div class="site-menu" id="siteMenu">
+      <nav class="main-nav" aria-label="Main">
+        <ul>
+          <li><a href="about.html"><span class="nav-title">About</span><span class="nav-desc">Who we are</span></a></li>
+          <li><a href="events.html" aria-current="page"><span class="nav-title">Sagas</span><span class="nav-desc">Events &amp; lectures</span></a></li>
+          <li><a href="resources.html"><span class="nav-title">Resources</span><span class="nav-desc">Support &amp; services</span></a></li>
+          <li><a href="musalla.html"><span class="nav-title">The Musalla</span><span class="nav-desc">Prayer times &amp; masjids</span></a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <button class="prefs-toggle" type="button" aria-expanded="false" aria-controls="prefsPanel">
+          <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></svg><span>Display settings</span>
+        </button>
+        <a class="nav-cta" href="https://forms.gle/BKkKjAEeX6UAhfDM7" target="_blank" rel="noopener"><svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="10" cy="8" r="3.5"/><path d="M3.5 20v-1.2A3.8 3.8 0 0 1 7.3 15h5.4a3.8 3.8 0 0 1 3.8 3.8V20"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M20.5 20v-1.2a3.8 3.8 0 0 0-2.6-3.6"/></svg><span>Become a General Member</span><span class="sr-only"> (opens in a new tab)</span></a>
+      </div>
+    </div>
+  </div>
+
+  <section class="prefs-panel" id="prefsPanel" aria-labelledby="prefsTitle" hidden>
+    <div class="prefs-inner">
+      <div class="prefs-head">
+        <h2 id="prefsTitle">Display settings</h2>
+        <p>Adjust how this site looks for you. Your choices are saved on this device only.</p>
+      </div>
+      <form class="prefs-grid" id="prefsForm">
+        <fieldset>
+          <legend>Text size</legend>
+          <label class="pref-option"><input type="radio" name="text" value="default" checked><span>Default</span></label>
+          <label class="pref-option"><input type="radio" name="text" value="lg"><span>Large<span class="pref-hint">112%</span></span></label>
+          <label class="pref-option"><input type="radio" name="text" value="xl"><span>Largest<span class="pref-hint">125%</span></span></label>
+        </fieldset>
+        <fieldset>
+          <legend>Contrast</legend>
+          <label class="pref-option"><input type="radio" name="contrast" value="default" checked><span>Default</span></label>
+          <label class="pref-option"><input type="radio" name="contrast" value="high"><span>High contrast<span class="pref-hint">Brighter text and outlines</span></span></label>
+        </fieldset>
+        <fieldset>
+          <legend>Font</legend>
+          <label class="pref-option"><input type="radio" name="font" value="default" checked><span>Default</span></label>
+          <label class="pref-option"><input type="radio" name="font" value="readable"><span>Easy-read font<span class="pref-hint">Atkinson Hyperlegible, made for low vision</span></span></label>
+        </fieldset>
+        <fieldset>
+          <legend>Text spacing</legend>
+          <label class="pref-option"><input type="radio" name="spacing" value="default" checked><span>Default</span></label>
+          <label class="pref-option"><input type="radio" name="spacing" value="wide"><span>Wide<span class="pref-hint">More space between letters and lines</span></span></label>
+        </fieldset>
+        <fieldset>
+          <legend>Motion</legend>
+          <label class="pref-option"><input type="radio" name="motion" value="default" checked><span>Default</span></label>
+          <label class="pref-option"><input type="radio" name="motion" value="reduced"><span>Reduce motion<span class="pref-hint">Turns off animations</span></span></label>
+        </fieldset>
+      </form>
+      <div class="prefs-actions">
+        <button type="button" class="prefs-btn" id="prefsReset">Reset to default</button>
+        <button type="button" class="prefs-btn is-primary" id="prefsClose">Close display settings</button>
+        <p class="prefs-status" id="prefsStatus" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+</header>
+<main id="main" tabindex="-1">
   <section class="page-hero" style="border-bottom:none; padding-bottom:0;">
     <div class="wrap">
-      <span class="kicker"><span class="kicker-script">As-salāmu ʿalaykum</span></span>
+      <p class="kicker"><span class="kicker-script">As-salāmu ʿalaykum</span></p>
       <h1>Sagas</h1>
-      <p>Every khutbah, every gathering, every story this cabinet has told — what's past, what's happening now, and what's coming.</p>
+      <span class="page-subtitle">Our events and lectures</span>
+      <p>Every khutbah, every gathering, every story this cabinet has told: what's coming up, what's on today, and what's already happened.</p>
     </div>
   </section>
 
-  <section class="sagas-flight" id="sagasFlight">
+  <!-- Decorative intro animation: hidden from screen readers, skipped on mobile and when motion is reduced -->
+  <div class="sagas-flight" aria-hidden="true">
     <div class="wrap sagas-flight-inner">
-      <svg class="sagas-arrow" viewBox="0 0 60 20" aria-hidden="true">
-        <line x1="2" y1="10" x2="46" y2="10" stroke="currentColor" stroke-width="2"/>
-        <path d="M40 3 L54 10 L40 17 Z" fill="currentColor"/>
-      </svg>
+      <svg class="sagas-arrow" viewBox="0 0 60 20" focusable="false"><line x1="2" y1="10" x2="46" y2="10" stroke="currentColor" stroke-width="2"/><path d="M40 3 L54 10 L40 17 Z" fill="currentColor"/></svg>
       <div class="saga-card" style="--pos:6%">Nell Crain<span>The Haunting of Hill House</span></div>
       <div class="saga-card" style="--pos:22%">Miles Morales<span>Spider-Verse</span></div>
       <div class="saga-card" style="--pos:38%">Goku<span>Dragon Ball</span></div>
@@ -49,114 +116,141 @@
       <div class="saga-card" style="--pos:70%">Odysseus<span>The Odyssey</span></div>
       <div class="saga-card" style="--pos:86%">Paul Atreides<span>Dune</span></div>
     </div>
-    <p class="sagas-flight-note wrap">Placeholder snapshots — swap for real event recaps once Marketing sends the compilation.</p>
-  </section>
+    <p class="sagas-flight-note wrap">Placeholder snapshots, to be swapped for real event recaps once Marketing sends the compilation.</p>
+  </div>
 
-  <section class="section-block sagas-tabs-wrap" id="sagasTabsWrap">
+  <section class="section-block sagas-tabs-wrap" aria-label="Events and lectures">
     <div class="wrap">
-      <div class="saga-tabs" role="tablist">
-        <button class="saga-tab is-active" data-tab="present" type="button">Present</button>
-        <button class="saga-tab" data-tab="upcoming" type="button">Upcoming</button>
-        <button class="saga-tab" data-tab="past" type="button">Past</button>
-        <button class="saga-tab" data-tab="lectures" type="button">Lectures</button>
+      <div class="saga-tabs" role="tablist" aria-label="Choose what to show" data-tabs>
+        <button class="saga-tab" type="button" role="tab" id="tab-upcoming" aria-controls="panel-upcoming" aria-selected="true">Upcoming</button>
+        <button class="saga-tab" type="button" role="tab" id="tab-present" aria-controls="panel-present" aria-selected="false" tabindex="-1">Today</button>
+        <button class="saga-tab" type="button" role="tab" id="tab-past" aria-controls="panel-past" aria-selected="false" tabindex="-1">Past</button>
+        <button class="saga-tab" type="button" role="tab" id="tab-lectures" aria-controls="panel-lectures" aria-selected="false" tabindex="-1">Lectures</button>
       </div>
-
-      <div class="saga-panel is-active" data-panel="present">
-        <div id="presentList"><div class="empty-state">Loading today's calendar…</div></div>
+      <div class="saga-panel" role="tabpanel" id="panel-upcoming" aria-labelledby="tab-upcoming" tabindex="0">
+        <h2 class="panel-heading">Upcoming events</h2>
+        <div id="upcomingList" aria-live="polite"><p class="empty-state">Loading events…</p></div>
       </div>
-
-      <div class="saga-panel" data-panel="upcoming">
-        <div id="upcomingList"><div class="empty-state">Loading events…</div></div>
+      <div class="saga-panel" role="tabpanel" id="panel-present" aria-labelledby="tab-present" tabindex="0" hidden>
+        <h2 class="panel-heading">Happening today</h2>
+        <div id="presentList" aria-live="polite"><p class="empty-state">Loading today's calendar…</p></div>
       </div>
-
-      <div class="saga-panel" data-panel="past">
-        <div id="pastList"><div class="empty-state">Loading archive…</div></div>
+      <div class="saga-panel" role="tabpanel" id="panel-past" aria-labelledby="tab-past" tabindex="0" hidden>
+        <h2 class="panel-heading">Past events</h2>
+        <div id="pastList" aria-live="polite"><p class="empty-state">Loading past events…</p></div>
       </div>
-
-      <div class="saga-panel" data-panel="lectures">
-        <p style="color:var(--text-muted-dark); font-size:14.5px; max-width:620px; margin:-4px 0 24px;">
-          A few khutbahs and talks worth your time, carried over from the old MSA site for now.
-        </p>
-        <div class="lecture-grid">
-          <div class="lecture-card">
-            <div class="lecture-frame-wrap"><iframe src="https://www.youtube.com/embed/l9rN6Uv0psI" title="UTM MSA lecture 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
-          </div>
-          <div class="lecture-card">
-            <div class="lecture-frame-wrap"><iframe src="https://www.youtube.com/embed/NJvp_BcHEZ8" title="UTM MSA lecture 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
-          </div>
-          <div class="lecture-card">
-            <div class="lecture-frame-wrap"><iframe src="https://www.youtube.com/embed/3Ewtzbnty68" title="UTM MSA lecture 3" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
-          </div>
-          <div class="lecture-card">
-            <div class="lecture-frame-wrap"><iframe src="https://www.youtube.com/embed/q1jOPA6-MQE" title="UTM MSA lecture 4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
-          </div>
-          <div class="lecture-card">
-            <div class="lecture-frame-wrap"><iframe src="https://www.youtube.com/embed/dSr458JWDYA" title="UTM MSA lecture 5" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
-          </div>
-          <div class="lecture-card">
-            <div class="lecture-frame-wrap"><iframe src="https://www.youtube.com/embed/x5iOSMERzSs" title="UTM MSA lecture 6" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
-          </div>
-          <div class="lecture-card">
-            <div class="lecture-frame-wrap"><iframe src="https://www.youtube.com/embed/2NRn4pTGw4g" title="UTM MSA lecture 7" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
-          </div>
-          <div class="lecture-card">
-            <div class="lecture-frame-wrap"><iframe src="https://www.youtube.com/embed/-CrZ1dIwPOY" title="UTM MSA lecture 8" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
-          </div>
-        </div>
-        <p class="lecture-note">More on our <a href="https://www.youtube.com/@utmmsa" target="_blank" rel="noopener">YouTube channel →</a></p>
+      <div class="saga-panel" role="tabpanel" id="panel-lectures" aria-labelledby="tab-lectures" tabindex="0" hidden>
+        <h2 class="panel-heading">Lectures and khutbahs</h2>
+        <p class="lecture-note">Khutbahs and talks worth your time, carried over from the old MSA site. Captions turn on automatically where YouTube has them. More on our <a href="https://www.youtube.com/@utmmsa" target="_blank" rel="noopener">YouTube channel<span class="sr-only"> (opens in a new tab)</span></a>.</p>
+        <ul class="lecture-grid">
+          <li class="lecture-card">
+            <!-- REPLACE_ME: real lecture title (speaker + topic) for video l9rN6Uv0psI -->
+            <h3>UTM MSA lecture 1</h3>
+            <div class="lecture-frame-wrap"><iframe src="https://www.youtube-nocookie.com/embed/l9rN6Uv0psI?cc_load_policy=1&amp;cc_lang_pref=en&amp;rel=0" title="Video: UTM MSA lecture 1, YouTube player with captions" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+          </li>
+          <li class="lecture-card">
+            <!-- REPLACE_ME: real lecture title (speaker + topic) for video NJvp_BcHEZ8 -->
+            <h3>UTM MSA lecture 2</h3>
+            <div class="lecture-frame-wrap"><iframe src="https://www.youtube-nocookie.com/embed/NJvp_BcHEZ8?cc_load_policy=1&amp;cc_lang_pref=en&amp;rel=0" title="Video: UTM MSA lecture 2, YouTube player with captions" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+          </li>
+          <li class="lecture-card">
+            <!-- REPLACE_ME: real lecture title (speaker + topic) for video 3Ewtzbnty68 -->
+            <h3>UTM MSA lecture 3</h3>
+            <div class="lecture-frame-wrap"><iframe src="https://www.youtube-nocookie.com/embed/3Ewtzbnty68?cc_load_policy=1&amp;cc_lang_pref=en&amp;rel=0" title="Video: UTM MSA lecture 3, YouTube player with captions" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+          </li>
+          <li class="lecture-card">
+            <!-- REPLACE_ME: real lecture title (speaker + topic) for video q1jOPA6-MQE -->
+            <h3>UTM MSA lecture 4</h3>
+            <div class="lecture-frame-wrap"><iframe src="https://www.youtube-nocookie.com/embed/q1jOPA6-MQE?cc_load_policy=1&amp;cc_lang_pref=en&amp;rel=0" title="Video: UTM MSA lecture 4, YouTube player with captions" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+          </li>
+          <li class="lecture-card">
+            <!-- REPLACE_ME: real lecture title (speaker + topic) for video dSr458JWDYA -->
+            <h3>UTM MSA lecture 5</h3>
+            <div class="lecture-frame-wrap"><iframe src="https://www.youtube-nocookie.com/embed/dSr458JWDYA?cc_load_policy=1&amp;cc_lang_pref=en&amp;rel=0" title="Video: UTM MSA lecture 5, YouTube player with captions" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+          </li>
+          <li class="lecture-card">
+            <!-- REPLACE_ME: real lecture title (speaker + topic) for video x5iOSMERzSs -->
+            <h3>UTM MSA lecture 6</h3>
+            <div class="lecture-frame-wrap"><iframe src="https://www.youtube-nocookie.com/embed/x5iOSMERzSs?cc_load_policy=1&amp;cc_lang_pref=en&amp;rel=0" title="Video: UTM MSA lecture 6, YouTube player with captions" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+          </li>
+          <li class="lecture-card">
+            <!-- REPLACE_ME: real lecture title (speaker + topic) for video 2NRn4pTGw4g -->
+            <h3>UTM MSA lecture 7</h3>
+            <div class="lecture-frame-wrap"><iframe src="https://www.youtube-nocookie.com/embed/2NRn4pTGw4g?cc_load_policy=1&amp;cc_lang_pref=en&amp;rel=0" title="Video: UTM MSA lecture 7, YouTube player with captions" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+          </li>
+          <li class="lecture-card">
+            <!-- REPLACE_ME: real lecture title (speaker + topic) for video -CrZ1dIwPOY -->
+            <h3>UTM MSA lecture 8</h3>
+            <div class="lecture-frame-wrap"><iframe src="https://www.youtube-nocookie.com/embed/-CrZ1dIwPOY?cc_load_policy=1&amp;cc_lang_pref=en&amp;rel=0" title="Video: UTM MSA lecture 8, YouTube player with captions" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+          </li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <section class="section-block">
+  <section class="section-block" aria-labelledby="igHeading">
     <div class="wrap">
-      <h2 class="section-title">Instagram Highlights</h2>
+      <h2 class="section-title with-icon" id="igHeading"><svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>Instagram highlights</h2>
       <!--
         HOW TO ADD A REAL INSTAGRAM POST:
-        1. Open the post on instagram.com, click the "•••" menu → "Embed"
-        2. Copy the <blockquote class="instagram-media">...</blockquote> code Instagram gives you
-        3. Paste it in place of one of the <div class="ig-slot"> placeholders below,
-           and add class="has-embed" to that div's replacement blockquote wrapper
-        4. Instagram's embed.js script (loaded at the bottom of this page) will render it automatically
+        1. On instagram.com open the post, "..." menu, then "Embed". Copy the blockquote code.
+        2. Replace one <li class="ig-slot"> below with <li class="ig-slot has-embed"><div class="embed-frame" role="region" aria-label="Instagram post: SHORT DESCRIPTION">PASTE HERE</div></li>
+        3. Instagram's embed.js at the bottom of this page renders it.
       -->
-      <div class="ig-grid">
-        <div class="ig-slot">Instagram post embed goes here.<br>See the code comment above this section for instructions.</div>
-        <div class="ig-slot">Instagram post embed goes here.</div>
-        <div class="ig-slot">Instagram post embed goes here.</div>
-      </div>
+      <ul class="ig-grid" style="list-style:none;padding:0;margin:0">
+        <li class="ig-slot">Instagram post coming soon.</li>
+        <li class="ig-slot">Instagram post coming soon.</li>
+        <li class="ig-slot">Instagram post coming soon.</li>
+      </ul>
     </div>
   </section>
 </main>
-
 <footer class="site-footer">
 
-  <div class="footer-main">
+  <div class="footer-grid">
     <div class="footer-brand">
-      <span class="footer-mark"><img src="utm-msa-footer-mark.png" alt="UTM MSA"></span>
-      <span class="footer-copyright">© UTM Muslim Students' Association</span>
+      <span class="footer-mark"><img src="utm-msa-footer-mark.png" alt="" width="300" height="300"></span>
+      <p class="footer-org">UTM Muslim Students' Association<span>University of Toronto Mississauga</span></p>
     </div>
 
-    <div class="footer-meta">
-      <div class="footer-links">
-        <a href="mailto:msa@utmsu.ca">Contact</a>
-      </div>
-      <div class="social-links">
-        <a href="https://www.instagram.com/utmmsa/?hl=en" target="_blank" rel="noopener" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
-        </a>
-        <a href="https://www.youtube.com/@utmmsa" target="_blank" rel="noopener" aria-label="YouTube">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10.5 9.2 15 12l-4.5 2.8Z" fill="currentColor" stroke="none"/></svg>
-        </a>
-      </div>
+    <nav aria-labelledby="sitemapHeading">
+      <h2 class="footer-heading" id="sitemapHeading">Site map</h2>
+      <ul class="footer-list">
+          <li><a href="index.html">Home<span class="sr-only">: Start here</span></a></li>
+          <li><a href="about.html">About<span class="sr-only">: Who we are</span></a></li>
+          <li><a href="events.html">Sagas<span class="sr-only">: Events &amp; lectures</span></a></li>
+          <li><a href="resources.html">Resources<span class="sr-only">: Support &amp; services</span></a></li>
+          <li><a href="musalla.html">The Musalla<span class="sr-only">: Prayer times &amp; masjids</span></a></li>
+          <li><a href="accessibility.html">Accessibility</a></li>
+      </ul>
+    </nav>
+
+    <div>
+      <h2 class="footer-heading">Get involved</h2>
+      <ul class="footer-list">
+        <li><a href="https://forms.gle/BKkKjAEeX6UAhfDM7" target="_blank" rel="noopener">Become a General Member<span class="sr-only"> (opens in a new tab)</span></a></li>
+        <li><a href="https://www.zeffy.com/en-CA/donation-form/utm-msa-donation" target="_blank" rel="noopener">Donate to our current campaign<span class="sr-only"> (opens in a new tab)</span></a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="footer-heading">Contact us</h2>
+      <ul class="footer-list">
+        <li><a href="mailto:msa@utmsu.ca"><svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg><span>Email us at msa@utmsu.ca</span></a></li>
+        <li><a href="https://www.instagram.com/utmmsa/" target="_blank" rel="noopener"><svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg><span>Instagram: @utmmsa</span><span class="sr-only"> (opens in a new tab)</span></a></li>
+        <li><a href="https://www.youtube.com/@utmmsa" target="_blank" rel="noopener"><svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10.5 9.2 15 12l-4.5 2.8Z" fill="currentColor" stroke="none"/></svg><span>YouTube: @utmmsa</span><span class="sr-only"> (opens in a new tab)</span></a></li>
+      </ul>
     </div>
   </div>
 
-  <div class="footer-credit">Designed &amp; maintained by UTMMSA Marketing</div>
+  <div class="footer-bottom">
+    <p>© UTM Muslim Students' Association</p>
+    <p>Designed &amp; maintained by UTMMSA Marketing</p>
+  </div>
 </footer>
 
 <script src="script.js"></script>
 <script src="events-team.js"></script>
-<!-- Instagram's embed script — only does anything once real <blockquote class="instagram-media"> embeds are pasted in above -->
-<script async src="//www.instagram.com/embed.js"></script>
+<script async src="https://www.instagram.com/embed.js"></script>
 </body>
 </html>

@@ -3,181 +3,261 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About — UTM MSA</title>
+<title>About us: cabinet, departments and impact | UTM MSA</title>
+<meta name="description" content="Meet the UTM MSA cabinet, see how our departments are organized, and follow our current charity campaign.">
+<script>
+/* Apply saved Display settings before the page paints (avoids a flash). Full logic lives in script.js. */
+(function(){try{var p=JSON.parse(localStorage.getItem('msaDisplayPrefs')||'{}'),c=document.documentElement.classList;
+if(p.text==='lg'||p.text==='xl')c.add('pref-text-'+p.text);if(p.contrast==='high')c.add('pref-contrast-high');
+if(p.spacing==='wide')c.add('pref-spacing-wide');if(p.motion==='reduced')c.add('pref-motion-reduced');
+if(p.font==='readable'){c.add('pref-font-readable');var l=document.createElement('link');l.rel='stylesheet';l.id='readableFont';
+l.href='https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap';document.head.appendChild(l);}}catch(e){}})();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Montserrat:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Three families: Literata (headings), Montserrat (everything else), Amiri (Arabic only) -->
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Literata:ital,opsz,wght@0,7..72,500..700;1,7..72,500&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="pages.css">
 <link rel="stylesheet" href="resources.css">
+<link rel="stylesheet" href="a11y.css">
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to main content</a>
 
-<div class="theme-reveal" id="themeReveal">
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="brand">
+      <img src="utm-msa-logo.png" alt="UTM Muslim Students' Association, home page" class="site-logo-img" width="1667" height="438">
+    </a>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="siteMenu">
+      <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg><span>Menu</span>
+    </button>
+
+    <div class="site-menu" id="siteMenu">
+      <nav class="main-nav" aria-label="Main">
+        <ul>
+          <li><a href="about.html" aria-current="page"><span class="nav-title">About</span><span class="nav-desc">Who we are</span></a></li>
+          <li><a href="events.html"><span class="nav-title">Sagas</span><span class="nav-desc">Events &amp; lectures</span></a></li>
+          <li><a href="resources.html"><span class="nav-title">Resources</span><span class="nav-desc">Support &amp; services</span></a></li>
+          <li><a href="musalla.html"><span class="nav-title">The Musalla</span><span class="nav-desc">Prayer times &amp; masjids</span></a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <button class="prefs-toggle" type="button" aria-expanded="false" aria-controls="prefsPanel">
+          <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></svg><span>Display settings</span>
+        </button>
+        <a class="nav-cta" href="https://forms.gle/BKkKjAEeX6UAhfDM7" target="_blank" rel="noopener"><svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="10" cy="8" r="3.5"/><path d="M3.5 20v-1.2A3.8 3.8 0 0 1 7.3 15h5.4a3.8 3.8 0 0 1 3.8 3.8V20"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M20.5 20v-1.2a3.8 3.8 0 0 0-2.6-3.6"/></svg><span>Become a General Member</span><span class="sr-only"> (opens in a new tab)</span></a>
+      </div>
+    </div>
+  </div>
+
+  <section class="prefs-panel" id="prefsPanel" aria-labelledby="prefsTitle" hidden>
+    <div class="prefs-inner">
+      <div class="prefs-head">
+        <h2 id="prefsTitle">Display settings</h2>
+        <p>Adjust how this site looks for you. Your choices are saved on this device only.</p>
+      </div>
+      <form class="prefs-grid" id="prefsForm">
+        <fieldset>
+          <legend>Text size</legend>
+          <label class="pref-option"><input type="radio" name="text" value="default" checked><span>Default</span></label>
+          <label class="pref-option"><input type="radio" name="text" value="lg"><span>Large<span class="pref-hint">112%</span></span></label>
+          <label class="pref-option"><input type="radio" name="text" value="xl"><span>Largest<span class="pref-hint">125%</span></span></label>
+        </fieldset>
+        <fieldset>
+          <legend>Contrast</legend>
+          <label class="pref-option"><input type="radio" name="contrast" value="default" checked><span>Default</span></label>
+          <label class="pref-option"><input type="radio" name="contrast" value="high"><span>High contrast<span class="pref-hint">Brighter text and outlines</span></span></label>
+        </fieldset>
+        <fieldset>
+          <legend>Font</legend>
+          <label class="pref-option"><input type="radio" name="font" value="default" checked><span>Default</span></label>
+          <label class="pref-option"><input type="radio" name="font" value="readable"><span>Easy-read font<span class="pref-hint">Atkinson Hyperlegible, made for low vision</span></span></label>
+        </fieldset>
+        <fieldset>
+          <legend>Text spacing</legend>
+          <label class="pref-option"><input type="radio" name="spacing" value="default" checked><span>Default</span></label>
+          <label class="pref-option"><input type="radio" name="spacing" value="wide"><span>Wide<span class="pref-hint">More space between letters and lines</span></span></label>
+        </fieldset>
+        <fieldset>
+          <legend>Motion</legend>
+          <label class="pref-option"><input type="radio" name="motion" value="default" checked><span>Default</span></label>
+          <label class="pref-option"><input type="radio" name="motion" value="reduced"><span>Reduce motion<span class="pref-hint">Turns off animations</span></span></label>
+        </fieldset>
+      </form>
+      <div class="prefs-actions">
+        <button type="button" class="prefs-btn" id="prefsReset">Reset to default</button>
+        <button type="button" class="prefs-btn is-primary" id="prefsClose">Close display settings</button>
+        <p class="prefs-status" id="prefsStatus" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+</header>
+<div class="theme-reveal" id="themeReveal" role="dialog" aria-modal="true" aria-labelledby="themeTitle" aria-describedby="themeDesc" hidden>
   <div class="theme-reveal-inner">
-    <span class="kicker-script" style="font-size:20px;">This year's theme</span>
-    <h2><!-- REPLACE_ME: this year's cabinet theme title -->This Year's Theme</h2>
-    <p><!-- REPLACE_ME: one line describing the theme -->A line describing what this cabinet year is about.</p>
-    <span class="theme-reveal-hint">Tap anywhere to continue</span>
+    <p class="theme-eyebrow">This year's theme</p>
+    <h2 id="themeTitle"><!-- REPLACE_ME: this year's cabinet theme title -->This Year's Theme</h2>
+    <p id="themeDesc"><!-- REPLACE_ME: one line describing the theme -->A line describing what this cabinet year is about.</p>
+    <button type="button" class="btn-primary" id="themeContinue">Continue to the About page</button>
+    <p class="theme-reveal-hint">You can also press Escape. This intro only shows once per visit.</p>
   </div>
 </div>
 
-<header class="site-header">
-  <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; width:100%;">
-    <a class="brand" href="index.html">
-      <img src="utm-msa-logo.png" alt="UTM MSA logo" class="site-logo-img">
-    </a>
-    <nav class="main-nav" style="display:flex; gap:28px; font-size:0.9rem;">
-      <a href="about.html">About</a>
-      <a href="events.html">Sagas</a>
-      <a href="resources.html">Resources</a>
-      <a href="musalla.html">The Musalla</a>
-    </nav>
-    <a class="nav-cta" href="https://forms.gle/REPLACE_ME_GENERAL_FORM" target="_blank" rel="noopener">Become a General Member →</a>
-  </div>
-</header>
-
-<main>
+<main id="main" tabindex="-1">
   <section class="page-hero">
     <div class="wrap">
-      <span class="kicker"><span class="kicker-script">As-salāmu ʿalaykum</span></span>
-      <h1>Who We Are</h1>
-      <p>
-        Our purpose is to serve the best interests of Muslims at the University of Toronto Mississauga, support our members, and give every student on campus — Muslim or not — a genuine way to engage with the Muslims around them. This page introduces the cabinet, departments, and causes behind that work this year.
-      </p>
-    </div>
-  </section>
-
-  <section class="section-block">
-    <div class="wrap">
-      <h2 class="section-title">This Year's Cabinet</h2>
-      <div class="team-grid" id="teamGrid">
-        <!-- Cards are generated by events-team.js from the TEAM array below.
-             To edit a name, just change it in that array — no HTML editing needed. -->
+      <p class="kicker"><span class="kicker-script">As-salāmu ʿalaykum</span></p>
+      <h1>Who we are</h1>
+      <p>Our purpose is to serve the best interests of Muslims at the University of Toronto Mississauga, support our members, and give every student on campus, Muslim or not, a genuine way to engage with the Muslims around them. This page introduces the cabinet, departments, and causes behind that work this year.</p>
+      <div class="theme-inline">
+        <p>This year's theme: <strong><!-- REPLACE_ME: same theme title as the intro -->This Year's Theme</strong></p>
       </div>
+      <nav class="page-index" aria-labelledby="aboutIndex">
+        <h2 id="aboutIndex">On this page</h2>
+        <ul>
+          <li><a href="#cabinet">This year's cabinet</a></li>
+          <li><a href="#departments">Departments</a></li>
+          <li><a href="#constitution">From our constitution</a></li>
+          <li><a href="#impact">Our impact</a></li>
+        </ul>
+      </nav>
     </div>
   </section>
 
-  <section class="section-block">
+  <section class="section-block" id="cabinet" aria-labelledby="cabinetHeading">
     <div class="wrap">
-      <h2 class="section-title">Departments</h2>
-      <p class="section-intro">Fifteen director-led departments carry out the work below, each reporting up to one of our eight executives — structure per our 2026–27 constitution.</p>
+      <h2 class="section-title with-icon" id="cabinetHeading"><svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="10" cy="8" r="3.5"/><path d="M3.5 20v-1.2A3.8 3.8 0 0 1 7.3 15h5.4a3.8 3.8 0 0 1 3.8 3.8V20"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M20.5 20v-1.2a3.8 3.8 0 0 0-2.6-3.6"/></svg>This year's cabinet</h2>
+      <!-- Cards are generated by events-team.js from the TEAM array. Edit names there, no HTML needed. -->
+      <ul class="team-grid" id="teamGrid"></ul>
+    </div>
+  </section>
 
+  <section class="section-block" id="departments" aria-labelledby="deptHeading">
+    <div class="wrap">
+      <h2 class="section-title" id="deptHeading">Departments</h2>
+      <p class="section-intro">Fifteen director-led departments carry out the work below, each reporting to one of our eight executives, as set out in our 2026–27 constitution.</p>
       <div class="org-chart-visual">
-        <div class="org-tier-label">Executives</div>
-        <div class="org-columns">
-          <div class="org-col">
-            <div class="org-exec-box"><span>President</span><span>Vice-President</span><em>Husain &amp; Farah</em></div>
-            <div class="org-dir-box">Content Creation<em>Zunairah</em></div>
-            <div class="org-dir-box">Graphic Design<em>Wafa</em></div>
-          </div>
-          <div class="org-col">
-            <div class="org-exec-box"><span>Senior Advisor</span><em>Sarah Gamal El-Deen</em></div>
-          </div>
-          <div class="org-col">
-            <div class="org-exec-box"><span>Internal Affairs</span><em>Moosa</em></div>
-            <div class="org-dir-box org-open">Islamic Awareness</div>
-            <div class="org-dir-box org-open">Brothers' Prayer Services</div>
-            <div class="org-dir-box org-open">Sisters' Prayer Services</div>
-          </div>
-          <div class="org-col">
-            <div class="org-exec-box"><span>Public Affairs</span><em>Mahi</em></div>
-            <div class="org-dir-box org-open">Campus Advocacy</div>
-            <div class="org-dir-box org-open">International Advocacy</div>
-          </div>
-          <div class="org-col">
-            <div class="org-exec-box"><span>Finance</span><em>Suleman</em></div>
-            <div class="org-dir-box org-open">Charity</div>
-            <div class="org-dir-box org-open">Partnership</div>
-          </div>
-          <div class="org-col">
-            <div class="org-exec-box"><span>Student Life</span><em>Saad &amp; Sarah Al-Malahi</em></div>
-            <div class="org-dir-box org-open">Brothers' Events</div>
-            <div class="org-dir-box org-open">Sisters' Events</div>
-            <div class="org-dir-box org-open">Brothers' Islamic Ed.</div>
-            <div class="org-dir-box org-open">Sisters' Islamic Ed.</div>
-            <div class="org-dir-box org-open">Brothers' Vol. Coord.</div>
-            <div class="org-dir-box org-open">Sisters' Vol. Coord.</div>
-          </div>
-        </div>
-        <div class="org-footer-tiers">
-          <span>Associates <em>(per department)</em></span>
-          <span>Volunteers / General Members</span>
-        </div>
+        <p class="org-tier-label">Executives and the directors who report to them</p>
+        <ul class="org-columns">
+          <li class="org-col">
+            <p class="org-exec-box"><span class="org-role">President and Vice-President</span><span class="org-person">Husain &amp; Farah</span></p>
+            <ul class="org-dirs" aria-label="Directors reporting to President and Vice-President"><li class="org-dir-box">Content Creation<span class="org-person">Zunairah</span></li><li class="org-dir-box">Graphic Design<span class="org-person">Wafa</span></li></ul>
+          </li>
+          <li class="org-col">
+            <p class="org-exec-box"><span class="org-role">Senior Advisor</span><span class="org-person">Sarah Gamal El-Deen</span></p>
+            
+          </li>
+          <li class="org-col">
+            <p class="org-exec-box"><span class="org-role">Internal Affairs</span><span class="org-person">Moosa</span></p>
+            <ul class="org-dirs" aria-label="Directors reporting to Internal Affairs"><li class="org-dir-box org-open">Islamic Awareness<span class="org-open-tag">Position open</span></li><li class="org-dir-box org-open">Brothers' Prayer Services<span class="org-open-tag">Position open</span></li><li class="org-dir-box org-open">Sisters' Prayer Services<span class="org-open-tag">Position open</span></li></ul>
+          </li>
+          <li class="org-col">
+            <p class="org-exec-box"><span class="org-role">Public Affairs</span><span class="org-person">Mahi</span></p>
+            <ul class="org-dirs" aria-label="Directors reporting to Public Affairs"><li class="org-dir-box org-open">Campus Advocacy<span class="org-open-tag">Position open</span></li><li class="org-dir-box org-open">International Advocacy<span class="org-open-tag">Position open</span></li></ul>
+          </li>
+          <li class="org-col">
+            <p class="org-exec-box"><span class="org-role">Finance</span><span class="org-person">Suleman</span></p>
+            <ul class="org-dirs" aria-label="Directors reporting to Finance"><li class="org-dir-box org-open">Charity<span class="org-open-tag">Position open</span></li><li class="org-dir-box org-open">Partnership<span class="org-open-tag">Position open</span></li></ul>
+          </li>
+          <li class="org-col">
+            <p class="org-exec-box"><span class="org-role">Student Life</span><span class="org-person">Saad &amp; Sarah Al-Malahi</span></p>
+            <ul class="org-dirs" aria-label="Directors reporting to Student Life"><li class="org-dir-box org-open">Brothers' Events<span class="org-open-tag">Position open</span></li><li class="org-dir-box org-open">Sisters' Events<span class="org-open-tag">Position open</span></li><li class="org-dir-box org-open">Brothers' Islamic Education<span class="org-open-tag">Position open</span></li><li class="org-dir-box org-open">Sisters' Islamic Education<span class="org-open-tag">Position open</span></li><li class="org-dir-box org-open">Brothers' Volunteer Coordination<span class="org-open-tag">Position open</span></li><li class="org-dir-box org-open">Sisters' Volunteer Coordination<span class="org-open-tag">Position open</span></li></ul>
+          </li>
+        </ul>
+        <ul class="org-footer-tiers" aria-label="Other membership tiers">
+          <li>Associates <em>(in each department)</em></li>
+          <li>Volunteers and General Members</li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <section class="section-block">
+  <section class="section-block" id="constitution" aria-labelledby="constHeading">
     <div class="wrap">
-      <h2 class="section-title">From Our Constitution</h2>
+      <h2 class="section-title" id="constHeading">From our constitution</h2>
       <div class="constitution-grid">
         <blockquote class="constitution-card">
           <p>"The aim and purpose of the Association is to serve the best interests of the Muslims at the University of Toronto Mississauga, to provide support for the Association's members, and to provide an avenue for all students at UTM to engage with Muslims."</p>
-          <cite>Article II — Purpose</cite>
+          <cite>Article II: Purpose</cite>
         </blockquote>
         <blockquote class="constitution-card">
-          <p>"Strengthen community building on campus between Muslims and non-Muslims through religious, social, and other types of events and activities — including promoting friendly relations between Muslims and non-Muslims on campus."</p>
-          <cite>Article II — Purpose</cite>
+          <p>"Strengthen community building on campus between Muslims and non-Muslims through religious, social, and other types of events and activities, including promoting friendly relations between Muslims and non-Muslims on campus."</p>
+          <cite>Article II: Purpose</cite>
         </blockquote>
         <blockquote class="constitution-card">
           <p>"A general member/volunteer shall be any student who wishes to join the Association as a member and agrees to abide by the constitution and generally accepted practices of the Association."</p>
-          <cite>Article IV — Membership</cite>
+          <cite>Article IV: Membership</cite>
         </blockquote>
       </div>
     </div>
   </section>
 
-  <section class="section-block" id="impact">
+  <section class="section-block" id="impact" aria-labelledby="impactHeading">
     <div class="wrap">
-      <h2 class="section-title">Our Impact</h2>
+      <h2 class="section-title with-icon" id="impactHeading"><svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20s-7.5-4.6-7.5-10.1C4.5 6.9 6.6 5 9 5c1.4 0 2.4.7 3 1.6C12.6 5.7 13.6 5 15 5c2.4 0 4.5 1.9 4.5 4.9C19.5 15.4 12 20 12 20Z"/></svg>Our impact</h2>
       <p class="section-intro">Our Charity Director partners with reputable organizations and keeps every campaign transparent, per Article VI of our constitution.</p>
-
       <div class="charity-card">
-        <div class="charity-card-media"><!-- REPLACE_ME: campaign photo/banner for Illuminating Lights Foundation --> Campaign image coming soon</div>
+        <div class="charity-card-media"><!-- REPLACE_ME: campaign photo with alt text describing it --> Campaign image coming soon</div>
         <div class="charity-card-body">
-          <span class="section-label">Current Campaign</span>
-          <h3>Illuminating Lights Foundation — Islamic Scholarships</h3>
+          <p class="section-label">Current campaign</p>
+          <h3>Illuminating Lights Foundation: Islamic Scholarships</h3>
           <p>Raising funds toward Islamic scholarships in partnership with the Illuminating Lights Foundation.</p>
-          <div class="charity-progress"><div class="charity-progress-bar" style="width:13%"></div></div>
-          <div class="charity-progress-stats"><span>$1,300 raised</span><span>Goal: $10,000</span></div>
+          <div class="charity-progress" aria-hidden="true"><div class="charity-progress-bar" style="width:13%"></div></div>
+          <p class="charity-progress-stats"><span>$1,300 raised (13%)</span><span>Goal: $10,000</span></p>
           <div class="charity-actions">
-            <a class="btn-primary" href="https://www.zeffy.com/en-CA/donation-form/utm-msa-donation" target="_blank" rel="noopener">Donate now</a>
-            <a class="btn-text" href="https://illuminatinglights.org/" target="_blank" rel="noopener">About ILF →</a>
+            <a class="btn-primary" href="https://www.zeffy.com/en-CA/donation-form/utm-msa-donation" target="_blank" rel="noopener">Donate to this campaign<span class="sr-only"> (opens in a new tab)</span></a>
+            <a class="btn-text" href="https://illuminatinglights.org/" target="_blank" rel="noopener">About the Illuminating Lights Foundation<span class="sr-only"> (opens in a new tab)</span></a>
           </div>
         </div>
       </div>
-
-      <div class="charity-placeholder-note">Global Islamic Relief CW and our full giving history — coming soon.</div>
+      <p class="charity-placeholder-note">Global Islamic Relief CW and our full giving history are coming soon.</p>
     </div>
   </section>
-
-
 </main>
-
 <footer class="site-footer">
 
-  <div class="footer-main">
+  <div class="footer-grid">
     <div class="footer-brand">
-      <span class="footer-mark"><img src="utm-msa-footer-mark.png" alt="UTM MSA"></span>
-      <span class="footer-copyright">© UTM Muslim Students' Association</span>
+      <span class="footer-mark"><img src="utm-msa-footer-mark.png" alt="" width="300" height="300"></span>
+      <p class="footer-org">UTM Muslim Students' Association<span>University of Toronto Mississauga</span></p>
     </div>
 
-    <div class="footer-meta">
-      <div class="footer-links">
-        <a href="mailto:msa@utmsu.ca">Contact</a>
-      </div>
-      <div class="social-links">
-        <a href="https://www.instagram.com/utmmsa/?hl=en" target="_blank" rel="noopener" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
-        </a>
-        <a href="https://www.youtube.com/@utmmsa" target="_blank" rel="noopener" aria-label="YouTube">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10.5 9.2 15 12l-4.5 2.8Z" fill="currentColor" stroke="none"/></svg>
-        </a>
-      </div>
+    <nav aria-labelledby="sitemapHeading">
+      <h2 class="footer-heading" id="sitemapHeading">Site map</h2>
+      <ul class="footer-list">
+          <li><a href="index.html">Home<span class="sr-only">: Start here</span></a></li>
+          <li><a href="about.html">About<span class="sr-only">: Who we are</span></a></li>
+          <li><a href="events.html">Sagas<span class="sr-only">: Events &amp; lectures</span></a></li>
+          <li><a href="resources.html">Resources<span class="sr-only">: Support &amp; services</span></a></li>
+          <li><a href="musalla.html">The Musalla<span class="sr-only">: Prayer times &amp; masjids</span></a></li>
+          <li><a href="accessibility.html">Accessibility</a></li>
+      </ul>
+    </nav>
+
+    <div>
+      <h2 class="footer-heading">Get involved</h2>
+      <ul class="footer-list">
+        <li><a href="https://forms.gle/BKkKjAEeX6UAhfDM7" target="_blank" rel="noopener">Become a General Member<span class="sr-only"> (opens in a new tab)</span></a></li>
+        <li><a href="https://www.zeffy.com/en-CA/donation-form/utm-msa-donation" target="_blank" rel="noopener">Donate to our current campaign<span class="sr-only"> (opens in a new tab)</span></a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="footer-heading">Contact us</h2>
+      <ul class="footer-list">
+        <li><a href="mailto:msa@utmsu.ca"><svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg><span>Email us at msa@utmsu.ca</span></a></li>
+        <li><a href="https://www.instagram.com/utmmsa/" target="_blank" rel="noopener"><svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg><span>Instagram: @utmmsa</span><span class="sr-only"> (opens in a new tab)</span></a></li>
+        <li><a href="https://www.youtube.com/@utmmsa" target="_blank" rel="noopener"><svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10.5 9.2 15 12l-4.5 2.8Z" fill="currentColor" stroke="none"/></svg><span>YouTube: @utmmsa</span><span class="sr-only"> (opens in a new tab)</span></a></li>
+      </ul>
     </div>
   </div>
 
-  <div class="footer-credit">Designed &amp; maintained by UTMMSA Marketing</div>
+  <div class="footer-bottom">
+    <p>© UTM Muslim Students' Association</p>
+    <p>Designed &amp; maintained by UTMMSA Marketing</p>
+  </div>
 </footer>
 
 <script src="script.js"></script>

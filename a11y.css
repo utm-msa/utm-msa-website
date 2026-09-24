@@ -1,0 +1,320 @@
+/* ============================================================
+   UTM MSA — Accessibility layer
+   Loaded LAST on every page. Holds only the site-wide systems:
+   skip link, screen-reader text, focus ring, Display settings
+   panel + the classes it toggles, high-contrast / forced-colours
+   support, and reduced motion. Page styles stay in their own files.
+   ============================================================ */
+
+/* ---------- Screen-reader-only text ---------- */
+/* Visually hidden but read aloud. Used to finish link names like
+   "Get directions" -> "Get directions to Monasaba" (WCAG 2.4.4) */
+.sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Skip link (WCAG 2.4.1) ---------- */
+/* First thing a keyboard user reaches; appears on focus. */
+.skip-link {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 1000;
+  padding: 12px 20px;
+  background: var(--gold-light);
+  color: var(--navy);
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: var(--radius-sm);
+  transform: translateY(-200%);
+  transition: transform 0.15s ease;
+}
+.skip-link:focus { transform: translateY(0); }
+
+main:focus { outline: none; }
+
+/* ---------- Focus ring (WCAG 2.4.7, 2.4.13) ---------- */
+/* Gold ring + navy halo: visible on navy, on gold buttons, and on the white Instagram
+   embed where the browser's default ring used to vanish. Keyboard only (:focus-visible). */
+:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px var(--focus-halo);
+  border-radius: 4px;
+}
+
+/* Gold buttons: invert so the ring still contrasts with the button face */
+.btn-primary:focus-visible,
+.skip-link:focus-visible {
+  outline-color: var(--focus-halo);
+  box-shadow: 0 0 0 6px var(--focus-ring);
+}
+
+/* ---------- Display settings panel (CNIB-style comfort menu) ---------- */
+
+.prefs-panel {
+  border-top: 1px solid var(--border-control);
+  background: var(--navy-black);
+}
+.prefs-panel[hidden] { display: none; }
+
+.prefs-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.prefs-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin-bottom: 18px;
+}
+.prefs-head h2 { font-size: 1.5rem; margin: 0; }
+.prefs-head p { margin: 0; color: var(--text-muted-dark); font-size: var(--fs-sm); }
+
+.prefs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 16px;
+}
+
+.prefs-grid fieldset {
+  margin: 0;
+  padding: 14px 16px 16px;
+  border: 1.5px solid var(--border-control);
+  border-radius: var(--radius-md);
+}
+
+.prefs-grid legend {
+  padding: 0 6px;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text-strong);
+}
+
+.pref-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 40px;
+  font-size: 1rem;
+  color: var(--text-body);
+  cursor: pointer;
+}
+.pref-option input {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--gold-light);
+  margin: 0;
+  flex: none;
+}
+.pref-hint { display: block; font-size: var(--fs-xs); color: var(--text-muted-dark); }
+
+.prefs-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+  align-items: center;
+}
+
+.prefs-btn {
+  min-height: 44px;
+  padding: 8px 18px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  color: var(--gold-light);
+  background: transparent;
+  border: 1.5px solid var(--border-control);
+}
+.prefs-btn:hover { border-color: var(--gold-light); }
+.prefs-btn.is-primary { background: var(--gold-light); color: var(--navy); border-color: var(--gold-light); }
+
+.prefs-status { font-size: var(--fs-sm); color: var(--text-soft); }
+
+/* ---------- What each setting does ---------- */
+
+/* Text size: everything is in rem, so one root change scales the whole site */
+html.pref-text-lg { font-size: 112.5%; }
+html.pref-text-xl { font-size: 125%; }
+
+/* Readable font: swaps both families for Atkinson Hyperlegible (Braille Institute,
+   designed for low vision). Only downloaded when someone turns it on. */
+html.pref-font-readable {
+  --font-display: 'Atkinson Hyperlegible', 'Montserrat', Arial, sans-serif;
+  --font-body: 'Atkinson Hyperlegible', 'Montserrat', Arial, sans-serif;
+}
+
+/* Wide spacing: the WCAG 1.4.12 text-spacing values, applied site-wide */
+html.pref-spacing-wide body { line-height: 1.8; }
+html.pref-spacing-wide body * {
+  letter-spacing: 0.12em !important;
+  word-spacing: 0.16em !important;
+}
+html.pref-spacing-wide p,
+html.pref-spacing-wide li { line-height: 1.9 !important; margin-bottom: 1.2em; }
+html.pref-spacing-wide .bismillah-arabic,
+html.pref-spacing-wide .footer-dua-arabic { letter-spacing: 0 !important; word-spacing: normal !important; } /* Arabic script must not be letter-spaced */
+
+/* High contrast: muted text becomes near-white, every outline brightens,
+   the hero photo is fully covered. Also applies automatically when the OS asks for more contrast. */
+html.pref-contrast-high {
+  --text-body: #ffffff;
+  --text-soft: #ffffff;
+  --text-muted-dark: #e6e9f2;
+  --text-muted: #e6e9f2;
+  --border-dark: #7a86a8;
+  --border-dark-2: #7a86a8;
+  --border-control: #c3c9dd;
+  --panel-navy: #0a1020;
+  --navy-black: #05080f;
+}
+html.pref-contrast-high body { background: #070b16; }
+html.pref-contrast-high .hero { background: #070b16 !important; }
+html.pref-contrast-high .hero h1,
+html.pref-contrast-high .hero p { text-shadow: none; }
+html.pref-contrast-high a:not([class]),
+html.pref-contrast-high .main-nav .nav-title { text-decoration: underline; }
+
+@media (prefers-contrast: more) {
+  :root {
+    --text-body: #ffffff;
+    --text-soft: #ffffff;
+    --text-muted-dark: #e6e9f2;
+    --text-muted: #e6e9f2;
+    --border-control: #c3c9dd;
+  }
+  .hero { background: #070b16 !important; }
+}
+
+/* Reduced motion: honours the OS setting AND the panel toggle */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  html { scroll-behavior: auto; }
+  [data-reveal] { opacity: 1 !important; transform: none !important; }
+  .hero-inner > * { opacity: 1 !important; animation: none !important; }
+}
+html.pref-motion-reduced *,
+html.pref-motion-reduced *::before,
+html.pref-motion-reduced *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+html.pref-motion-reduced { scroll-behavior: auto; }
+html.pref-motion-reduced [data-reveal],
+html.pref-motion-reduced .hero-inner > * { opacity: 1 !important; transform: none !important; animation: none !important; }
+html.pref-motion-reduced .sagas-flight { display: none; }
+html.pref-motion-reduced .sagas-tabs-wrap { opacity: 1 !important; animation: none !important; }
+
+/* Windows High Contrast / forced colours: keep focus and control edges visible */
+@media (forced-colors: active) {
+  :focus-visible { outline: 3px solid CanvasText; box-shadow: none; }
+  .btn-primary, .nav-cta, .prefs-toggle, .nav-toggle, .link-btn, .saga-tab, .rail-item { border: 2px solid ButtonText; }
+  .rail-item[aria-selected="true"], .saga-tab[aria-selected="true"] { border-width: 4px; }
+}
+
+/* ---------- "On this page" jump index (a second way to navigate, WCAG 2.4.5) ---------- */
+
+.page-index {
+  margin-top: 28px;
+}
+.page-index h2 {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-soft);
+  margin: 0 0 8px;
+}
+.page-index ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.page-index a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 8px 16px;
+  border: 1.5px solid var(--border-control);
+  border-radius: 999px;
+  color: var(--gold-light);
+  font-weight: 600;
+  font-size: var(--fs-sm);
+  text-decoration: none;
+}
+.page-index a:hover { border-color: var(--gold-light); }
+
+/* ---------- Inline icons next to text labels ---------- */
+/* Decorative when paired with visible text (aria-hidden), so screen readers
+   don't hear "masjid icon, Local Masjids" twice. */
+.label-icon {
+  width: 1.1em;
+  height: 1.1em;
+  flex: none;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.with-icon {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+.with-icon .label-icon { color: var(--gold-light); }
+
+/* ---------- Instagram embed: framed + a way past it ---------- */
+
+.embed-frame {
+  border: 2px solid var(--gold-light);
+  border-radius: var(--radius-md);
+  padding: 6px;
+  background: var(--navy-black);
+}
+/* When keyboard focus goes into Instagram's iframe, the whole frame lights up,
+   so you can always see where focus went */
+.embed-frame:focus-within {
+  outline: 4px solid var(--focus-ring);
+  outline-offset: 4px;
+  box-shadow: 0 0 0 10px var(--focus-halo);
+}
+
+.embed-skip {
+  display: inline-block;
+  margin: 0 0 10px;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--gold-light);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------- Accessible dialogs (theme reveal, event detail) ---------- */
+
+.dialog-close {
+  min-height: 44px;
+  min-width: 44px;
+}
