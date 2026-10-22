@@ -6,6 +6,53 @@
 
 ---
 
+## Update 4 (Oct 22): sign-up links, code of conduct, Linktree links
+
+Bundled with Update 3 into one upload, since Update 3 hadn't gone to GitHub yet.
+
+| What | Where |
+|---|---|
+| **Sign-up links added** (from the MSA Linktree). Auction Dinner: `tr.ee/mMuxnOC9Ka` (button says "Get tickets"). Brothers' FIFA Tournament: `tr.ee/4VCXEA93Qe`. Brothers' Soccer Tournament: `tr.ee/C4hU0ymzM8`. These pop-ups now lead with the sign-up button, with Instagram as the second link. The other Charity Week events have no sign-up, so their button goes to Instagram. | `events-data.js` (`register`) |
+| New optional field `registerLabel`, for button text other than "Register". | `events-data.js` header, `events-team.js` `eventActionsHTML` |
+| **Homepage auction dinner block:** the main button is now "Get auction dinner tickets" (orange, Charity Week style), and "View the post on Instagram" is the second link. | `index.html` highlight section, `charity-week.css` `.cw-highlight-actions` |
+| **Code of conduct is live:** the "being finalized" placeholder is replaced with a "Read the UTM MSA Code of Conduct" button linking to the published Google Doc (from the Linktree). The confidential-report and Campus Safety lines stay. | `about.html#code-of-conduct`, `pages.css` (button colour fix inside `.coc-card`) |
+| **ISNA Cares:** added an "ISNA Cares for UTM students" button (`isnacares.ca/utm`, from the Linktree) next to the email and phone buttons. Description now mentions booking through that page. | `resources.html`, ISNA Cares card |
+| **Musalla page:** the "Can't find a room?" note now also links UTM's official spiritual and faith spaces page (from the Linktree). | `musalla.html` |
+
+---
+
+## Going live on utmmsa.org (Bluehost)
+
+Checked Oct 22: utmmsa.org's DNS is managed at **Bluehost** (nameservers `ns1/ns2.bluehost.com`), and the domain still points to Bluehost's server (`66.235.200.145`), where the old WordPress site lives. The new site is on Vercel (`utm-msa-website` project), which redeploys every time GitHub changes.
+
+**Recommended: keep the domain at Bluehost and point it to Vercel.** No file uploading, and every GitHub upload goes live on utmmsa.org automatically.
+1. **Vercel:** Project `utm-msa-website`, then Settings, then Domains. Add `utmmsa.org` and `www.utmmsa.org`.
+2. **Bluehost:** Domains, then utmmsa.org, then DNS. Change the `@` A record from `66.235.200.145` to `76.76.21.21`. Change `www` to a CNAME pointing at `cname.vercel-dns.com`. Leave every MX/email record and any other record alone.
+3. Wait for DNS (usually minutes, up to a few hours). Vercel issues the HTTPS certificate on its own.
+4. Before switching, make a Bluehost backup of the WordPress site. Keep the Bluehost hosting plan until the new site has run cleanly for a while.
+
+**Alternative: upload the files to Bluehost directly.** Back up WordPress, then upload every site file to `public_html` with File Manager or FTP. Remove or move the WordPress files so the new `index.html` loads. Every future change has to be uploaded the same way, by hand, and GitHub/Vercel stop being the live site.
+
+---
+
+## Update 3 (Oct 22): event pop-ups show the post, past events cleaned up, credits
+
+| What | Where |
+|---|---|
+| **Event pop-ups now show the event itself, not just text.** Wide screens show details on the left and the Instagram post or reel on the right. Phones show details first, then the post. If an event has no post yet, its poster shows instead. Charity Week events use the Week at a Glance posters. While Instagram loads, or if it's blocked, the poster or a clear "View this post on Instagram" link shows. | `events-team.js` (`eventMediaHTML`, `eventActionsHTML`, `wireEventDialogs`), `pages.css` "Event pop-up with a post or poster", `script.js` `zoomOpen` (new `wide` option, bigger dialog) |
+| **Main button works like the newsletter.** With a registration link, the button says "Register" and goes straight to it, with the Instagram post as a second link. Without one, it goes to the event's Instagram post. If there's no post either, it goes to the Charity Week post (for Charity Week events) or @utmmsa. Past events say "Watch the recap on Instagram". | `events-team.js` `eventActionsHTML` |
+| **Registration links, posts and details can now come from the Google Sheet.** New optional columns: **F Registration link, G Instagram post, H Details**. Links must start with `https://`. Blank columns change nothing. | `script.js` `parseEventsCSV` |
+| New event fields in the hand-entered file: `post`, `image` + `imageAlt`, `register`. The old `link`/`linkLabel` are gone. | `events-data.js` (header comment explains each) |
+| Week at a Glance posters added as optimized images (about 160 KB each, down from 2 to 3 MB). | `cw-week-glance-1.jpg` (Wed/Thu), `cw-week-glance-2.jpg` (Fri to Sun) |
+| **MIMC removed** from the site. It's listed in `HIDDEN_EVENTS`, so the sheet row stays and you can bring it back by deleting it from that list. | `events-data.js` `HIDDEN_EVENTS` |
+| **Weekly events (Tag = "Weekly", e.g. Jummah Prayer) never go to Past.** They roll forward to their next date and show as "Every Friday" in Today/Upcoming. The homepage "This week" shows "· Every Friday", and the pop-up shows "Every Friday · next: Fri, Oct 23". | `events-data.js` `expandWeekly`, `events-team.js` `eventDateLabel`, `script.js` `renderWeekGrid` |
+| **Duplicate "Back on Track" fixed.** The sheet's "Back on Track" row and the hand-entered "Back on Track: Brothers' Scavenger Hunt" are now one event, which took the sheet's time and room (1 to 4 PM, IB 140). Rule: same date, and one title starts with the other, means one event. | `events-data.js` `mergeEvents` |
+| **"Join the team" card removed** from Getting involved (it was waiting on application and election dates). | `about.html#getting-involved` |
+| **Marketing is now under Internal Affairs** in the departments list. | `about.html`, "Our departments" |
+| **Website shoutout** in every page footer: "Built and maintained by UTM MSA Internal Affairs. A big thank you to Husain, Farah, Zunairah, and Wafa for their work on this website." It replaces "Designed & maintained by UTMMSA Marketing". | footer of all six pages |
+
+---
+
 ## Update 2 (Oct 22, later the same day): Instagram posts, real dates, arrow intro is back
 
 | What | Where |
@@ -163,10 +210,10 @@ Sources for room numbers: UTM's Spiritual & Faith Spaces page, the MSA prayer sp
 Search the code for `REPLACE_ME` to find each one.
 
 1. ~~Auction dinner Instagram post~~ Done in Update 2.
-2. **Auction dinner ticket link** (`events-data.js`): now points to the auction dinner post. Swap in a direct ticket link if there is one.
+2. **Per-event Instagram posts** for Game Night, Building Brotherhood, Sisters' Chai and Chill, Tote Bag Painting, FIFA, Hike and Picnic, and Soccer: add `post: "..."` in `events-data.js`, or column G in the sheet. Until then those pop-ups show the Week at a Glance poster. (Sign-up links done in Update 4.)
 3. ~~Past event dates~~ Done in Update 2. Optional: add time and room for IHM Exhibit, Frosh Field Day and Back on Track.
-4. **Code of conduct text or link** (`about.html#code-of-conduct`).
-5. **Application and election dates** (`about.html`, "Join the team" card).
+4. ~~Code of conduct~~ Done in Update 4.
+5. ~~Application and election dates~~ The "Join the team" card was removed in Update 3. Bring it back when dates are set.
 6. **Charity Week fundraising total, goal, donation link** (`about.html#impact`).
 7. **Multifaith room number** (`musalla.html`): UTMSU lists Student Centre Room 200; the older MSA guide lists 290. The page says "upstairs above the Duck Stop" until confirmed.
 8. **Jumu'ah on campus** (`musalla.html`): room, khutbah time(s), khateeb for this term.
@@ -175,7 +222,8 @@ Search the code for `REPLACE_ME` to find each one.
     - Sisters' Tote Bag Painting: poster 3 to 6 PM, UTMSU Meeting Room; exec notes 4 to 7 PM, SC Meeting Room.
     - Brothers' FIFA Tournament: poster DV 3140; exec notes "UTM Room".
 11. **Footer donate link:** relabelled "Donate to the UTM MSA". Confirm the Zeffy form isn't still tied to the ILF campaign.
-12. **ISNA Cares:** if there's a direct referral contact or booking link for UTM students, add it to the card.
+12. ~~ISNA Cares link~~ Done in Update 4.
+13. **Jumu'ah on the Musalla page:** the events sheet has "Jummah Prayer, Fridays 1:00 to 3:00 PM, Speigel Hall" (check the spelling of the room). The Musalla page still says details are coming. Confirm and it can go there too.
 
 ---
 

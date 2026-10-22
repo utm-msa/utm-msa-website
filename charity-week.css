@@ -118,6 +118,8 @@
 }
 .cw-highlight .section-label { color: var(--cw-orange); }
 .cw-highlight .btn-text { color: var(--cw-orange); }
+.cw-highlight-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 22px; margin-top: 18px; }
+.cw-highlight .btn-primary { background: var(--cw-orange); border-color: var(--cw-orange); color: var(--cw-deep); }
 .cw-highlight-when { color: var(--cw-foam) !important; }
 .cw-highlight-when strong { color: var(--cw-orange); }
 

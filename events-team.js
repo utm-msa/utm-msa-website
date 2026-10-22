@@ -42,6 +42,7 @@ function renderTeamGrid() {
 // ---------- Event rows (Events page) ----------
 function eventDateLabel(ev) {
   const d = ev._d;
+  if (ev.recurring) return ev.recurring;
   if (!ev.date) return "Earlier this fall";
   return isNaN(d) ? ev.date : d.toLocaleDateString("en-CA", { weekday: "short", month: "short", day: "numeric" });
 }
@@ -62,25 +63,68 @@ function eventRowHTML(ev, isPast, idx) {
 
 let EVENT_CACHE = [];
 
+const NEW_TAB = '<span class="sr-only"> (opens in a new tab)</span>';
+const IG_PROFILE = typeof INSTAGRAM_PROFILE !== "undefined" ? INSTAGRAM_PROFILE : "https://www.instagram.com/utmmsa/";
+
+// The picture side of the pop-up: the event's Instagram post if it has one (with the poster as a
+// fallback while it loads or if Instagram is blocked), otherwise the poster, otherwise nothing.
+function eventMediaHTML(ev) {
+  const poster = ev.image
+    ? `<img class="event-poster" src="${escapeHTML(ev.image)}" alt="${escapeHTML(ev.imageAlt || ev.title + " poster")}" loading="lazy">`
+    : "";
+  if (ev.post) {
+    return `
+      <blockquote class="instagram-media" data-instgrm-permalink="${escapeHTML(ev.post)}" data-instgrm-version="14">
+        ${poster}
+        <a class="embed-fallback" href="${escapeHTML(ev.post)}" target="_blank" rel="noopener">View this post on Instagram${NEW_TAB}</a>
+      </blockquote>`;
+  }
+  return poster;
+}
+
+// Buttons: registration link first if there is one; otherwise straight to the Instagram post
+// (or the Charity Week post, or @utmmsa).
+function eventActionsHTML(ev, isPast) {
+  const igLink = ev.post || (ev.campaign === "charity-week" && typeof CHARITY_WEEK !== "undefined" && CHARITY_WEEK.post) || IG_PROFILE;
+  const igLabel = ev.post
+    ? (isPast ? "Watch the recap on Instagram" : "See the post on Instagram")
+    : (igLink === IG_PROFILE ? "Follow @utmmsa on Instagram" : "See the Charity Week post on Instagram");
+  if (ev.register && !isPast) {
+    return `
+      <a class="btn-primary" href="${escapeHTML(ev.register)}" target="_blank" rel="noopener">${escapeHTML(ev.registerLabel || "Register")}${ev.title ? `<span class="sr-only"> for ${escapeHTML(ev.title)}</span>` : ""}${NEW_TAB}</a>
+      <a class="btn-text" href="${escapeHTML(igLink)}" target="_blank" rel="noopener">${igLabel}${NEW_TAB}</a>`;
+  }
+  return `<a class="btn-primary" href="${escapeHTML(igLink)}" target="_blank" rel="noopener">${igLabel}${NEW_TAB}</a>`;
+}
+
 function wireEventDialogs() {
   document.querySelectorAll(".event-open").forEach((btn) => {
     btn.addEventListener("click", () => {
       const ev = EVENT_CACHE[Number(btn.dataset.idx)];
       if (!ev) return;
       const row = btn.closest(".event-row");
-      const date = row.querySelector(".event-date-badge").textContent.replace("Past event, ", "");
+      const isPast = row.classList.contains("is-past");
+      const dateText = ev.recurring
+        ? `${ev.recurring} · next: ${ev._d.toLocaleDateString("en-CA", { weekday: "short", month: "short", day: "numeric" })}`
+        : eventDateLabel(ev);
       const meta = [ev.time, ev.location].filter(Boolean).map(escapeHTML).join(", ");
+      const media = eventMediaHTML(ev);
       zoomOpen(row, `
         <button type="button" class="zoom-close dialog-close">Close<span class="sr-only"> event details</span></button>
-        <div class="zoom-detail${ev.campaign === "charity-week" ? " is-cw" : ""}">
-          <p class="event-date-badge" style="margin:0">${escapeHTML(date)}</p>
-          <h2 id="zoomTitle">${escapeHTML(ev.title)}</h2>
-          ${meta ? `<p class="event-meta">${meta}</p>` : ""}
-          ${ev.partners ? `<p class="event-meta"><strong>With:</strong> ${escapeHTML(ev.partners)}</p>` : ""}
-          ${ev.details ? `<p>${escapeHTML(ev.details)}</p>` : ""}
-          ${ev.tag ? `<span class="event-tag">${escapeHTML(ev.tag)}</span>` : ""}
-          ${ev.link ? `<p><a class="btn-primary" href="${escapeHTML(ev.link)}" target="_blank" rel="noopener">${escapeHTML(ev.linkLabel || "More details")}<span class="sr-only"> (opens in a new tab)</span></a></p>` : ""}
-        </div>`, "zoomTitle");
+        <div class="zoom-detail event-detail${media ? " has-media" : ""}${ev.campaign === "charity-week" ? " is-cw" : ""}">
+          <div class="event-detail-body">
+            <p class="event-date-badge" style="margin:0">${isPast ? "Past event · " : ""}${escapeHTML(dateText)}</p>
+            <h2 id="zoomTitle">${escapeHTML(ev.title)}</h2>
+            ${meta ? `<p class="event-meta">${meta}</p>` : ""}
+            ${ev.partners ? `<p class="event-meta"><strong>With:</strong> ${escapeHTML(ev.partners)}</p>` : ""}
+            ${ev.details ? `<p class="event-details-text">${escapeHTML(ev.details)}</p>` : ""}
+            ${ev.tag ? `<span class="event-tag">${escapeHTML(ev.tag)}</span>` : ""}
+            <div class="event-actions">${eventActionsHTML(ev, isPast)}</div>
+          </div>
+          ${media ? `<div class="event-detail-media">${media}</div>` : ""}
+        </div>`, "zoomTitle", { wide: !!media });
+      // Turn the Instagram blockquote into the real post (embed.js is loaded on this page)
+      if (ev.post && window.instgrm && window.instgrm.Embeds) window.instgrm.Embeds.process();
     });
   });
 }

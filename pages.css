@@ -151,7 +151,8 @@
 }
 .coc-card p { margin: 0 0 12px; color: var(--text-body); line-height: 1.7; }
 .coc-card p:last-child { margin-bottom: 0; }
-.coc-card a { color: var(--gold-light); }
+.coc-card a:not(.btn-primary) { color: var(--gold-light); }
+.coc-card .btn-primary { margin-bottom: 6px; }
 
 /* ---------- Impact / charity (About) ---------- */
 
@@ -390,6 +391,64 @@
 .zoom-clone .zoom-detail { padding: 30px 28px; }
 .zoom-clone .zoom-detail h2 { font-size: 1.625rem; margin: 14px 0 10px; }
 .zoom-clone .zoom-detail .event-meta { font-size: 1.0625rem; margin-bottom: 14px; }
+
+/* Event pop-up with a post or poster: details on the left, the post on the right.
+   Stacks on narrow screens (details first, so the essentials come before the picture). */
+.event-detail.has-media {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 400px);
+  gap: 28px;
+  align-items: start;
+}
+.event-detail-body { padding-top: 6px; }
+.event-details-text { font-size: 1.0625rem; line-height: 1.65; }
+.event-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+  margin-top: 22px;
+}
+.event-detail-media { padding-top: 48px; }
+.event-detail-media .instagram-media,
+.event-detail-media iframe {
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 400px !important;
+  margin: 0 !important;
+  border-radius: var(--radius-sm) !important;
+}
+.event-detail-media blockquote.instagram-media { padding: 0; border: 0; background: none; }
+.event-poster {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-control);
+}
+/* Shows while the post loads, or if Instagram is blocked: a clear link, not a blank space */
+.event-detail-media .embed-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  margin-top: 12px;
+  padding: 14px 18px;
+  border: 1.5px dashed var(--border-control);
+  border-radius: var(--radius-sm);
+  color: var(--gold-light);
+  font-weight: 700;
+  text-align: center;
+}
+.event-detail-media .embed-fallback:hover { border-color: var(--gold-light); }
+.event-detail-media blockquote.instagram-media:not(:has(img)) .embed-fallback { min-height: 200px; margin-top: 0; }
+
+@media (max-width: 760px) {
+  .event-detail.has-media { grid-template-columns: 1fr; gap: 20px; }
+  .zoom-clone .zoom-detail { padding: 24px 16px; }
+  .event-detail-media { padding-top: 0; }
+  .event-detail-body { padding-top: 40px; }
+}
 
 .zoom-close {
   position: absolute;

@@ -229,10 +229,15 @@ function parseEventsCSV(text) {
   return parseCSV(text.trim())
     .slice(1)
     .filter((c) => c.length >= 2 && (c[0] || "").trim() !== "")
-    .map(([date, title, time, location, tag]) => ({
-      date: (date || "").trim(), title: (title || "").trim(), time: (time || "").trim(),
-      location: (location || "").trim(), tag: (tag || "").trim(),
-    }));
+    .map(([date, title, time, location, tag, register, post, details]) => {
+      // Optional columns F (registration link), G (Instagram post), H (details). Links must be https.
+      const url = (v) => (/^https:\/\//i.test((v || "").trim()) ? v.trim() : "");
+      return {
+        date: (date || "").trim(), title: (title || "").trim(), time: (time || "").trim(),
+        location: (location || "").trim(), tag: (tag || "").trim(),
+        register: url(register), post: url(post), details: (details || "").trim(),
+      };
+    });
 }
 
 function renderWeekGrid(events) {
@@ -254,7 +259,7 @@ function renderWeekGrid(events) {
   }
   grid.innerHTML = upcoming.slice(0, 4).map((ev) => `
       <li class="week-card">
-        <p class="ev-date"><time datetime="${escapeHTML(ev.date)}">${ev._d.toLocaleDateString("en-CA", { weekday: "short", month: "short", day: "numeric" })}</time></p>
+        <p class="ev-date"><time datetime="${escapeHTML(ev.date)}">${ev._d.toLocaleDateString("en-CA", { weekday: "short", month: "short", day: "numeric" })}</time>${ev.recurring ? ` · ${escapeHTML(ev.recurring)}` : ""}</p>
         <h3 class="ev-title">${escapeHTML(ev.title)}</h3>
         <p class="ev-meta">${[ev.time, ev.location].filter(Boolean).map(escapeHTML).join(", ")}</p>
       </li>`).join("");
@@ -345,7 +350,8 @@ function initScrollReveal() {
 // ---------- 6. Zoom-open dialog ----------
 // Opens a detail view that grows out of the thing you clicked. It is a real modal dialog:
 // focus moves into it, Tab stays inside it, Escape closes it, and focus returns to where you were.
-function zoomOpen(triggerEl, contentHTML, labelId) {
+// opts.wide: a bigger dialog (used by event pop-ups that show an Instagram post or poster)
+function zoomOpen(triggerEl, contentHTML, labelId, opts = {}) {
   if (!triggerEl) return;
   const returnTo = document.activeElement;
   const rect = triggerEl.getBoundingClientRect();
@@ -368,8 +374,8 @@ function zoomOpen(triggerEl, contentHTML, labelId) {
   const siblings = [...document.body.children].filter((el) => el !== backdrop && el !== dialog && !el.hasAttribute("inert"));
   siblings.forEach((el) => el.setAttribute("inert", ""));
 
-  const targetW = Math.min(window.innerWidth - 32, 720);
-  const targetH = Math.min(window.innerHeight - 64, 560);
+  const targetW = Math.min(window.innerWidth - 32, opts.wide ? 980 : 720);
+  const targetH = Math.min(window.innerHeight - (opts.wide ? 48 : 64), opts.wide ? 860 : 560);
   const open = () => {
     backdrop.classList.add("is-visible");
     place({ top: (window.innerHeight - targetH) / 2, left: (window.innerWidth - targetW) / 2, width: targetW, height: targetH });
@@ -391,7 +397,7 @@ function zoomOpen(triggerEl, contentHTML, labelId) {
   function onKey(e) {
     if (e.key === "Escape") { e.preventDefault(); close(); return; }
     if (e.key === "Tab") {
-      const f = [...dialog.querySelectorAll('button, a[href], [tabindex]:not([tabindex="-1"])')];
+      const f = [...dialog.querySelectorAll('button, a[href], iframe, [tabindex]:not([tabindex="-1"])')];
       if (!f.length) return;
       if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
       else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
