@@ -192,7 +192,7 @@ img, svg { max-width: 100%; }
 }
 
 /* A short plain-language description under each nav label, so names like
-   "Sagas" and "The Musalla" explain themselves (reviewer: labels must be specific) */
+   "Events" and "The Musalla" explain themselves (reviewer: labels must be specific) */
 .nav-desc {
   white-space: nowrap;
   font-size: var(--fs-xs);

@@ -19,6 +19,7 @@ l.href='https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Literata:ital,opsz,wght@0,7..72,500..700;1,7..72,500&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="resources.css">
+<link rel="stylesheet" href="charity-week.css">
 <link rel="stylesheet" href="a11y.css">
 </head>
 <body>
@@ -38,7 +39,7 @@ l.href='https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;
       <nav class="main-nav" aria-label="Main">
         <ul>
           <li><a href="about.html"><span class="nav-title">About</span><span class="nav-desc">Who we are</span></a></li>
-          <li><a href="events.html"><span class="nav-title">Sagas</span><span class="nav-desc">Events &amp; lectures</span></a></li>
+          <li><a href="events.html"><span class="nav-title">Events</span><span class="nav-desc">What's on &amp; lectures</span></a></li>
           <li><a href="resources.html"><span class="nav-title">Resources</span><span class="nav-desc">Support &amp; services</span></a></li>
           <li><a href="musalla.html"><span class="nav-title">The Musalla</span><span class="nav-desc">Prayer times &amp; masjids</span></a></li>
         </ul>
@@ -47,7 +48,7 @@ l.href='https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;
         <button class="prefs-toggle" type="button" aria-expanded="false" aria-controls="prefsPanel">
           <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></svg><span>Display settings</span>
         </button>
-        <a class="nav-cta" href="https://forms.gle/BKkKjAEeX6UAhfDM7" target="_blank" rel="noopener"><svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="10" cy="8" r="3.5"/><path d="M3.5 20v-1.2A3.8 3.8 0 0 1 7.3 15h5.4a3.8 3.8 0 0 1 3.8 3.8V20"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M20.5 20v-1.2a3.8 3.8 0 0 0-2.6-3.6"/></svg><span>Become a General Member</span><span class="sr-only"> (opens in a new tab)</span></a>
+        <a class="nav-cta" href="about.html#getting-involved" aria-label="Getting involved with the MSA"><svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="10" cy="8" r="3.5"/><path d="M3.5 20v-1.2A3.8 3.8 0 0 1 7.3 15h5.4a3.8 3.8 0 0 1 3.8 3.8V20"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M20.5 20v-1.2a3.8 3.8 0 0 0-2.6-3.6"/></svg><span>Getting involved</span></a>
       </div>
     </div>
   </div>
@@ -101,8 +102,8 @@ l.href='https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;
     <h1 id="heroTitle">One home, open to all of UTM.</h1>
     <p>A gathering place for every Muslim on campus, and an open door for anyone curious to know us. Prayer times, events, and the real people behind them, always current, always one click away.</p>
     <div class="hero-actions">
-      <a class="btn-primary" href="events.html">See this week's events</a>
-      <a class="btn-text" href="about.html">Meet the cabinet</a>
+      <a class="btn-primary" href="events.html">See what's on this week</a>
+      <a class="btn-text" href="about.html#getting-involved">Get involved with the MSA</a>
     </div>
   </div>
   <div class="scroll-cue-group">
@@ -129,6 +130,21 @@ l.href='https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;
   </div>
 </section>
 
+<!-- Charity Week at a glance. Shown automatically during the window in events-data.js (CHARITY_WEEK);
+     while it shows, "This week" below is hidden. After Charity Week it hides itself and "This week" returns. -->
+<section class="section cw-glance" data-reveal id="cwGlance" aria-labelledby="cwGlanceHeading" hidden>
+  <div class="section-head-row">
+    <div>
+      <p class="cw-eyebrow">Charity Week 2026 · Waves of Unity</p>
+      <h2 id="cwGlanceHeading">Charity Week at a glance</h2>
+    </div>
+    <a href="events.html#upcoming" class="see-all">Full Charity Week schedule</a>
+  </div>
+  <ol class="cw-days" id="cwGlanceList" aria-busy="true">
+    <li class="cw-day"><p class="cw-day-label">Loading the schedule…</p></li>
+  </ol>
+</section>
+
 <section class="section" data-reveal id="thisWeek" aria-labelledby="weekHeading">
   <div class="section-head-row">
     <h2 id="weekHeading" class="with-icon"><svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>This week</h2>
@@ -139,20 +155,21 @@ l.href='https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;
   </ul>
 </section>
 
-<section class="highlight-section" data-reveal aria-labelledby="highlightHeading">
+<section class="highlight-section cw-highlight" data-reveal aria-labelledby="highlightHeading">
   <div class="highlight-inner">
     <div class="highlight-text">
-      <p class="section-label">Coming up</p>
-      <h2 id="highlightHeading">Monday: Orientation</h2>
-      <p>Kicking off the year. Come meet the cabinet, find out what MSA runs this semester, and grab some food. Full details are in our Instagram post.</p>
-      <a class="btn-text" href="https://www.instagram.com/p/DczQndhD08V/" target="_blank" rel="noopener">View the orientation post on Instagram<span class="sr-only"> (opens in a new tab)</span></a>
+      <p class="section-label">Charity Week's main event</p>
+      <h2 id="highlightHeading">Sunday: Charity Week Auction Dinner</h2>
+      <p class="cw-highlight-when"><strong>Sunday, October 25, 4:30 to 9 PM</strong><br>ISNA Canada Islamic Centre (gym), 2200 S Sheridan Way</p>
+      <p>Dinner, a live auction, and a room full of people giving for orphans and vulnerable children. Ticket details are in our Instagram post.</p>
+      <a class="btn-text" href="https://www.instagram.com/p/DekzhyTGxnj/" target="_blank" rel="noopener">View the auction dinner post on Instagram<span class="sr-only"> (opens in a new tab)</span></a>
     </div>
     <div class="highlight-embed">
       <a class="embed-skip" href="#resourcesPreview">Skip past the Instagram post</a>
-      <div class="embed-frame" role="region" aria-label="Instagram post: Monday Orientation">
+      <div class="embed-frame" role="region" aria-label="Instagram post: Charity Week Auction Dinner">
         <div class="embed-inner">
-          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DczQndhD08V/" data-instgrm-version="14" style="margin:0;">
-            <a class="embed-fallback" href="https://www.instagram.com/p/DczQndhD08V/" target="_blank" rel="noopener">View the Monday Orientation post on Instagram<span class="sr-only"> (opens in a new tab)</span></a>
+          <blockquote class="instagram-media cw-embed-fallback" data-instgrm-permalink="https://www.instagram.com/p/DekzhyTGxnj/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style="margin:0;">
+            <a class="embed-fallback" href="https://www.instagram.com/p/DekzhyTGxnj/" target="_blank" rel="noopener">View the Charity Week Auction Dinner post on Instagram<span class="sr-only"> (opens in a new tab)</span></a>
           </blockquote>
         </div>
       </div>
@@ -214,7 +231,7 @@ l.href='https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;
       <ul class="footer-list">
           <li><a href="index.html">Home<span class="sr-only">: Start here</span></a></li>
           <li><a href="about.html">About<span class="sr-only">: Who we are</span></a></li>
-          <li><a href="events.html">Sagas<span class="sr-only">: Events &amp; lectures</span></a></li>
+          <li><a href="events.html">Events<span class="sr-only">: What's on &amp; lectures</span></a></li>
           <li><a href="resources.html">Resources<span class="sr-only">: Support &amp; services</span></a></li>
           <li><a href="musalla.html">The Musalla<span class="sr-only">: Prayer times &amp; masjids</span></a></li>
           <li><a href="accessibility.html">Accessibility</a></li>
@@ -222,10 +239,11 @@ l.href='https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;
     </nav>
 
     <div>
-      <h2 class="footer-heading">Get involved</h2>
+      <h2 class="footer-heading">Getting involved</h2>
       <ul class="footer-list">
+        <li><a href="about.html#getting-involved">Ways to get involved<span class="sr-only"> with the MSA</span></a></li>
         <li><a href="https://forms.gle/BKkKjAEeX6UAhfDM7" target="_blank" rel="noopener">Become a General Member<span class="sr-only"> (opens in a new tab)</span></a></li>
-        <li><a href="https://www.zeffy.com/en-CA/donation-form/utm-msa-donation" target="_blank" rel="noopener">Donate to our current campaign<span class="sr-only"> (opens in a new tab)</span></a></li>
+        <li><a href="https://www.zeffy.com/en-CA/donation-form/utm-msa-donation" target="_blank" rel="noopener">Donate to the UTM MSA<span class="sr-only"> (opens in a new tab)</span></a></li>
       </ul>
     </div>
 
@@ -245,6 +263,7 @@ l.href='https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;
   </div>
 </footer>
 
+<script src="events-data.js"></script>
 <script src="script.js"></script>
 <script async src="https://www.instagram.com/embed.js"></script>
 </body>

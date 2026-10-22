@@ -2,8 +2,9 @@
    UTM MSA — site behaviour (loaded on every page)
    1. Mobile menu
    2. Display settings panel (text size, contrast, font, spacing, motion)
-   3. Accessible tabs (Sagas + Resources) with #hash links
-   4. "This week" events from the Google Sheet
+   3. Accessible tabs (Events + Resources) with #hash links
+   4. "This week" events from the Google Sheet + events-data.js
+      (4b. Charity Week at a glance, homepage)
    5. Scroll reveal
    6. Accessible zoom-open dialog (event details)
    7. Homepage prayer gateway
@@ -244,7 +245,7 @@ function renderWeekGrid(events) {
   const weekOut = new Date(today); weekOut.setDate(weekOut.getDate() + 7);
   const upcoming = events
     .map((e) => ({ ...e, _d: new Date(e.date.length === 10 ? e.date + "T00:00" : e.date) }))
-    .filter((e) => !isNaN(e._d) && e._d >= today && e._d <= weekOut)
+    .filter((e) => e.date && !isNaN(e._d) && e._d >= today && e._d <= weekOut)
     .sort((a, b) => a._d - b._d);
 
   if (!upcoming.length) {
@@ -259,18 +260,68 @@ function renderWeekGrid(events) {
       </li>`).join("");
 }
 
+// ---------- 4b. Charity Week at a glance (homepage) ----------
+// One compact row per day. Shown only while charityWeekActive() is true (see events-data.js);
+// otherwise the normal "This week" grid shows instead. Past days are marked "Done" in text,
+// today is marked "Today" in text, so nothing relies on colour alone.
+function renderCharityGlance(events) {
+  const section = document.getElementById("cwGlance");
+  const list = document.getElementById("cwGlanceList");
+  const weekSection = document.getElementById("thisWeek");
+  if (!section || !list || typeof charityWeekActive !== "function" || !charityWeekActive()) {
+    if (section) section.hidden = true;
+    return false;
+  }
+  section.hidden = false;
+  if (weekSection) weekSection.hidden = true;
+
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  const cw = events
+    .filter((e) => e.campaign === "charity-week" && e.date)
+    .map((e) => ({ ...e, _d: new Date(e.date + "T00:00") }))
+    .sort((a, b) => a._d - b._d);
+
+  const days = [];
+  cw.forEach((e) => {
+    const last = days[days.length - 1];
+    if (last && last.date === e.date) last.items.push(e);
+    else days.push({ date: e.date, d: e._d, items: [e] });
+  });
+
+  list.innerHTML = days.map((day) => {
+    const state = day.d < today ? "done" : day.d.getTime() === today.getTime() ? "today" : "next";
+    const label = day.d.toLocaleDateString("en-CA", { weekday: "long", month: "short", day: "numeric" });
+    const status = state === "done" ? '<span class="cw-day-status">Done</span>' : state === "today" ? '<span class="cw-day-status is-today">Today</span>' : "";
+    return `
+      <li class="cw-day is-${state}">
+        <p class="cw-day-label"><time datetime="${escapeHTML(day.date)}">${escapeHTML(label)}</time>${status}</p>
+        <ul class="cw-day-events">
+          ${day.items.map((e) => `
+            <li${e.featured ? ' class="is-featured"' : ""}>
+              <span class="cw-ev-title">${escapeHTML(e.title)}</span>
+              <span class="cw-ev-meta">${[e.time, e.location].filter(Boolean).map(escapeHTML).join(", ")}</span>
+            </li>`).join("")}
+        </ul>
+      </li>`;
+  }).join("");
+  list.setAttribute("aria-busy", "false");
+  return true;
+}
+
 async function loadEvents() {
-  if (!document.getElementById("weekGrid")) return;
+  if (!document.getElementById("weekGrid") && !document.getElementById("cwGlance")) return;
+  let sheet = [];
   try {
     const res = await fetch(EVENTS_CSV_URL);
     if (!res.ok) throw new Error(`Sheet fetch failed: ${res.status}`);
-    renderWeekGrid(parseEventsCSV(await res.text()));
+    sheet = parseEventsCSV(await res.text());
   } catch (err) {
     console.error("[events] could not load sheet:", err);
-    const grid = document.getElementById("weekGrid");
-    grid.setAttribute("aria-busy", "false");
-    grid.innerHTML = '<li class="week-empty">Events couldn\'t load right now. Try refreshing, or see our <a href="https://www.instagram.com/utmmsa/">Instagram</a> for this week\'s schedule.</li>';
+    // Hand-entered events (events-data.js) still show below even when the sheet is down
   }
+  const events = typeof mergeEvents === "function" ? mergeEvents(sheet) : sheet;
+  renderCharityGlance(events);
+  renderWeekGrid(events);
 }
 
 // ---------- 5. Scroll reveal ----------
@@ -417,6 +468,8 @@ function initEmbedTitles() {
 
 // ---------- Boot ----------
 applyPrefs(loadPrefs());
+// Charity Week colours (charity-week.css) switch on automatically during the window set in events-data.js
+if (typeof charityWeekActive === "function" && charityWeekActive()) document.documentElement.classList.add("cw-active");
 document.addEventListener("DOMContentLoaded", () => {
   initMobileMenu();
   initDisplaySettings();

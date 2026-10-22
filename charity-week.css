@@ -1,0 +1,304 @@
+/* ============================================================
+   UTM MSA — Charity Week 2026 ("Waves of Unity") styles
+   Added Oct 22, 2026. Loaded on index.html and events.html only,
+   after resources.css and before a11y.css (so Display settings
+   like High contrast still win).
+
+   Palette sampled from the Marketing team's Charity Week poster:
+   deep ocean blue, wave blue, sea-foam, and the poster's orange.
+   Contrast (checked against --cw-deep #1d3552):
+     --cw-foam   #e3ecee  10.4:1   body text
+     --cw-orange #f0a050   5.9:1   accents, dates, labels (5.0:1 on the lighter #22405f)
+   The lighter --cw-wave blue is only used for borders and decoration, never behind text.
+   To retire after Charity Week: nothing to do. The homepage block and
+   the Events page colours switch off on their own the day after
+   CHARITY_WEEK.end in events-data.js. Delete this file and its two
+   <link> tags whenever you like.
+   ============================================================ */
+
+:root {
+  --cw-deep: #1d3552;
+  --cw-sea: #284866;
+  --cw-wave: #3c647f;
+  --cw-foam: #e3ecee;
+  --cw-foam-soft: #c4d3d8;
+  --cw-orange: #f0a050;
+  --cw-orange-strong: #e8913a;
+  /* Two thin wave lines, used as a decorative edge */
+  --cw-wave-edge: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 14'%3E%3Cpath d='M0 7 C 15 0, 30 0, 45 7 S 75 14, 90 7 S 120 0, 120 7' fill='none' stroke='%23c4d3d8' stroke-opacity='.35' stroke-width='1.5'/%3E%3C/svg%3E");
+}
+
+.cw-eyebrow {
+  margin: 0 0 6px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.125rem;
+  color: var(--cw-orange);
+}
+
+/* ---------- Homepage: Charity Week at a glance ---------- */
+
+.cw-glance {
+  background:
+    var(--cw-wave-edge) repeat-x left bottom / 120px 14px,
+    linear-gradient(160deg, #22405f 0%, var(--cw-deep) 70%);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--cw-wave);
+  max-width: var(--max-width);
+  width: calc(100% - 32px);
+  margin: 48px auto;
+  padding: 40px 24px 48px;
+}
+.cw-glance[hidden] { display: none; }
+.cw-glance h2 { color: var(--cw-foam); }
+.cw-glance .see-all { color: var(--cw-orange); }
+
+.cw-days {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+
+.cw-day {
+  background: rgba(13, 21, 38, 0.45);
+  border: 1.5px solid var(--cw-wave);
+  border-radius: var(--radius-sm);
+  padding: 16px 16px 14px;
+}
+
+.cw-day-label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+  margin: 0 0 10px;
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  color: var(--cw-orange);
+}
+
+.cw-day-status {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  padding: 1px 9px;
+  border-radius: 999px;
+  border: 1.5px solid var(--cw-foam-soft);
+  color: var(--cw-foam-soft);
+}
+.cw-day-status.is-today {
+  background: var(--cw-orange);
+  border-color: var(--cw-orange);
+  color: var(--cw-deep);
+}
+
+.cw-day-events { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.cw-day-events li { display: grid; gap: 2px; }
+.cw-ev-title { font-weight: 700; font-size: 1rem; line-height: 1.35; color: var(--cw-foam); }
+.cw-ev-meta { font-size: var(--fs-sm); line-height: 1.45; color: var(--cw-foam-soft); }
+.cw-day-events li.is-featured .cw-ev-title::before { content: "★ "; color: var(--cw-orange); }
+
+/* Today stands out by border weight + the "Today" pill, not colour alone */
+.cw-day.is-today { border: 3px solid var(--cw-orange); background: rgba(13, 21, 38, 0.7); }
+/* Finished days step back, but every text colour still passes AA */
+.cw-day.is-done { background: transparent; border-style: dashed; }
+.cw-day.is-done .cw-day-label { color: var(--cw-foam-soft); }
+
+@media (max-width: 1000px) { .cw-days { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 640px)  { .cw-days { grid-template-columns: 1fr; } }
+
+/* ---------- Homepage: auction dinner highlight ---------- */
+
+.cw-highlight {
+  background: linear-gradient(200deg, #22405f 0%, var(--navy) 75%);
+  border-top-color: var(--cw-wave);
+  border-bottom-color: var(--cw-wave);
+}
+.cw-highlight .section-label { color: var(--cw-orange); }
+.cw-highlight .btn-text { color: var(--cw-orange); }
+.cw-highlight-when { color: var(--cw-foam) !important; }
+.cw-highlight-when strong { color: var(--cw-orange); }
+
+/* ---------- Events page during Charity Week ---------- */
+/* html.cw-active is added by script.js only inside the Charity Week window.
+   body.page-events keeps the recolour to the Events page. */
+
+html.cw-active body.page-events {
+  --gold: var(--cw-orange-strong);
+  --gold-light: var(--cw-orange);
+  --focus-ring: var(--cw-orange);
+  --panel-navy: #172b45;
+  background:
+    radial-gradient(1200px 500px at 85% -10%, rgba(60, 100, 127, 0.45), transparent 70%),
+    var(--navy);
+}
+
+.cw-banner {
+  margin: 28px 0 8px;
+}
+.cw-banner[hidden] { display: none; }
+.cw-banner-inner {
+  position: relative;
+  overflow: hidden;
+  padding: 36px 32px 56px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--cw-wave);
+  background:
+    var(--cw-wave-edge) repeat-x left bottom 10px / 120px 14px,
+    linear-gradient(160deg, #22405f 0%, var(--cw-deep) 55%, #172b45 100%);
+}
+.cw-banner h2 {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--cw-orange);
+  margin: 0 0 8px;
+}
+.cw-banner .cw-eyebrow { font-style: normal; font-family: var(--font-body); font-weight: 700; color: var(--cw-foam); }
+.cw-theme { margin: 0 0 10px; font-size: 1.125rem; color: var(--cw-foam); }
+.cw-theme strong { font-family: var(--font-display); color: var(--cw-foam); font-size: 1.25rem; }
+.cw-blurb { margin: 0; max-width: 40em; color: var(--cw-foam-soft); line-height: 1.65; }
+.cw-banner-link { margin: 14px 0 0; }
+.cw-banner-link a { color: var(--cw-orange); font-weight: 700; }
+
+/* Charity Week rows: orange edge + "Charity Week" tag (the tag carries the meaning in text) */
+.event-row.is-cw { border-left: 5px solid var(--cw-orange-strong); }
+.event-row.is-cw .event-tag { color: var(--cw-orange); border-color: var(--cw-orange-strong); }
+.zoom-detail.is-cw .event-date-badge { color: var(--cw-orange); }
+
+/* ---------- Events page: arrow intro (decorative, aria-hidden) ---------- */
+/* Cards are built by initCharityFlight() in events-team.js. Each card's
+   animation-delay is set so it pops up as the arrow passes it. */
+
+.cw-flight[hidden] { display: none; }
+.cw-flight {
+  padding: 28px 0 8px;
+  overflow: hidden;
+}
+.cw-flight-inner { position: relative; height: 250px; }
+
+.cw-arrow {
+  position: absolute;
+  top: 26px;
+  left: 0;
+  width: 72px;
+  height: 24px;
+  color: var(--cw-orange);
+  filter: drop-shadow(0 0 10px rgba(240, 160, 80, 0.75));
+  transform: translateY(-50%);
+  opacity: 0;
+}
+.cw-flight.is-flying .cw-arrow {
+  animation: cwFly var(--cw-flight-duration, 3.4s) cubic-bezier(0.3, 0.7, 0.4, 1) forwards;
+}
+@keyframes cwFly {
+  from { left: 0%; opacity: 1; }
+  92%  { opacity: 1; }
+  to   { left: calc(100% - 72px); opacity: 0.0; }
+}
+
+/* The flight starts when the strip scrolls into view (events-team.js adds .is-flying) */
+
+/* Glowing wake behind the arrow, grows at the same pace */
+.cw-arrow-trail {
+  position: absolute;
+  top: 25px;
+  left: 0;
+  width: calc(100% - 60px);
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent 0%, rgba(240, 160, 80, 0.15) 30%, rgba(240, 160, 80, 0.6) 100%);
+  transform-origin: left center;
+  transform: scaleX(0);
+}
+.cw-flight.is-flying .cw-arrow-trail {
+  animation: cwTrail var(--cw-flight-duration, 3.4s) cubic-bezier(0.3, 0.7, 0.4, 1) forwards;
+}
+@keyframes cwTrail {
+  to { transform: scaleX(1); background: linear-gradient(90deg, transparent, rgba(196, 211, 216, 0.35)); }
+}
+
+.cw-flight-card {
+  position: absolute;
+  left: var(--pos);
+  top: 58px;
+  width: min(178px, 18%);
+  padding: 14px 14px 12px;
+  background: var(--cw-deep);
+  border: 1.5px solid var(--cw-wave);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+  transform: translate(-50%, -14px) scale(0.6);
+  opacity: 0;
+}
+.cw-flight.is-flying .cw-flight-card {
+  animation: cwCardPop 0.55s cubic-bezier(0.2, 1.4, 0.4, 1) forwards;
+  animation-delay: var(--delay, 0s);
+}
+/* little tick connecting each card to the arrow's path */
+.cw-flight-card::before {
+  content: "";
+  position: absolute;
+  top: -33px;
+  left: 50%;
+  width: 1.5px;
+  height: 32px;
+  background: linear-gradient(var(--cw-orange), transparent);
+}
+@keyframes cwCardPop {
+  to { opacity: 1; transform: translate(-50%, 0) scale(1); }
+}
+
+.cw-flight-day {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 8px;
+  margin: 0 0 8px;
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  color: var(--cw-orange);
+}
+.cw-flight-pill {
+  font-size: var(--fs-xs);
+  padding: 0 8px;
+  border-radius: 999px;
+  background: var(--cw-orange);
+  color: var(--cw-deep);
+}
+.cw-flight-title {
+  margin: 0 0 4px;
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--cw-foam);
+}
+.cw-flight-card.is-today { border: 3px solid var(--cw-orange); }
+.cw-flight-card.is-today::before { width: 3px; }
+.cw-flight-card.is-done { background: #172b45; border-style: dashed; }
+.cw-flight-card.is-done .cw-flight-day { color: var(--cw-foam-soft); }
+
+/* Phones: the Charity Week list below covers it, and five cards don't fit */
+@media (max-width: 760px) { .cw-flight { display: none; } }
+
+/* Reduced motion (system setting or Display settings): no flight, just the cards in place */
+@media (prefers-reduced-motion: reduce) {
+  .cw-arrow, .cw-arrow-trail { display: none; }
+  .cw-flight-card { animation: none; opacity: 1; transform: translate(-50%, 0); }
+}
+html.pref-motion-reduced .cw-arrow,
+html.pref-motion-reduced .cw-arrow-trail { display: none; }
+html.pref-motion-reduced .cw-flight-card { animation: none !important; opacity: 1 !important; transform: translate(-50%, 0) !important; }
+
+/* ---------- Reduced motion / high contrast ---------- */
+html.pref-contrast-high .cw-glance,
+html.pref-contrast-high .cw-banner-inner,
+html.pref-contrast-high .cw-highlight { background: #070b16; border-color: #ffffff; }
+html.pref-contrast-high .cw-day,
+html.pref-contrast-high .cw-flight-card { background: #070b16; border-color: #ffffff; }
+html.pref-contrast-high .cw-ev-meta,
+html.pref-contrast-high .cw-blurb,
+html.pref-contrast-high .cw-flight-title { color: #ffffff; }

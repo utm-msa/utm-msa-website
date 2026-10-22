@@ -1,5 +1,5 @@
 /* ============================================================
-   UTM MSA — About, Sagas (events), and The Musalla page styles
+   UTM MSA — About, Events, and The Musalla page styles
    Loaded after styles.css; reuses its variables.
    ============================================================ */
 
@@ -16,7 +16,7 @@
   margin: 6px 0 14px;
 }
 
-/* Plain-language subtitle under names like "Sagas" */
+/* Plain-language subtitle under page names */
 .page-subtitle {
   display: block;
   font-family: var(--font-body);
@@ -101,150 +101,57 @@
   margin: 0;
 }
 
-/* ---------- Org chart (About) ---------- */
-/* Now a nested list: each executive's directors are a sub-list,
-   so screen readers hear who reports to whom (WCAG 1.3.1). */
+/* ---------- Getting involved (About) ---------- */
+/* Added Oct 22, 2026. Replaces the org chart and constitution excerpts. */
 
-.org-chart-visual {
-  border: 1.5px solid var(--border-control);
-  border-radius: var(--radius-md);
-  background: var(--panel-navy);
-  padding: 28px 24px 22px;
-}
-
-.org-tier-label {
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--gold-light);
-  text-align: center;
-  margin: 0 0 18px;
-}
-
-.org-columns {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-  gap: 14px;
-}
-
-.org-col {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.org-exec-box {
-  background: var(--navy-black);
-  border: 1.5px solid var(--gold);
-  border-radius: 8px;
-  padding: 12px 10px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  margin: 0;
-}
-.org-exec-box .org-role {
-  font-family: var(--font-display);
-  font-size: 1.0625rem;
-  font-weight: 600;
-  color: var(--text-strong);
-  line-height: 1.3;
-}
-.org-exec-box .org-person {
-  font-size: var(--fs-sm);
-  font-weight: 600;
-  color: var(--gold-light);
-  margin-top: 4px;
-}
-
-.org-dirs {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.org-dir-box {
-  background: #16213e;
-  border: 1.5px solid var(--border-control);
-  border-radius: 6px;
-  padding: 10px 8px;
-  text-align: center;
-  font-size: var(--fs-sm);
-  font-weight: 600;
-  color: var(--text-body);
-  line-height: 1.35;
-}
-.org-dir-box .org-person {
-  display: block;
-  font-weight: 600;
-  color: var(--gold-light);
-  margin-top: 3px;
-}
-
-/* Open positions: dashed border AND the words "Position open" — never style alone (WCAG 1.4.1) */
-.org-dir-box.org-open { border-style: dashed; }
-.org-open-tag {
-  display: block;
-  margin-top: 3px;
-  font-size: var(--fs-xs);
-  font-weight: 600;
-  font-style: italic;
-  color: var(--text-muted-dark);
-}
-
-.org-footer-tiers {
-  list-style: none;
-  margin: 22px 0 0;
-  padding: 16px 0 0;
-  border-top: 1px solid var(--border-dark);
-  display: flex;
-  justify-content: center;
-  gap: 12px 36px;
-  flex-wrap: wrap;
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--text-soft);
-}
-.org-footer-tiers em { font-style: normal; font-weight: 500; color: var(--text-muted-dark); margin-left: 4px; }
-
-/* ---------- Constitution excerpts (About) ---------- */
-
-.constitution-grid {
+.involve-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
+  gap: 18px;
+  list-style: none;
+  margin: 0 0 48px;
+  padding: 0;
 }
 
-.constitution-card {
+.involve-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 26px 24px;
+  background: var(--panel-navy);
+  border: 1.5px solid var(--border-dark-2);
+  border-radius: var(--radius-md);
+}
+.involve-card h3 { font-size: var(--fs-h3); margin: 0; }
+.involve-card p { margin: 0; color: var(--text-body); line-height: 1.65; flex: 1; }
+
+.subsection-title { font-size: 1.375rem; margin: 0 0 22px; }
+
+.dept-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+.dept-list li { background: var(--panel-navy); border: 1px solid var(--border-dark-2); border-radius: var(--radius-sm); padding: 18px 20px; }
+.dept-list strong { display: block; color: var(--gold-light); font-weight: 700; margin-bottom: 4px; }
+.dept-list span { color: var(--text-soft); font-size: 1rem; }
+
+/* ---------- Code of conduct (About) ---------- */
+
+.coc-card {
+  max-width: 44em;
+  padding: 24px 26px;
   background: var(--panel-navy);
   border-left: 3px solid var(--gold);
-  padding: 22px 24px;
-  margin: 0;
+  border-radius: var(--radius-sm);
 }
-
-.constitution-card p {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 500;
-  font-size: 1.125rem;
-  line-height: 1.7;
-  color: var(--text-strong);
-  margin: 0 0 14px;
-}
-
-.constitution-card cite {
-  font-size: var(--fs-sm);
-  font-weight: 700;
-  color: var(--gold-light);
-  font-style: normal;
-}
+.coc-card p { margin: 0 0 12px; color: var(--text-body); line-height: 1.7; }
+.coc-card p:last-child { margin-bottom: 0; }
+.coc-card a { color: var(--gold-light); }
 
 /* ---------- Impact / charity (About) ---------- */
 
@@ -325,102 +232,24 @@
   .charity-card-media { border-right: none; border-bottom: 1px dashed var(--border-control); }
 }
 
-/* ---------- Sagas: arrow-flight intro (decorative; hidden from screen readers) ---------- */
-
-.sagas-flight {
-  position: relative;
-  padding: 44px 0 20px;
-  border-bottom: 1px solid var(--border-dark);
-  overflow: hidden;
-}
-
-.sagas-flight-inner { position: relative; height: 200px; }
-
-.sagas-arrow {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 60px;
-  height: 20px;
-  color: var(--gold-light);
-  transform: translateY(-50%);
-  filter: drop-shadow(0 0 8px rgba(232, 196, 104, 0.7));
-  animation: sagaFly 3.6s cubic-bezier(0.3, 0.7, 0.4, 1) forwards;
-}
-
-@keyframes sagaFly {
-  from { left: 0%; }
-  to   { left: calc(100% - 60px); }
-}
-
-.saga-card {
-  position: absolute;
-  left: var(--pos);
-  top: 50%;
-  transform: translate(-50%, -50%) scale(0.6);
-  opacity: 0;
-  width: 140px;
-  padding: 14px 12px;
-  background: var(--panel-navy);
-  border: 1px solid var(--border-control);
-  border-radius: var(--radius-sm);
-  text-align: center;
-  font-family: var(--font-display);
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: var(--text-strong);
-  animation: sagaCardPop 0.5s ease forwards;
-}
-
-.saga-card span {
-  display: block;
-  margin-top: 5px;
-  font-family: var(--font-body);
-  font-size: var(--fs-xs);
-  font-weight: 500;
-  color: var(--text-muted-dark);
-}
-
-.saga-card:nth-of-type(2) { animation-delay: 0.2s; }
-.saga-card:nth-of-type(3) { animation-delay: 0.75s; }
-.saga-card:nth-of-type(4) { animation-delay: 1.3s; }
-.saga-card:nth-of-type(5) { animation-delay: 1.9s; }
-.saga-card:nth-of-type(6) { animation-delay: 2.5s; }
-.saga-card:nth-of-type(7) { animation-delay: 3.05s; }
-
-@keyframes sagaCardPop {
-  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-}
-
-.sagas-flight-note {
-  margin: 8px auto 0;
-  text-align: center;
-  font-size: var(--fs-sm);
-  color: var(--text-muted-dark);
-}
-
-/* Tabs are usable straight away now (they used to stay invisible for 3.6s while the intro played) */
-.sagas-tabs-wrap { animation: fadeUpIn 0.5s ease both; }
+/* Tabs fade up on load (the old arrow-flight intro was removed Oct 22, 2026) */
+.events-tabs-wrap { animation: fadeUpIn 0.5s ease both; }
 
 @keyframes fadeUpIn {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-@media (max-width: 720px) {
-  .sagas-flight { display: none; }
-}
+/* ---------- Tabs (Events page) ---------- */
 
-/* ---------- Tabs (Sagas) ---------- */
-
-.saga-tabs {
+.event-tabs {
   display: flex;
   gap: 10px;
   margin-bottom: 28px;
   flex-wrap: wrap;
 }
 
-.saga-tab {
+.event-tab {
   font-family: var(--font-body);
   font-size: 1rem;
   font-weight: 600;
@@ -434,18 +263,18 @@
   transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease;
 }
 
-.saga-tab:hover { border-color: var(--gold-light); color: var(--gold-light); }
+.event-tab:hover { border-color: var(--gold-light); color: var(--gold-light); }
 
 /* Selected tab: filled gold AND bold — not colour alone */
-.saga-tab[aria-selected="true"] {
+.event-tab[aria-selected="true"] {
   background: var(--gold-light);
   border-color: var(--gold-light);
   color: var(--navy);
   font-weight: 700;
 }
 
-.saga-panel[hidden] { display: none; }
-.saga-panel { animation: fadeUpSmall 0.35s ease; }
+.event-panel[hidden] { display: none; }
+.event-panel { animation: fadeUpSmall 0.35s ease; }
 
 @keyframes fadeUpSmall {
   from { opacity: 0; transform: translateY(8px); }
@@ -457,7 +286,7 @@
   margin: 0 0 18px;
 }
 
-/* ---------- Event rows (Sagas) ---------- */
+/* ---------- Event rows (Events page) ---------- */
 
 .event-list { list-style: none; margin: 0; padding: 0; }
 
@@ -583,7 +412,7 @@
 }
 .zoom-close:hover { border-color: var(--gold-light); color: var(--gold-light); }
 
-/* ---------- Instagram highlight slots (Sagas) ---------- */
+/* ---------- Instagram highlight slots (Events page) ---------- */
 
 .ig-grid {
   display: grid;
@@ -607,71 +436,6 @@
 }
 
 .ig-slot.has-embed { border-style: solid; padding: 0; display: block; }
-
-/* ---------- Theme reveal (About) — now a real dialog ---------- */
-
-.theme-reveal {
-  position: fixed;
-  inset: 0;
-  z-index: 300;
-  background: radial-gradient(circle at 50% 40%, rgba(16, 26, 48, 0.98), rgba(9, 14, 27, 0.995));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 40px;
-}
-.theme-reveal[hidden] { display: none; }
-.theme-reveal.is-leaving { animation: themeFadeOut 0.4s ease forwards; }
-
-.theme-reveal-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  max-width: 580px;
-  animation: themeContentIn 0.7s ease forwards;
-}
-
-.theme-reveal h2 {
-  font-size: clamp(2rem, 5vw, 3rem);
-  margin: 0;
-}
-
-.theme-reveal p {
-  color: var(--text-body);
-  font-size: var(--fs-lead);
-  margin: 0;
-}
-
-.theme-eyebrow {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 1.25rem;
-  color: var(--gold-light);
-}
-
-.theme-reveal .btn-primary { margin-top: 10px; cursor: pointer; font-family: var(--font-body); }
-.theme-reveal-hint { font-size: var(--fs-sm); color: var(--text-muted-dark); }
-
-@keyframes themeContentIn {
-  from { opacity: 0; transform: translateY(14px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes themeFadeOut {
-  to { opacity: 0; visibility: hidden; }
-}
-
-/* The theme also stays on the page after the intro closes, so nothing is lost */
-.theme-inline {
-  margin: 22px 0 0;
-  padding: 14px 18px;
-  border-left: 3px solid var(--gold);
-  background: var(--panel-navy);
-  max-width: 40em;
-}
-.theme-inline p { margin: 0; font-size: 1.0625rem; }
-.theme-inline strong { color: var(--gold-light); font-family: var(--font-display); font-size: 1.1875rem; }
 
 /* ---------- The Musalla: prayer-time widget ---------- */
 
@@ -738,6 +502,30 @@
   .musalla-campus-card { grid-template-columns: 1fr; }
   .musalla-campus-media { border-right: none; border-bottom: 1px dashed var(--border-control); }
 }
+
+/* On-campus prayer spaces (added Oct 22, 2026) */
+.room-chip {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  white-space: nowrap;
+  padding: 4px 12px;
+  border-radius: 999px;
+  color: var(--gold-light);
+  border: 1.5px solid var(--gold);
+}
+.campus-spaces { margin-bottom: 8px; }
+.reflection-list {
+  list-style: none;
+  margin: 0 0 18px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+}
+.reflection-list li { background: var(--panel-navy); border: 1px solid var(--border-dark-2); border-radius: var(--radius-sm); padding: 16px 18px; }
+.reflection-list strong { display: block; color: var(--text-strong); margin-bottom: 2px; }
+.reflection-list span { color: var(--text-soft); font-size: 1rem; }
+.musalla-campus-card.is-text-only { grid-template-columns: 1fr; max-width: 52em; }
 
 /* ---------- Accessibility statement page ---------- */
 

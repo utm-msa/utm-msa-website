@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sagas: events and lectures | UTM MSA</title>
+<title>Events and lectures | UTM MSA</title>
 <meta name="description" content="Upcoming, current and past UTM MSA events, plus recorded khutbahs and lectures.">
 <script>
 /* Apply saved Display settings before the page paints (avoids a flash). Full logic lives in script.js. */
@@ -20,9 +20,10 @@ l.href='https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="pages.css">
 <link rel="stylesheet" href="resources.css">
+<link rel="stylesheet" href="charity-week.css">
 <link rel="stylesheet" href="a11y.css">
 </head>
-<body>
+<body class="page-events">
 <a class="skip-link" href="#main">Skip to main content</a>
 
 <header class="site-header">
@@ -39,7 +40,7 @@ l.href='https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;
       <nav class="main-nav" aria-label="Main">
         <ul>
           <li><a href="about.html"><span class="nav-title">About</span><span class="nav-desc">Who we are</span></a></li>
-          <li><a href="events.html" aria-current="page"><span class="nav-title">Sagas</span><span class="nav-desc">Events &amp; lectures</span></a></li>
+          <li><a href="events.html" aria-current="page"><span class="nav-title">Events</span><span class="nav-desc">What's on &amp; lectures</span></a></li>
           <li><a href="resources.html"><span class="nav-title">Resources</span><span class="nav-desc">Support &amp; services</span></a></li>
           <li><a href="musalla.html"><span class="nav-title">The Musalla</span><span class="nav-desc">Prayer times &amp; masjids</span></a></li>
         </ul>
@@ -48,7 +49,7 @@ l.href='https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;
         <button class="prefs-toggle" type="button" aria-expanded="false" aria-controls="prefsPanel">
           <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></svg><span>Display settings</span>
         </button>
-        <a class="nav-cta" href="https://forms.gle/BKkKjAEeX6UAhfDM7" target="_blank" rel="noopener"><svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="10" cy="8" r="3.5"/><path d="M3.5 20v-1.2A3.8 3.8 0 0 1 7.3 15h5.4a3.8 3.8 0 0 1 3.8 3.8V20"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M20.5 20v-1.2a3.8 3.8 0 0 0-2.6-3.6"/></svg><span>Become a General Member</span><span class="sr-only"> (opens in a new tab)</span></a>
+        <a class="nav-cta" href="about.html#getting-involved" aria-label="Getting involved with the MSA"><svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="10" cy="8" r="3.5"/><path d="M3.5 20v-1.2A3.8 3.8 0 0 1 7.3 15h5.4a3.8 3.8 0 0 1 3.8 3.8V20"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M20.5 20v-1.2a3.8 3.8 0 0 0-2.6-3.6"/></svg><span>Getting involved</span></a>
       </div>
     </div>
   </div>
@@ -99,47 +100,56 @@ l.href='https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;
   <section class="page-hero" style="border-bottom:none; padding-bottom:0;">
     <div class="wrap">
       <p class="kicker"><span class="kicker-script">As-salāmu ʿalaykum</span></p>
-      <h1>Sagas</h1>
-      <span class="page-subtitle">Our events and lectures</span>
-      <p>Every khutbah, every gathering, every story this cabinet has told: what's coming up, what's on today, and what's already happened.</p>
+      <h1>Events</h1>
+      <span class="page-subtitle">What's on, what's next, and what you missed</span>
+      <p>Everything the MSA is running: what's happening today, what's coming up, past events, and recorded lectures and khutbahs.</p>
     </div>
   </section>
 
-  <!-- Decorative intro animation: hidden from screen readers, skipped on mobile and when motion is reduced -->
-  <div class="sagas-flight" aria-hidden="true">
-    <div class="wrap sagas-flight-inner">
-      <svg class="sagas-arrow" viewBox="0 0 60 20" focusable="false"><line x1="2" y1="10" x2="46" y2="10" stroke="currentColor" stroke-width="2"/><path d="M40 3 L54 10 L40 17 Z" fill="currentColor"/></svg>
-      <div class="saga-card" style="--pos:6%">Nell Crain<span>The Haunting of Hill House</span></div>
-      <div class="saga-card" style="--pos:22%">Miles Morales<span>Spider-Verse</span></div>
-      <div class="saga-card" style="--pos:38%">Goku<span>Dragon Ball</span></div>
-      <div class="saga-card" style="--pos:54%">Itachi Uchiha<span>Naruto</span></div>
-      <div class="saga-card" style="--pos:70%">Odysseus<span>The Odyssey</span></div>
-      <div class="saga-card" style="--pos:86%">Paul Atreides<span>Dune</span></div>
+  <!-- Charity Week banner: shown only during the window set in events-data.js (CHARITY_WEEK).
+       Outside that window it stays hidden and the page uses the normal navy and gold. -->
+  <section class="cw-banner" id="cwBanner" aria-labelledby="cwBannerTitle" hidden>
+    <div class="wrap cw-banner-inner">
+      <p class="cw-eyebrow">UTM MSA presents</p>
+      <h2 id="cwBannerTitle">Charity Week</h2>
+      <p class="cw-theme">This year's theme: <strong>Waves of Unity</strong></p>
+      <p class="cw-blurb">An annual, volunteer-led campaign raising funds for orphans and vulnerable children. Every Charity Week event is in the Upcoming tab below, and anything on today is under Today.</p>
+      <p class="cw-banner-link"><a href="https://www.instagram.com/p/DepVwp0my83/" target="_blank" rel="noopener">See the Charity Week post on Instagram<span class="sr-only"> (opens in a new tab)</span></a></p>
     </div>
-    <p class="sagas-flight-note wrap">Placeholder snapshots, to be swapped for real event recaps once Marketing sends the compilation.</p>
+  </section>
+
+  <!-- Charity Week arrow intro: an arrow shoots across and each day's events pop up as it passes.
+       Built by initCharityFlight() in events-team.js from the Charity Week events in events-data.js.
+       Decorative (aria-hidden): the same events are listed in the Upcoming and Today tabs below.
+       Hidden outside Charity Week and on narrow screens; shown without movement when motion is reduced. -->
+  <div class="cw-flight" id="cwFlight" aria-hidden="true" hidden>
+    <div class="wrap cw-flight-inner">
+      <div class="cw-arrow-trail"></div>
+      <svg class="cw-arrow" viewBox="0 0 72 24" focusable="false"><path d="M2 6 L10 12 L2 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8 6 L16 12 L8 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><line x1="4" y1="12" x2="58" y2="12" stroke="currentColor" stroke-width="2.4"/><path d="M52 4 L70 12 L52 20 Z" fill="currentColor"/></svg>
+    </div>
   </div>
 
-  <section class="section-block sagas-tabs-wrap" aria-label="Events and lectures">
+  <section class="section-block events-tabs-wrap" aria-label="Events and lectures">
     <div class="wrap">
-      <div class="saga-tabs" role="tablist" aria-label="Choose what to show" data-tabs>
-        <button class="saga-tab" type="button" role="tab" id="tab-upcoming" aria-controls="panel-upcoming" aria-selected="true">Upcoming</button>
-        <button class="saga-tab" type="button" role="tab" id="tab-present" aria-controls="panel-present" aria-selected="false" tabindex="-1">Today</button>
-        <button class="saga-tab" type="button" role="tab" id="tab-past" aria-controls="panel-past" aria-selected="false" tabindex="-1">Past</button>
-        <button class="saga-tab" type="button" role="tab" id="tab-lectures" aria-controls="panel-lectures" aria-selected="false" tabindex="-1">Lectures</button>
+      <div class="event-tabs" role="tablist" aria-label="Choose what to show" data-tabs>
+        <button class="event-tab" type="button" role="tab" id="tab-present" aria-controls="panel-present" aria-selected="false" tabindex="-1">Today</button>
+        <button class="event-tab" type="button" role="tab" id="tab-upcoming" aria-controls="panel-upcoming" aria-selected="true">Upcoming</button>
+        <button class="event-tab" type="button" role="tab" id="tab-past" aria-controls="panel-past" aria-selected="false" tabindex="-1">Past</button>
+        <button class="event-tab" type="button" role="tab" id="tab-lectures" aria-controls="panel-lectures" aria-selected="false" tabindex="-1">Lectures</button>
       </div>
-      <div class="saga-panel" role="tabpanel" id="panel-upcoming" aria-labelledby="tab-upcoming" tabindex="0">
+      <div class="event-panel" role="tabpanel" id="panel-upcoming" aria-labelledby="tab-upcoming" tabindex="0">
         <h2 class="panel-heading">Upcoming events</h2>
         <div id="upcomingList" aria-live="polite"><p class="empty-state">Loading events…</p></div>
       </div>
-      <div class="saga-panel" role="tabpanel" id="panel-present" aria-labelledby="tab-present" tabindex="0" hidden>
+      <div class="event-panel" role="tabpanel" id="panel-present" aria-labelledby="tab-present" tabindex="0" hidden>
         <h2 class="panel-heading">Happening today</h2>
         <div id="presentList" aria-live="polite"><p class="empty-state">Loading today's calendar…</p></div>
       </div>
-      <div class="saga-panel" role="tabpanel" id="panel-past" aria-labelledby="tab-past" tabindex="0" hidden>
+      <div class="event-panel" role="tabpanel" id="panel-past" aria-labelledby="tab-past" tabindex="0" hidden>
         <h2 class="panel-heading">Past events</h2>
         <div id="pastList" aria-live="polite"><p class="empty-state">Loading past events…</p></div>
       </div>
-      <div class="saga-panel" role="tabpanel" id="panel-lectures" aria-labelledby="tab-lectures" tabindex="0" hidden>
+      <div class="event-panel" role="tabpanel" id="panel-lectures" aria-labelledby="tab-lectures" tabindex="0" hidden>
         <h2 class="panel-heading">Lectures and khutbahs</h2>
         <p class="lecture-note">Khutbahs and talks worth your time, carried over from the old MSA site. Captions turn on automatically where YouTube has them. More on our <a href="https://www.youtube.com/@utmmsa" target="_blank" rel="noopener">YouTube channel<span class="sr-only"> (opens in a new tab)</span></a>.</p>
         <ul class="lecture-grid">
@@ -218,7 +228,7 @@ l.href='https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;
       <ul class="footer-list">
           <li><a href="index.html">Home<span class="sr-only">: Start here</span></a></li>
           <li><a href="about.html">About<span class="sr-only">: Who we are</span></a></li>
-          <li><a href="events.html">Sagas<span class="sr-only">: Events &amp; lectures</span></a></li>
+          <li><a href="events.html">Events<span class="sr-only">: What's on &amp; lectures</span></a></li>
           <li><a href="resources.html">Resources<span class="sr-only">: Support &amp; services</span></a></li>
           <li><a href="musalla.html">The Musalla<span class="sr-only">: Prayer times &amp; masjids</span></a></li>
           <li><a href="accessibility.html">Accessibility</a></li>
@@ -226,10 +236,11 @@ l.href='https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;
     </nav>
 
     <div>
-      <h2 class="footer-heading">Get involved</h2>
+      <h2 class="footer-heading">Getting involved</h2>
       <ul class="footer-list">
+        <li><a href="about.html#getting-involved">Ways to get involved<span class="sr-only"> with the MSA</span></a></li>
         <li><a href="https://forms.gle/BKkKjAEeX6UAhfDM7" target="_blank" rel="noopener">Become a General Member<span class="sr-only"> (opens in a new tab)</span></a></li>
-        <li><a href="https://www.zeffy.com/en-CA/donation-form/utm-msa-donation" target="_blank" rel="noopener">Donate to our current campaign<span class="sr-only"> (opens in a new tab)</span></a></li>
+        <li><a href="https://www.zeffy.com/en-CA/donation-form/utm-msa-donation" target="_blank" rel="noopener">Donate to the UTM MSA<span class="sr-only"> (opens in a new tab)</span></a></li>
       </ul>
     </div>
 
@@ -249,6 +260,7 @@ l.href='https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;
   </div>
 </footer>
 
+<script src="events-data.js"></script>
 <script src="script.js"></script>
 <script src="events-team.js"></script>
 <script async src="https://www.instagram.com/embed.js"></script>

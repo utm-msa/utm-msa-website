@@ -1,7 +1,7 @@
 /* ============================================================
-   UTM MSA — About & Sagas page behaviour
-   Loaded after script.js (uses escapeHTML, parseEventsCSV, zoomOpen,
-   prefersReducedMotion from it). Every function checks its element
+   UTM MSA — About & Events page behaviour
+   Loaded after events-data.js and script.js (uses mergeEvents from the first;
+   escapeHTML, parseEventsCSV, zoomOpen, prefersReducedMotion from the second). Every function checks its element
    exists, so this file is safe on any page.
    ============================================================ */
 
@@ -39,17 +39,22 @@ function renderTeamGrid() {
     </li>`).join("");
 }
 
-// ---------- Event rows (Sagas) ----------
-function eventRowHTML(ev, isPast, idx) {
+// ---------- Event rows (Events page) ----------
+function eventDateLabel(ev) {
   const d = ev._d;
-  const label = isNaN(d) ? ev.date : d.toLocaleDateString(undefined, { weekday: "short", month: "short", day: "numeric" });
+  if (!ev.date) return "Earlier this fall";
+  return isNaN(d) ? ev.date : d.toLocaleDateString("en-CA", { weekday: "short", month: "short", day: "numeric" });
+}
+
+function eventRowHTML(ev, isPast, idx) {
   const meta = [ev.time, ev.location].filter(Boolean).map(escapeHTML).join(", ");
+  const cw = ev.campaign === "charity-week" ? " is-cw" : "";
   return `
-    <li class="event-row${isPast ? " is-past" : ""}">
-      <p class="event-date-badge" style="margin:0">${isPast ? '<span class="sr-only">Past event, </span>' : ""}${escapeHTML(label)}</p>
+    <li class="event-row${isPast ? " is-past" : ""}${cw}">
+      <p class="event-date-badge" style="margin:0">${isPast ? '<span class="sr-only">Past event, </span>' : ""}${escapeHTML(eventDateLabel(ev))}</p>
       <div>
         <h3><button type="button" class="event-open" data-idx="${idx}" aria-haspopup="dialog">${escapeHTML(ev.title)}<span class="sr-only">, open details</span></button></h3>
-        <p class="event-meta" style="margin:0">${meta}</p>
+        ${meta ? `<p class="event-meta" style="margin:0">${meta}</p>` : ""}
       </div>
       ${ev.tag ? `<span class="event-tag">${escapeHTML(ev.tag)}</span>` : "<span></span>"}
     </li>`;
@@ -67,11 +72,14 @@ function wireEventDialogs() {
       const meta = [ev.time, ev.location].filter(Boolean).map(escapeHTML).join(", ");
       zoomOpen(row, `
         <button type="button" class="zoom-close dialog-close">Close<span class="sr-only"> event details</span></button>
-        <div class="zoom-detail">
+        <div class="zoom-detail${ev.campaign === "charity-week" ? " is-cw" : ""}">
           <p class="event-date-badge" style="margin:0">${escapeHTML(date)}</p>
           <h2 id="zoomTitle">${escapeHTML(ev.title)}</h2>
           ${meta ? `<p class="event-meta">${meta}</p>` : ""}
+          ${ev.partners ? `<p class="event-meta"><strong>With:</strong> ${escapeHTML(ev.partners)}</p>` : ""}
+          ${ev.details ? `<p>${escapeHTML(ev.details)}</p>` : ""}
           ${ev.tag ? `<span class="event-tag">${escapeHTML(ev.tag)}</span>` : ""}
+          ${ev.link ? `<p><a class="btn-primary" href="${escapeHTML(ev.link)}" target="_blank" rel="noopener">${escapeHTML(ev.linkLabel || "More details")}<span class="sr-only"> (opens in a new tab)</span></a></p>` : ""}
         </div>`, "zoomTitle");
     });
   });
@@ -83,13 +91,15 @@ function renderEventsLists(events) {
 
   const today = new Date(); today.setHours(0, 0, 0, 0);
   const t = today.getTime();
-  const dated = events.map((e) => ({ ...e, _d: new Date(e.date.length === 10 ? e.date + "T00:00" : e.date) })).filter((e) => !isNaN(e._d));
+  const dated = events.map((e) => ({ ...e, _d: new Date(e.date.length === 10 ? e.date + "T00:00" : e.date) })).filter((e) => e.date && !isNaN(e._d));
   dated.forEach((e) => e._d.setHours(0, 0, 0, 0));
+  // Past events with no exact date yet (events-data.js, when: "past") go at the end of Past
+  const undatedPast = events.filter((e) => !e.date && e.when === "past");
 
   const groups = {
     present: dated.filter((e) => e._d.getTime() === t),
     upcoming: dated.filter((e) => e._d.getTime() > t).sort((a, b) => a._d - b._d),
-    past: dated.filter((e) => e._d.getTime() < t).sort((a, b) => b._d - a._d),
+    past: [...dated.filter((e) => e._d.getTime() < t).sort((a, b) => b._d - a._d), ...undatedPast],
   };
   const empty = {
     present: "Nothing on the calendar today. Check the Upcoming tab for what's next.",
@@ -106,59 +116,88 @@ function renderEventsLists(events) {
       : `<p class="empty-state">${empty[key]}</p>`;
   });
   wireEventDialogs();
+
+  // If something is on today and the visitor didn't arrive on a specific tab (#upcoming etc.), open Today first
+  if (groups.present.length && !location.hash) document.getElementById("tab-present")?.click();
 }
 
 async function loadEventsForPages() {
   const ids = ["presentList", "upcomingList", "pastList"];
   if (!ids.some((id) => document.getElementById(id))) return;
+  let sheet = [];
   try {
     const res = await fetch(PAGES_EVENTS_CSV_URL);
     if (!res.ok) throw new Error(`Sheet fetch failed: ${res.status}`);
-    renderEventsLists(parseEventsCSV(await res.text()));
+    sheet = parseEventsCSV(await res.text());
   } catch (err) {
+    // The sheet is down: hand-entered events (events-data.js) still render
     console.error("Events fetch failed:", err);
-    ids.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) el.innerHTML = `<p class="empty-state">Events couldn't load right now. Try refreshing, or see our <a href="https://www.instagram.com/utmmsa/">Instagram</a>.</p>`;
-    });
   }
+  renderEventsLists(typeof mergeEvents === "function" ? mergeEvents(sheet) : sheet);
 }
 
-// ---------- Theme intro (About) ----------
-// A real dialog: shows once per visit, focus goes to "Continue", Escape or the button closes it,
-// and it no longer vanishes on a timer before slower readers finish.
-function initThemeReveal() {
-  const dlg = document.getElementById("themeReveal");
-  if (!dlg) return;
-  let seen = false;
-  try { seen = sessionStorage.getItem("msaThemeSeen") === "1"; } catch (e) {}
-  if (seen) return;
+// ---------- Charity Week banner (Events page) ----------
+function initCharityBanner() {
+  const banner = document.getElementById("cwBanner");
+  if (banner && typeof charityWeekActive === "function" && charityWeekActive()) banner.hidden = false;
+}
 
-  const others = [...document.body.children].filter((el) => el !== dlg);
-  const btn = document.getElementById("themeContinue");
-  const close = () => {
-    try { sessionStorage.setItem("msaThemeSeen", "1"); } catch (e) {}
-    others.forEach((el) => el.removeAttribute("inert"));
-    document.removeEventListener("keydown", onKey);
-    if (prefersReducedMotion()) dlg.hidden = true;
-    else { dlg.classList.add("is-leaving"); setTimeout(() => { dlg.hidden = true; }, 400); }
-    document.getElementById("main")?.focus();
-  };
-  const onKey = (e) => {
-    if (e.key === "Escape") close();
-    if (e.key === "Tab") { e.preventDefault(); btn.focus(); } // only one control inside
+// Charity Week arrow intro (decorative, aria-hidden). One card per day of Charity Week,
+// timed so each card pops up as the arrow passes it.
+function initCharityFlight() {
+  const flight = document.getElementById("cwFlight");
+  if (!flight || typeof charityWeekActive !== "function" || !charityWeekActive()) return;
+  const inner = flight.querySelector(".cw-flight-inner");
+  const cw = (typeof LOCAL_EVENTS !== "undefined" ? LOCAL_EVENTS : []).filter((e) => e.campaign === "charity-week");
+  const toISO = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+  const today = toISO(new Date());
+
+  const days = [];
+  for (let d = new Date(CHARITY_WEEK.start + "T12:00"); toISO(d) <= CHARITY_WEEK.end; d.setDate(d.getDate() + 1)) {
+    const iso = toISO(d);
+    const evs = cw.filter((e) => e.date === iso);
+    if (evs.length) days.push({ iso, date: new Date(d), evs });
+  }
+  if (!days.length) return;
+
+  // Arrow uses cubic-bezier(0.3, 0.7, 0.4, 1) over DURATION seconds. Work out when it reaches each card.
+  const DURATION = 3.4;
+  const bez = (a, b, t) => 3 * a * t * (1 - t) ** 2 + 3 * b * t * t * (1 - t) + t ** 3;
+  const timeAt = (progress) => {
+    let lo = 0, hi = 1;
+    for (let i = 0; i < 30; i++) { const mid = (lo + hi) / 2; if (bez(0.7, 1, mid) < progress) lo = mid; else hi = mid; }
+    return bez(0.3, 0.4, lo) * DURATION;
   };
 
-  dlg.hidden = false;
-  others.forEach((el) => el.setAttribute("inert", ""));
-  btn.focus();
-  btn.addEventListener("click", close);
-  dlg.addEventListener("click", (e) => { if (e.target === dlg) close(); });
-  document.addEventListener("keydown", onKey);
+  days.forEach((day, i) => {
+    const pos = days.length === 1 ? 50 : 10 + (80 * i) / (days.length - 1);
+    const card = document.createElement("div");
+    card.className = "cw-flight-card";
+    if (day.iso === today) card.classList.add("is-today");
+    else if (day.iso < today) card.classList.add("is-done");
+    card.style.setProperty("--pos", pos + "%");
+    card.style.setProperty("--delay", Math.max(0.1, timeAt(pos / 100) - 0.15).toFixed(2) + "s");
+    const label = day.date.toLocaleDateString("en-CA", { weekday: "short", month: "short", day: "numeric" });
+    const status = day.iso === today ? '<span class="cw-flight-pill">Today</span>' : "";
+    card.innerHTML = `<p class="cw-flight-day">${escapeHTML(label)}${status}</p>` +
+      day.evs.map((e) => `<p class="cw-flight-title">${e.featured ? "★ " : ""}${escapeHTML(e.title)}</p>`).join("");
+    inner.appendChild(card);
+  });
+  flight.style.setProperty("--cw-flight-duration", DURATION + "s");
+  flight.hidden = false;
+
+  // Start the flight once most of the strip is on screen, so people actually see it
+  const launch = () => flight.classList.add("is-flying");
+  if (!("IntersectionObserver" in window)) return launch();
+  const io = new IntersectionObserver((entries) => {
+    if (entries.some((e) => e.isIntersecting)) { launch(); io.disconnect(); }
+  }, { threshold: 0.6 });
+  io.observe(flight);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  initCharityBanner();
+  initCharityFlight();
   renderTeamGrid();
   loadEventsForPages();
-  initThemeReveal();
 });
